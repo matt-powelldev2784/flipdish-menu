@@ -7,6 +7,8 @@
 4. Open http://localhost:5173/ in your browser
 
 ## My approach
+Build app with Vite, React, TypeScript, TailwindCSS using template form Vite Community.
+Implement unit testing with Vitest and React Testing Library.
 
 * Define TypeScript types for the data structure
 * The main structure is MenuSections, MenuItems, MeItemsOptionSets, and MenuItemOptionSetItems
