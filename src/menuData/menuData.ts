@@ -1,4 +1,6 @@
-export const menuData = {
+import { MenuData } from 'types/MenuDataTypes'
+
+export const menuData: MenuData = {
   MenuId: 16798,
   MenuVersionNumber: 354,
   VersionGuid: 'e6220da2-c34a-4ea2-bb51-a3e190fc5f08',
