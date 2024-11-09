@@ -11,7 +11,7 @@ Build app with Vite, React, TypeScript, TailwindCSS using template form Vite Com
 Implement unit testing with Vitest and React Testing Library.
 
 * Define TypeScript types for the data structure
-* The main structure is MenuSections, MenuItems, MeItemsOptionSets, and MenuItemOptionSetItems
+* The main structure is MenuSections, MenuItems, MenuItemsOptionSets, and MenuItemOptionSetItems
 * Create a Menu component that will render the menu by passing each sub section as props
 * Handle null or missing values in the data
 * Handle IsMasterOptionSet flag to calculate the price
