@@ -16,11 +16,16 @@ export const MenuItemOptionItem = ({
     console.log('price', price)
     setItemPrice((prev) => {
       console.log('prev', prev)
-      return prev || 0 + price
+      return prev + price
     })
   }
-  const subtractFromItemPrice = (price: number) =>
-    setItemPrice((prev) => prev || 0 - price)
+  const subtractFromItemPrice = (price: number) => {
+    console.log('price', price)
+    setItemPrice((prev) => {
+      console.log('prev', prev)
+      return prev - price
+    })
+  }
 
   return (
     <div
