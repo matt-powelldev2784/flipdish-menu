@@ -1,29 +1,46 @@
 import { MenuItemOptionSetItemT } from 'menuData/menuData'
-import { Dispatch, SetStateAction } from 'react'
+import { Dispatch, SetStateAction, useState } from 'react'
 
 interface MenuItemOptionItemProps {
   MenuItemOptionSetItems: MenuItemOptionSetItemT
   setItemPrice: Dispatch<SetStateAction<number>>
+  isMasterSetItem: boolean
+  masterItemSelected: boolean
+  setMasterItemSelected: Dispatch<SetStateAction<boolean>>
+  basePrice: number
 }
 
 export const MenuItemOptionItem = ({
   MenuItemOptionSetItems,
-  setItemPrice
+  setItemPrice,
+  isMasterSetItem,
+  masterItemSelected,
+  setMasterItemSelected,
+  basePrice
 }: MenuItemOptionItemProps) => {
+  const [itemSelected, setItemSelected] = useState(false)
   const displayOrder = MenuItemOptionSetItems.DisplayOrder
 
-  const addToItemPrice = (price: number) => {
-    console.log('price', price)
+  const selectItem = () => {
     setItemPrice((prev) => {
-      console.log('prev', prev)
-      return prev + price
+      if (isMasterSetItem) {
+        setMasterItemSelected(true)
+        return prev + MenuItemOptionSetItems.Price
+      } else {
+        setItemSelected(true)
+        return prev + MenuItemOptionSetItems.Price
+      }
     })
   }
-  const subtractFromItemPrice = (price: number) => {
-    console.log('price', price)
+  const deselectItem = () => {
     setItemPrice((prev) => {
-      console.log('prev', prev)
-      return prev - price
+      if (isMasterSetItem) {
+        setMasterItemSelected(true)
+        return prev - MenuItemOptionSetItems.Price
+      } else {
+        setItemSelected(false)
+        return prev - MenuItemOptionSetItems.Price
+      }
     })
   }
 
@@ -32,25 +49,53 @@ export const MenuItemOptionItem = ({
       className="bg-green-100"
       key={MenuItemOptionSetItems.MenuItemOptionSetItemId}
     >
-      <p className="mt-1 bg-blue-500 text-yellow-500">
-        {MenuItemOptionSetItems.Name}
-        <br />
-        options price = {MenuItemOptionSetItems.Price}
-        <br />
-        display order = {displayOrder}
-      </p>
-      <button
-        onClick={() => addToItemPrice(MenuItemOptionSetItems.Price)}
-        className="size-12 bg-slate-500 text-3xl "
-      >
-        +
-      </button>
-      <button
-        onClick={() => subtractFromItemPrice(MenuItemOptionSetItems.Price)}
-        className="size-12 bg-slate-500 text-3xl "
-      >
-        -
-      </button>
+      {masterItemSelected === false && isMasterSetItem === true && (
+        <>
+          <p className="mt-1 bg-blue-500 text-yellow-500">
+            {MenuItemOptionSetItems.Name}
+            <br />
+            options price = {MenuItemOptionSetItems.Price}
+            <br />
+            display order = {displayOrder}
+          </p>
+          <button
+            onClick={itemSelected ? deselectItem : selectItem}
+            className=" bg-slate-500 p-2 text-3xl "
+          >
+            {itemSelected ? 'Deselect' : 'Select'}
+          </button>
+        </>
+      )}
+
+      {masterItemSelected === true && isMasterSetItem === true && (
+        <button
+          onClick={() => {
+            setMasterItemSelected(false)
+            setItemPrice(basePrice)
+          }}
+          className="bg-slate-500 p-2 text-3xl"
+        >
+          Reset Item1
+        </button>
+      )}
+
+      {isMasterSetItem === false && (
+        <>
+          <p className="mt-1 bg-blue-500 text-yellow-500">
+            {MenuItemOptionSetItems.Name}
+            <br />
+            options price = {MenuItemOptionSetItems.Price}
+            <br />
+            display order = {displayOrder}
+          </p>
+          <button
+            onClick={itemSelected ? deselectItem : selectItem}
+            className=" bg-slate-500 p-2 text-3xl "
+          >
+            {itemSelected ? 'Deselect' : 'Select'}
+          </button>
+        </>
+      )}
     </div>
   )
 }

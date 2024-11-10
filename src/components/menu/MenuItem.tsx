@@ -7,7 +7,7 @@ interface MenuItemsProps {
 }
 
 export const MenuItem = ({ MenuItems }: MenuItemsProps) => {
-  const [itemPrice, setItemPrice] = useState(MenuItems.Price)
+  const [itemPrice, setItemPrice] = useState(Number(MenuItems.Price))
 
   return (
     <div className="mt-4 border-2" key={MenuItems.MenuSectionId}>
@@ -24,6 +24,7 @@ export const MenuItem = ({ MenuItems }: MenuItemsProps) => {
             key={MenuItemOptionSets.MenuItemOptionSetId}
             MenuItemOptionSets={MenuItemOptionSets}
             setItemPrice={setItemPrice}
+            basePrice={MenuItems.Price}
           />
         )
       })}
