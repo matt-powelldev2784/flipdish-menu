@@ -22,26 +22,31 @@ export const MenuItemSubOptions = ({
   const displayOrder = MenuItemOptionSetItems.DisplayOrder
 
   const selectItem = () => {
-    setItemPrice((prev) => {
-      if (isMasterSetItem) {
-        setMasterItemSelected(true)
+    if (isMasterSetItem) {
+      setMasterItemSelected(true)
+      setItemPrice((prev) => {
         return prev + MenuItemOptionSetItems.Price
-      } else {
-        setItemSelected(true)
+      })
+    } else {
+      setItemSelected(true)
+      setItemPrice((prev) => {
         return prev + MenuItemOptionSetItems.Price
-      }
-    })
+      })
+    }
   }
+
   const deselectItem = () => {
-    setItemPrice((prev) => {
-      if (isMasterSetItem) {
-        setMasterItemSelected(true)
+    if (isMasterSetItem) {
+      setMasterItemSelected(false)
+      setItemPrice((prev) => {
         return prev - MenuItemOptionSetItems.Price
-      } else {
-        setItemSelected(false)
+      })
+    } else {
+      setItemSelected(false)
+      setItemPrice((prev) => {
         return prev - MenuItemOptionSetItems.Price
-      }
-    })
+      })
+    }
   }
 
   return (
