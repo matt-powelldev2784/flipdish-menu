@@ -1,6 +1,6 @@
 import { MenuItemOptionSetT } from 'menuData/menuData'
 import { MenuItemSubOptions } from './MenuItemSubOptions'
-import { Dispatch, SetStateAction, useState } from 'react'
+import { Dispatch, SetStateAction } from 'react'
 
 interface MenuItemOptionProps {
   MenuItemOptionSets: MenuItemOptionSetT
@@ -13,7 +13,6 @@ export const MenuItemOptions = ({
   setItemPrice,
   basePrice
 }: MenuItemOptionProps) => {
-  const [masterItemSelected, setMasterItemSelected] = useState(false)
   const isMasterSetItem = MenuItemOptionSets.IsMasterOptionSet
 
   return (
@@ -31,8 +30,6 @@ export const MenuItemOptions = ({
               MenuItemOptionSetItems={MenuItemOptionSetItems}
               setItemPrice={setItemPrice}
               isMasterSetItem={MenuItemOptionSets.IsMasterOptionSet}
-              masterItemSelected={masterItemSelected}
-              setMasterItemSelected={setMasterItemSelected}
               basePrice={basePrice}
             />
           )

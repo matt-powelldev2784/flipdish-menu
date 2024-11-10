@@ -5,8 +5,7 @@ interface MenuItemOptionItemProps {
   MenuItemOptionSetItems: MenuItemOptionSetItemT
   setItemPrice: Dispatch<SetStateAction<number>>
   isMasterSetItem: boolean
-  masterItemSelected: boolean
-  setMasterItemSelected: Dispatch<SetStateAction<boolean>>
+
   basePrice: number
 }
 
@@ -14,39 +13,23 @@ export const MenuItemSubOptions = ({
   MenuItemOptionSetItems,
   setItemPrice,
   isMasterSetItem,
-  masterItemSelected,
-  setMasterItemSelected,
   basePrice
 }: MenuItemOptionItemProps) => {
   const [itemSelected, setItemSelected] = useState(false)
   const displayOrder = MenuItemOptionSetItems.DisplayOrder
 
   const selectItem = () => {
-    if (isMasterSetItem) {
-      setMasterItemSelected(true)
-      setItemPrice((prev) => {
-        return prev + MenuItemOptionSetItems.Price
-      })
-    } else {
-      setItemSelected(true)
-      setItemPrice((prev) => {
-        return prev + MenuItemOptionSetItems.Price
-      })
-    }
+    setItemSelected(true)
+    setItemPrice((prev) => {
+      return prev + MenuItemOptionSetItems.Price
+    })
   }
 
   const deselectItem = () => {
-    if (isMasterSetItem) {
-      setMasterItemSelected(false)
-      setItemPrice((prev) => {
-        return prev - MenuItemOptionSetItems.Price
-      })
-    } else {
-      setItemSelected(false)
-      setItemPrice((prev) => {
-        return prev - MenuItemOptionSetItems.Price
-      })
-    }
+    setItemSelected(false)
+    setItemPrice((prev) => {
+      return prev - MenuItemOptionSetItems.Price
+    })
   }
 
   return (
@@ -54,7 +37,7 @@ export const MenuItemSubOptions = ({
       className="bg-green-100"
       key={MenuItemOptionSetItems.MenuItemOptionSetItemId}
     >
-      {masterItemSelected === false && isMasterSetItem === true && (
+      {itemSelected === false && isMasterSetItem === true && (
         <>
           <p className="mt-1 bg-blue-500 text-yellow-500">
             {MenuItemOptionSetItems.Name}
@@ -72,21 +55,21 @@ export const MenuItemSubOptions = ({
         </>
       )}
 
-      {masterItemSelected === true && isMasterSetItem === true && (
+      {itemSelected === true && isMasterSetItem === true && (
         <button
           onClick={() => {
-            setMasterItemSelected(false)
             setItemPrice(basePrice)
+            setItemSelected(false)
           }}
           className="bg-slate-500 p-2 text-3xl"
         >
-          Reset Item1
+          Reset Item {displayOrder}
         </button>
       )}
 
       {isMasterSetItem === false && (
         <>
-          <p className="mt-1 bg-blue-500 text-yellow-500">
+          <p className="mt-1 bg-yellow-500 text-slate-500">
             {MenuItemOptionSetItems.Name}
             <br />
             options price = {MenuItemOptionSetItems.Price}
