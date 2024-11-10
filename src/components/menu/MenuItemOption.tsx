@@ -14,13 +14,13 @@ export const MenuItemOption = ({
   basePrice
 }: MenuItemOptionProps) => {
   const [masterItemSelected, setMasterItemSelected] = useState(false)
-  const isMasterSetItem = MenuItemOptionSets.IsMasterOptionSet.toString()
+  const isMasterSetItem = MenuItemOptionSets.IsMasterOptionSet
 
   return (
     <div key={MenuItemOptionSets.MenuItemOptionSetId}>
       <p className="bg-orange-100 text-green-500">{MenuItemOptionSets.Name}</p>
       <p className="bg-orange-100 text-green-500">
-        isMasterSetItem = {isMasterSetItem}
+        isMasterSetItem = {isMasterSetItem.toString()}
       </p>
 
       {MenuItemOptionSets.MenuItemOptionSetItems.map(
