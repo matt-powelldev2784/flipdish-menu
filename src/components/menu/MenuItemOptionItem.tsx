@@ -3,13 +3,24 @@ import { Dispatch, SetStateAction } from 'react'
 
 interface MenuItemOptionItemProps {
   MenuItemOptionSetItems: MenuItemOptionSetItemT
-  setItemPrice?: Dispatch<SetStateAction<number | undefined>>
+  setItemPrice: Dispatch<SetStateAction<number>>
 }
 
 export const MenuItemOptionItem = ({
-  MenuItemOptionSetItems
+  MenuItemOptionSetItems,
+  setItemPrice
 }: MenuItemOptionItemProps) => {
   const displayOrder = MenuItemOptionSetItems.DisplayOrder
+
+  const addToItemPrice = (price: number) => {
+    console.log('price', price)
+    setItemPrice((prev) => {
+      console.log('prev', prev)
+      return prev || 0 + price
+    })
+  }
+  const subtractFromItemPrice = (price: number) =>
+    setItemPrice((prev) => prev || 0 - price)
 
   return (
     <div
@@ -23,8 +34,18 @@ export const MenuItemOptionItem = ({
         <br />
         display order = {displayOrder}
       </p>
-      <button className="size-12 bg-slate-500 text-3xl ">+</button>
-      <button className="size-12 bg-slate-500 text-3xl ">-</button>
+      <button
+        onClick={() => addToItemPrice(MenuItemOptionSetItems.Price)}
+        className="size-12 bg-slate-500 text-3xl "
+      >
+        +
+      </button>
+      <button
+        onClick={() => subtractFromItemPrice(MenuItemOptionSetItems.Price)}
+        className="size-12 bg-slate-500 text-3xl "
+      >
+        -
+      </button>
     </div>
   )
 }

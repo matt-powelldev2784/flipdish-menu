@@ -40,32 +40,32 @@ export interface MenuItemOptionSetT {
 
 export interface MenuItemT {
   MenuItemId: number
-  Name?: string
-  Description?: string | null
-  SpicinessRating?: number | null
-  Price?: number
-  DisplayOrder?: number
-  IsDeleted?: boolean
-  Alcohol?: boolean
-  Tags?: string[]
-  PublicId?: string
-  IsAvailable?: boolean
+  Name: string
+  Description: string | null
+  SpicinessRating: number | null
+  Price: number
+  DisplayOrder: number
+  IsDeleted: boolean
+  Alcohol: boolean
+  Tags: string[]
+  PublicId: string
+  IsAvailable: boolean
   MenuItemOptionSets: MenuItemOptionSetT[] | []
-  TaxRate?: number | null
-  TaxRateId?: number | null
-  TaxValue?: number | null
-  MenuSectionId?: number
-  ImageName?: string | null
-  ImageUrl?: string | null
-  CellAspectRatio?: number
-  CellLayoutType?: number
-  ActualPrice?: number
-  DisableVouchers?: boolean
-  ExcludeFromVoucherDiscounting?: boolean
-  DailySpecialHours?: []
+  TaxRate: number | null
+  TaxRateId: number | null
+  TaxValue: number | null
+  MenuSectionId: number
+  ImageName: string | null
+  ImageUrl: string | null
+  CellAspectRatio: number
+  CellLayoutType: number
+  ActualPrice: number
+  DisableVouchers: boolean
+  ExcludeFromVoucherDiscounting: boolean
+  DailySpecialHours: []
   DailySpecialPrice?: number
-  PriceCanIncrease?: boolean
-  MenuItemMetadata?: []
+  PriceCanIncrease: boolean
+  MenuItemMetadata: []
 }
 
 export interface AvailableTimesT {

@@ -4,7 +4,7 @@ import { Dispatch, SetStateAction } from 'react'
 
 interface MenuItemOptionProps {
   MenuItemOptionSets: MenuItemOptionSetT
-  setItemPrice?: Dispatch<SetStateAction<number | undefined>>
+  setItemPrice: Dispatch<SetStateAction<number>>
 }
 
 export const MenuItemOption = ({
