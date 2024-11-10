@@ -1,5 +1,5 @@
 import { MenuItemOptionSetT } from 'menuData/menuData'
-import { MenuItemOptionItem } from './MenuItemOptionItem'
+import { MenuItemSubOptions } from './MenuItemSubOptions'
 import { Dispatch, SetStateAction, useState } from 'react'
 
 interface MenuItemOptionProps {
@@ -26,7 +26,7 @@ export const MenuItemOptions = ({
       {MenuItemOptionSets.MenuItemOptionSetItems.map(
         (MenuItemOptionSetItems) => {
           return (
-            <MenuItemOptionItem
+            <MenuItemSubOptions
               key={MenuItemOptionSetItems.MenuItemOptionSetItemId}
               MenuItemOptionSetItems={MenuItemOptionSetItems}
               setItemPrice={setItemPrice}

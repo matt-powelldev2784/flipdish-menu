@@ -10,7 +10,7 @@ interface MenuItemOptionItemProps {
   basePrice: number
 }
 
-export const MenuItemOptionItem = ({
+export const MenuItemSubOptions = ({
   MenuItemOptionSetItems,
   setItemPrice,
   isMasterSetItem,
