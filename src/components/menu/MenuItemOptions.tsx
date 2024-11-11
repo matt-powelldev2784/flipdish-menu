@@ -1,7 +1,7 @@
 import { MenuItemOptionSetT } from 'menuData/menuData'
 import { MenuItemSubOptions } from './MenuItemSubOptions'
 import { Dispatch, SetStateAction, useState } from 'react'
-import { MenuItemMasterSubOptions } from './MenuItemMasterSubOptions'
+import { MenuItemMasterOptions } from './MenuItemMasterOptions'
 
 interface MenuItemOptionProps {
   MenuItemOptionSets: MenuItemOptionSetT
@@ -24,11 +24,16 @@ export const MenuItemOptions = ({
         isMasterSetItem = {isMasterSetItem.toString()}
       </p>
 
+      {
+        // Split master items and sub options into separate components
+        // This is done so multiple master items can be selected
+      }
       {MenuItemOptionSets.MenuItemOptionSetItems.map(
         (MenuItemOptionSetItems) => {
           if (isMasterSetItem === true) {
             return (
-              <MenuItemMasterSubOptions
+              // Master items
+              <MenuItemMasterOptions
                 key={MenuItemOptionSetItems.MenuItemOptionSetItemId}
                 MenuItemOptionSetItems={MenuItemOptionSetItems}
                 setItemPrice={setItemPrice}
@@ -40,6 +45,7 @@ export const MenuItemOptions = ({
             )
           } else {
             return (
+              // Sub options
               <MenuItemSubOptions
                 key={MenuItemOptionSetItems.MenuItemOptionSetItemId}
                 MenuItemOptionSetItems={MenuItemOptionSetItems}
