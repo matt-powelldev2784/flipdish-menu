@@ -1,5 +1,3 @@
-import { MenuDataT } from 'menuData/menuData'
-import { menuData } from 'menuData/menuData'
 import { createContext, useContext, useState, ReactNode } from 'react'
 
 export interface SubOption {
@@ -19,7 +17,6 @@ export interface CartItem {
 }
 
 interface MenuContextType {
-  menuData: MenuDataT
   cartItems: CartItem[]
   currentSelectedMenuItemId: number | null
   addItem: (item: CartItem) => void
@@ -28,7 +25,7 @@ interface MenuContextType {
 
 const MenuContext = createContext<MenuContextType | undefined>(undefined)
 
-export const useCart = () => {
+export const useMenuContext = () => {
   const context = useContext(MenuContext)
   if (!context) {
     throw new Error('useCart must be used within a CartProvider')
@@ -36,7 +33,7 @@ export const useCart = () => {
   return context
 }
 
-export const CartContextProvider = ({ children }: { children: ReactNode }) => {
+export const MenuContextProvider = ({ children }: { children: ReactNode }) => {
   const [cartItems, setCartItems] = useState<CartItem[]>([])
 
   const addItem = (item: CartItem) => {
@@ -50,7 +47,6 @@ export const CartContextProvider = ({ children }: { children: ReactNode }) => {
   return (
     <MenuContext.Provider
       value={{
-        menuData,
         cartItems,
         currentSelectedMenuItemId: null,
         addItem,
