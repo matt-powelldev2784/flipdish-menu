@@ -8,6 +8,7 @@ interface MenuItemsProps {
 
 export const MenuItem = ({ MenuItems }: MenuItemsProps) => {
   const [itemPrice, setItemPrice] = useState(MenuItems.Price)
+  const [menuItemSelected, setMenuItemSelected] = useState(false)
 
   return (
     <div className="mt-4 border-2" key={MenuItems.MenuSectionId}>
@@ -15,10 +16,18 @@ export const MenuItem = ({ MenuItems }: MenuItemsProps) => {
         <p className="w-full bg-red-100 text-blue-500">
           {MenuItems.Name} - {MenuItems.Description} - {MenuItems.Price}
         </p>
+        <button
+          onClick={() => setMenuItemSelected(!menuItemSelected)}
+          className="bg-blue-500 p-2 text-xl"
+        >
+          Add Item
+        </button>
         <p className="mr-4 font-bold">{itemPrice}</p>
       </div>
 
       {MenuItems.MenuItemOptionSets.map((MenuItemOptionSets) => {
+        if (menuItemSelected === false) return null
+
         return (
           <MenuItemOptions
             key={MenuItemOptionSets.MenuItemOptionSetId}
