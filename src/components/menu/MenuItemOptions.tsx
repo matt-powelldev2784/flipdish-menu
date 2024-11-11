@@ -1,6 +1,7 @@
 import { MenuItemOptionSetT } from 'menuData/menuData'
 import { MenuItemSubOptions } from './MenuItemSubOptions'
-import { Dispatch, SetStateAction } from 'react'
+import { Dispatch, SetStateAction, useState } from 'react'
+import { MenuItemMasterSubOptions } from './MenuItemMasterSubOptions'
 
 interface MenuItemOptionProps {
   MenuItemOptionSets: MenuItemOptionSetT
@@ -13,6 +14,7 @@ export const MenuItemOptions = ({
   setItemPrice,
   basePrice
 }: MenuItemOptionProps) => {
+  const [masterItemSelected, setMasterItemSelected] = useState(false)
   const isMasterSetItem = MenuItemOptionSets.IsMasterOptionSet
 
   return (
@@ -24,15 +26,28 @@ export const MenuItemOptions = ({
 
       {MenuItemOptionSets.MenuItemOptionSetItems.map(
         (MenuItemOptionSetItems) => {
-          return (
-            <MenuItemSubOptions
-              key={MenuItemOptionSetItems.MenuItemOptionSetItemId}
-              MenuItemOptionSetItems={MenuItemOptionSetItems}
-              setItemPrice={setItemPrice}
-              isMasterSetItem={MenuItemOptionSets.IsMasterOptionSet}
-              basePrice={basePrice}
-            />
-          )
+          if (isMasterSetItem === true) {
+            return (
+              <MenuItemMasterSubOptions
+                key={MenuItemOptionSetItems.MenuItemOptionSetItemId}
+                MenuItemOptionSetItems={MenuItemOptionSetItems}
+                setItemPrice={setItemPrice}
+                isMasterSetItem={MenuItemOptionSets.IsMasterOptionSet}
+                basePrice={basePrice}
+                masterItemSelected={masterItemSelected}
+                setMasterItemSelected={setMasterItemSelected}
+              />
+            )
+          } else {
+            return (
+              <MenuItemSubOptions
+                key={MenuItemOptionSetItems.MenuItemOptionSetItemId}
+                MenuItemOptionSetItems={MenuItemOptionSetItems}
+                setItemPrice={setItemPrice}
+                isMasterSetItem={MenuItemOptionSets.IsMasterOptionSet}
+              />
+            )
+          }
         }
       )}
     </div>
