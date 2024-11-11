@@ -1,7 +1,7 @@
 import { MenuItemOptionSetT } from 'menuData/menuData'
-import { MenuItemSubOptions } from './MenuItemSubOptions'
+import { MenuItemSubOptions } from './04b_MenuItemSubOptions'
 import { Dispatch, SetStateAction, useState } from 'react'
-import { MenuItemMasterOptions } from './MenuItemMasterOptions'
+import { MenuItemMasterOptions } from './04a_MenuItemMasterOptions'
 
 interface MenuItemOptionProps {
   MenuItemOptionSets: MenuItemOptionSetT

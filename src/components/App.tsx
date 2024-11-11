@@ -1,6 +1,6 @@
 import { menuData } from 'menuData/menuData'
 import { MenuSectionT } from 'types/MenuDataTypes'
-import { MenuSection } from './menu/MenuSection'
+import { MenuSection } from './menu/01_MenuSection'
 
 function App() {
   const menuSections = menuData.MenuSections

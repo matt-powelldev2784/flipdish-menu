@@ -1,5 +1,5 @@
 import { MenuItemT } from 'menuData/menuData'
-import { MenuItemOptions } from './MenuItemOptions'
+import { MenuItemOptions } from './03_MenuItemOptions'
 import { useState } from 'react'
 
 interface MenuItemsProps {

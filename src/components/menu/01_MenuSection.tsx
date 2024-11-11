@@ -1,5 +1,5 @@
 import { MenuSectionT } from 'menuData/menuData'
-import { MenuItem } from './MenuItem'
+import { MenuItem } from './02_MenuItem'
 
 interface MenuSectionProps {
   MenuSection: MenuSectionT
