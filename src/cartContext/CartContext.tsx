@@ -18,6 +18,7 @@ export interface CartItem {
 
 interface CartContextType {
   items: CartItem[]
+  currentSelectedMenuItemId: number | null
   addItem: (item: CartItem) => void
   removeItem: (id: number) => void
 }
@@ -44,7 +45,9 @@ export const CartContextProvider = ({ children }: { children: ReactNode }) => {
   }
 
   return (
-    <CartContext.Provider value={{ items, addItem, removeItem }}>
+    <CartContext.Provider
+      value={{ items, currentSelectedMenuItemId: null, addItem, removeItem }}
+    >
       {children}
     </CartContext.Provider>
   )
