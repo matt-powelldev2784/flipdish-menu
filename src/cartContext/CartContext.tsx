@@ -1,3 +1,5 @@
+import { MenuDataT } from 'menuData/menuData'
+import { menuData } from 'menuData/menuData'
 import { createContext, useContext, useState, ReactNode } from 'react'
 
 export interface SubOption {
@@ -16,17 +18,18 @@ export interface CartItem {
   totalPrice: number
 }
 
-interface CartContextType {
-  items: CartItem[]
+interface MenuContextType {
+  menuData: MenuDataT
+  cartItems: CartItem[]
   currentSelectedMenuItemId: number | null
   addItem: (item: CartItem) => void
   removeItem: (id: number) => void
 }
 
-const CartContext = createContext<CartContextType | undefined>(undefined)
+const MenuContext = createContext<MenuContextType | undefined>(undefined)
 
 export const useCart = () => {
-  const context = useContext(CartContext)
+  const context = useContext(MenuContext)
   if (!context) {
     throw new Error('useCart must be used within a CartProvider')
   }
@@ -34,21 +37,27 @@ export const useCart = () => {
 }
 
 export const CartContextProvider = ({ children }: { children: ReactNode }) => {
-  const [items, setItems] = useState<CartItem[]>([])
+  const [cartItems, setCartItems] = useState<CartItem[]>([])
 
   const addItem = (item: CartItem) => {
-    setItems((prevItems) => [...prevItems, item])
+    setCartItems((prevItems) => [...prevItems, item])
   }
 
   const removeItem = (id: number) => {
-    setItems((prevItems) => prevItems.filter((item) => item.id !== id))
+    setCartItems((prevItems) => prevItems.filter((item) => item.id !== id))
   }
 
   return (
-    <CartContext.Provider
-      value={{ items, currentSelectedMenuItemId: null, addItem, removeItem }}
+    <MenuContext.Provider
+      value={{
+        menuData,
+        cartItems,
+        currentSelectedMenuItemId: null,
+        addItem,
+        removeItem
+      }}
     >
       {children}
-    </CartContext.Provider>
+    </MenuContext.Provider>
   )
 }
