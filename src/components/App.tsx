@@ -1,5 +1,5 @@
 import { menuData } from 'menuData/menuData'
-import { MenuSection } from './menu/01_MenuSection'
+import { MenuSection } from './menu/MenuSection'
 import { MenuSubOptions } from './menu/MenuSubOptions'
 import { useMenuContext } from 'cartContext/CartContext'
 import { findMenuItemById } from 'utils/findMenuItemById'
