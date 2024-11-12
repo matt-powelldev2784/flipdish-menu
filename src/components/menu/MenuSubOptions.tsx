@@ -25,10 +25,13 @@ export const MenuSubOptions = ({ menuItem }: MasterItemProps) => {
 
       {menuOptions.map((menuOption) => {
         const isMasterOption = menuOption.IsMasterOptionSet
+
+        // when one master item is selected filter out all other master items
+        // this is so two master items are not selected at the same time
+        // for instance you cannot select a small and large chips and the same time
         const menuItems = menuOption.MenuItemOptionSetItems.filter((item) => {
           if (!masterItemSelected) return true
           if (!isMasterOption) return true
-
           return item.MenuItemOptionSetItemId === currentMasterItemId
         })
 
