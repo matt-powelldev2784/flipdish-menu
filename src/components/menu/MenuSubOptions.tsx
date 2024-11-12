@@ -6,9 +6,8 @@ interface MasterItemProps {
 }
 
 export const MenuSubOptions = ({ menuItem }: MasterItemProps) => {
-  const { setCurrentMenuItemId } = useMenuContext()
+  const { setCurrentMenuItemId, setCurrentMasterItemId } = useMenuContext()
   const menuOptions = menuItem.MenuItemOptionSets
-  console.log('menuOptions', menuOptions)
 
   return (
     <div>
@@ -23,19 +22,29 @@ export const MenuSubOptions = ({ menuItem }: MasterItemProps) => {
       {menuOptions.map((menuOptions) => {
         const isMasterOption = menuOptions.IsMasterOptionSet
         const menuSubOptions = menuOptions.MenuItemOptionSetItems
-        console.log('menuSubOptions', menuSubOptions)
 
         return (
           <div key={menuOptions.MenuItemOptionSetId}>
             {menuSubOptions.map((menuSubOptions) => {
-              console.log('menuSubOptions', menuSubOptions)
-
+              const subOptionId = menuSubOptions.MenuItemOptionSetItemId
               return (
                 <div key={menuSubOptions.MenuItemOptionSetItemId}>
                   <p>
                     isMasterOption = {isMasterOption.toString()} -{' '}
                     {menuSubOptions.Name} - {menuSubOptions.Price}
                   </p>
+                  <button
+                    onClick={() => setCurrentMasterItemId(subOptionId)}
+                    className="bg-blue-500 p-2 text-xl"
+                  >
+                    Add
+                  </button>
+                  <button
+                    onClick={() => setCurrentMasterItemId(null)}
+                    className="bg-blue-500 p-2 text-xl"
+                  >
+                    Remove
+                  </button>
                 </div>
               )
             })}

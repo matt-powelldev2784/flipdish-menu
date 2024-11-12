@@ -25,6 +25,8 @@ export interface CartItem {
 
 interface MenuContextType {
   cartItems: CartItem[]
+  currentMasterItemId: number | null
+  setCurrentMasterItemId: Dispatch<SetStateAction<number | null>>
   currentMenuItemId: number | null
   setCurrentMenuItemId: Dispatch<SetStateAction<number | null>>
   addItem: (item: CartItem) => void
@@ -46,6 +48,9 @@ export const MenuContextProvider = ({ children }: { children: ReactNode }) => {
   const [currentMenuItemId, setCurrentMenuItemId] = useState<number | null>(
     null
   )
+  const [currentMasterItemId, setCurrentMasterItemId] = useState<number | null>(
+    null
+  )
 
   const addItem = (item: CartItem) => {
     setCartItems((prevItems) => [...prevItems, item])
@@ -61,6 +66,8 @@ export const MenuContextProvider = ({ children }: { children: ReactNode }) => {
         cartItems,
         currentMenuItemId,
         setCurrentMenuItemId,
+        currentMasterItemId,
+        setCurrentMasterItemId,
         addItem,
         removeItem
       }}
