@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import { useMenuContext } from 'cartContext/CartContext'
 import { MenuItemT } from 'menuData/menuData'
 import { useState } from 'react'
