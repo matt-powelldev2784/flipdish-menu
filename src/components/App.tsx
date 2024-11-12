@@ -12,7 +12,9 @@ function App() {
   return (
     <div className="relative overflow-hidden bg-white">
       <p className="text-red-500">Menu</p>
+
       {!currentMenuItem &&
+        // render all menu sections if no menu item is selected
         menuSections.map((menuSection) => {
           return (
             <MenuSection
@@ -22,7 +24,10 @@ function App() {
           )
         })}
 
-      {currentMenuItem && <MenuSubOptions menuItem={currentMenuItem} />}
+      {
+        // render menu item sub options if a menu item is selected
+        currentMenuItem && <MenuSubOptions menuItem={currentMenuItem} />
+      }
     </div>
   )
 }
