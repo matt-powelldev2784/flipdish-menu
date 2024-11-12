@@ -1,4 +1,11 @@
-import { createContext, useContext, useState, ReactNode } from 'react'
+import {
+  createContext,
+  useContext,
+  useState,
+  ReactNode,
+  Dispatch,
+  SetStateAction
+} from 'react'
 
 export interface SubOption {
   subOptionId: string
@@ -18,7 +25,8 @@ export interface CartItem {
 
 interface MenuContextType {
   cartItems: CartItem[]
-  currentSelectedMenuItemId: number | null
+  currentMenuItemId: number | null
+  setCurrentMenuItemId: Dispatch<SetStateAction<number | null>>
   addItem: (item: CartItem) => void
   removeItem: (id: number) => void
 }
@@ -35,6 +43,9 @@ export const useMenuContext = () => {
 
 export const MenuContextProvider = ({ children }: { children: ReactNode }) => {
   const [cartItems, setCartItems] = useState<CartItem[]>([])
+  const [currentMenuItemId, setCurrentMenuItemId] = useState<number | null>(
+    null
+  )
 
   const addItem = (item: CartItem) => {
     setCartItems((prevItems) => [...prevItems, item])
@@ -48,7 +59,8 @@ export const MenuContextProvider = ({ children }: { children: ReactNode }) => {
     <MenuContext.Provider
       value={{
         cartItems,
-        currentSelectedMenuItemId: null,
+        currentMenuItemId,
+        setCurrentMenuItemId,
         addItem,
         removeItem
       }}
