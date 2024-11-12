@@ -10,7 +10,7 @@ export const MenuSection = ({ MenuSection }: MenuSectionProps) => {
   const menuItems = MenuSection.MenuItems
 
   return (
-    <div className="mt-8" key={MenuSection.MenuSectionId}>
+    <div className="mt-3" key={MenuSection.MenuSectionId}>
       <p className="bg-slate-500 text-red-500">{MenuSection.Name}</p>
 
       <div>
