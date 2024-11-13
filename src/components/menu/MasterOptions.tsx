@@ -6,8 +6,7 @@ interface MasterItemProps {
 }
 
 export const MasterOptions = ({ menuItem }: MasterItemProps) => {
-  const { setCurrentMenuItemId, currentMasterItemId, setCurrentMasterItemId } =
-    useMenuContext()
+  const { setCurrentMenuItemId, setCurrentMasterItemId } = useMenuContext()
   const menuOptions = menuItem.MenuItemOptionSets
 
   return (
