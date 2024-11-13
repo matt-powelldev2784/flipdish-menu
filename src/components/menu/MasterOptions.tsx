@@ -1,15 +1,13 @@
 import { useMenuContext } from 'cartContext/CartContext'
 import { MenuItemT } from 'menuData/menuData'
-import { useSelectedOption } from './hooks/useSelectedOption'
 
 interface MasterItemProps {
   menuItem: MenuItemT
 }
 
 export const MasterOptions = ({ menuItem }: MasterItemProps) => {
-  const { setCurrentMenuItemId } = useMenuContext()
-  const { masterItemSelected, selectedOptions, onSelectOption } =
-    useSelectedOption()
+  const { setCurrentMenuItemId, currentMasterItemId, setCurrentMasterItemId } =
+    useMenuContext()
   const menuOptions = menuItem.MenuItemOptionSets
 
   return (
@@ -23,39 +21,12 @@ export const MasterOptions = ({ menuItem }: MasterItemProps) => {
       </button>
       <p className="font-bold">{menuItem.Name}</p>
 
-      {/******* render selected options ********/}
-      <div className="my-2 flex flex-col items-center rounded-xl">
-        <p>Selected Options</p>
-        <div className="flex w-full flex-row flex-wrap items-center justify-center gap-2">
-          {selectedOptions.length === 0 && <p>No options selected</p>}
-
-          {selectedOptions.map((option) => {
-            //render selected options
-            return (
-              <p
-                key={option.id}
-                className="rounded-xl bg-[#015BBB] px-2 py-1 text-white"
-              >
-                {option.name}
-              </p>
-            )
-          })}
-        </div>
-      </div>
-
-      {/******* when menu options exist, render the menu options ********/}
+      {/******* render master options ********/}
       <div className="flex w-full flex-col items-center gap-2">
         {menuOptions.map((menuOption) => {
           const isMasterOption = menuOption.IsMasterOptionSet
           if (!isMasterOption) return null
-
-          // when one master item is selected filter out all other master items
-          // this is so two master items are not selected at the same time
-          // for instance you cannot select a small and large chips and the same time
-          const menuOptions = menuOption.MenuItemOptionSetItems.filter(() => {
-            if (masterItemSelected) return null
-            return true
-          })
+          const menuOptions = menuOption.MenuItemOptionSetItems
 
           return menuOptions.map((menuOption) => {
             return (
@@ -69,7 +40,7 @@ export const MasterOptions = ({ menuItem }: MasterItemProps) => {
                 <button
                   className="rounded bg-[#015BBB] px-2 py-1 text-white"
                   onClick={() => {
-                    onSelectOption({ isMasterOption, menuOption })
+                    setCurrentMasterItemId(menuOption.MenuItemOptionSetItemId)
                   }}
                 >
                   +
