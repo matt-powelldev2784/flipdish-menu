@@ -42,7 +42,7 @@ export const MasterOptions = ({ menuItem }: MasterItemProps) => {
                     setCurrentMasterItemId(menuOption.MenuItemOptionSetItemId)
                   }}
                 >
-                  +
+                  Select
                 </button>
               </div>
             )
