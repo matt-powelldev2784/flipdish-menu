@@ -13,23 +13,27 @@ export const MenuSubOptions = ({ menuItem }: MasterItemProps) => {
   const menuOptions = menuItem.MenuItemOptionSets
 
   return (
-    <div>
+    <div className="flex flex-col items-center gap-2">
       <button
         onClick={() => setCurrentMenuItemId(null)}
-        className="bg-slate-400 p-2 text-xl"
+        className="w-[300px] bg-slate-400 p-2 text-xl"
       >
         Back to Menu
       </button>
-      <p>{menuItem.Name}</p>
+      <p className="font-bold">{menuItem.Name}</p>
 
       {selectedOptions.map((option) => {
+        //render selected options
         return (
-          <p key={option.id}>
-            {option.id} - {option.name} - {option.price}
-          </p>
+          <div key={option.id}>
+            <p>
+              {option.id} - {option.name} - {option.price}
+            </p>
+          </div>
         )
       })}
 
+      {/******* when menu options exist, render the menu options ********/}
       {menuOptions.map((menuOption) => {
         const isMasterOption = menuOption.IsMasterOptionSet
 
