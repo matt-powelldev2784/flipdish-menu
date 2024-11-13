@@ -1,56 +1,16 @@
 import { useMenuContext } from 'cartContext/CartContext'
-import { MenuItemOptionSetItemT, MenuItemT } from 'menuData/menuData'
-import { useState } from 'react'
+import { MenuItemT } from 'menuData/menuData'
+import { useSelectedOption } from './hooks/useSelectedOption'
 
 interface MasterItemProps {
   menuItem: MenuItemT
 }
 
-interface SelectedOptions {
-  id: number
-  name: string
-  price: number
-}
-
-interface onSelectOptionProps {
-  isMasterOption: boolean
-  menuOption: MenuItemOptionSetItemT
-}
-
 export const MenuSubOptions = ({ menuItem }: MasterItemProps) => {
-  const [masterItemSelected, setMasterItemSelected] = useState(false)
-  const [selectedOptions, setSelectedOptions] = useState<SelectedOptions[]>([])
-  const { setCurrentMenuItemId, currentMasterItemId, setCurrentMasterItemId } =
-    useMenuContext()
+  const { setCurrentMenuItemId, currentMasterItemId } = useMenuContext()
+  const { masterItemSelected, selectedOptions, onSelectOption } =
+    useSelectedOption()
   const menuOptions = menuItem.MenuItemOptionSets
-
-  const onSelectOption = ({
-    isMasterOption,
-    menuOption
-  }: onSelectOptionProps) => {
-    if (isMasterOption) {
-      setCurrentMasterItemId(menuOption.MenuItemOptionSetItemId)
-    }
-    setMasterItemSelected(true)
-    setSelectedOptions((prevOptions) => {
-      const optionAlreadySelected = prevOptions.some(
-        (option) => option.id === menuOption.MenuItemOptionSetItemId
-      )
-
-      if (optionAlreadySelected) {
-        return [...prevOptions]
-      }
-
-      return [
-        ...prevOptions,
-        {
-          id: menuOption.MenuItemOptionSetItemId,
-          name: menuOption.Name,
-          price: menuOption.Price
-        }
-      ]
-    })
-  }
 
   return (
     <div>
