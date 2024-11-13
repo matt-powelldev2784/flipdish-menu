@@ -17,6 +17,19 @@ export const MenuSection = ({ MenuSection }: MenuSectionProps) => {
         {menuItems.map((menuItem) => {
           const itemPrice = menuItem.Price
           const menuItemId = menuItem.MenuItemId
+          const menuOptions = menuItem.MenuItemOptionSets
+
+          const menuItemHasMasterItems = menuOptions.some(
+            (menuOption) => menuOption.IsMasterOptionSet
+          )
+          const menuItemHasOptions = menuOptions.some(
+            (menuOption) => !menuOption.IsMasterOptionSet
+          )
+          const menuItemHasNoOptions = menuOptions.length === 0
+
+          console.log('menuItemHasMasterItems', menuItemHasMasterItems)
+          console.log('menuItemHasOptions', menuItemHasOptions)
+          console.log('menuItemHasNoOptions', menuItemHasNoOptions)
 
           return (
             <div className="mt-4 border-2" key={menuItemId}>

@@ -9,6 +9,7 @@ export const MasterOptions = ({ menuItem }: MasterItemProps) => {
   const { setCurrentMenuItemId, setCurrentMasterItemId } = useMenuContext()
   const menuOptions = menuItem.MenuItemOptionSets
 
+  //render master options
   return (
     <div className="mt-2 flex flex-col items-center">
       {/******* render header ********/}
