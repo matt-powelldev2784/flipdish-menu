@@ -7,7 +7,7 @@ interface MasterItemProps {
 }
 
 export const MasterOptions = ({ menuItem }: MasterItemProps) => {
-  const { setCurrentMenuItemId, currentMasterItemId } = useMenuContext()
+  const { setCurrentMenuItemId } = useMenuContext()
   const { masterItemSelected, selectedOptions, onSelectOption } =
     useSelectedOption()
   const menuOptions = menuItem.MenuItemOptionSets
@@ -47,17 +47,15 @@ export const MasterOptions = ({ menuItem }: MasterItemProps) => {
       <div className="flex w-full flex-col items-center gap-2">
         {menuOptions.map((menuOption) => {
           const isMasterOption = menuOption.IsMasterOptionSet
+          if (!isMasterOption) return null
 
           // when one master item is selected filter out all other master items
           // this is so two master items are not selected at the same time
           // for instance you cannot select a small and large chips and the same time
-          const menuOptions = menuOption.MenuItemOptionSetItems.filter(
-            (option) => {
-              if (!masterItemSelected) return true
-              if (!isMasterOption) return true
-              return option.MenuItemOptionSetItemId === currentMasterItemId
-            }
-          )
+          const menuOptions = menuOption.MenuItemOptionSetItems.filter(() => {
+            if (masterItemSelected) return null
+            return true
+          })
 
           return menuOptions.map((menuOption) => {
             return (
