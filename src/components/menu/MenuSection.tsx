@@ -19,7 +19,7 @@ export const MenuSection = ({ MenuSection }: MenuSectionProps) => {
           const menuItemId = menuItem.MenuItemId
           const menuOptions = menuItem.MenuItemOptionSets
 
-          const menuItemHasMasterItems = menuOptions.some(
+          const menuItemHasMasterOptions = menuOptions.some(
             (menuOption) => menuOption.IsMasterOptionSet
           )
           const menuItemHasOptions = menuOptions.some(
@@ -27,7 +27,7 @@ export const MenuSection = ({ MenuSection }: MenuSectionProps) => {
           )
           const menuItemHasNoOptions = menuOptions.length === 0
 
-          console.log('menuItemHasMasterItems', menuItemHasMasterItems)
+          console.log('menuItemHasMasterOptions', menuItemHasMasterOptions)
           console.log('menuItemHasOptions', menuItemHasOptions)
           console.log('menuItemHasNoOptions', menuItemHasNoOptions)
 
