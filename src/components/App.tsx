@@ -1,6 +1,6 @@
 import { menuData } from 'menuData/menuData'
 import { MenuSection } from './menu/MenuSection'
-import { MenuSubOptions } from './menu/MenuSubOptions'
+import { MasterOptions } from './menu/MasterOptions'
 import { useMenuContext } from 'cartContext/CartContext'
 import { findMenuItemById } from 'utils/findMenuItemById'
 import flipDishLogo from 'assets/flipdish-logo.svg'
@@ -34,7 +34,7 @@ function App() {
 
       {
         // render menu item sub options if a menu item is selected
-        currentMenuItem && <MenuSubOptions menuItem={currentMenuItem} />
+        currentMenuItem && <MasterOptions menuItem={currentMenuItem} />
       }
     </main>
   )
