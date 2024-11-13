@@ -22,16 +22,23 @@ export const MenuSubOptions = ({ menuItem }: MasterItemProps) => {
       </button>
       <p className="font-bold">{menuItem.Name}</p>
 
-      {selectedOptions.map((option) => {
-        //render selected options
-        return (
-          <div key={option.id}>
-            <p>
-              {option.id} - {option.name} - {option.price}
-            </p>
-          </div>
-        )
-      })}
+      {/******* render selected options ********/}
+      <div className="flex flex-col items-center">
+        <p>Selected Options</p>
+        <div className="flex w-full flex-row flex-wrap items-center justify-center gap-2">
+          {selectedOptions.map((option) => {
+            //render selected options
+            return (
+              <p
+                key={option.id}
+                className="rounded-xl bg-[#015BBB] px-2 py-1 text-white"
+              >
+                {option.name}
+              </p>
+            )
+          })}
+        </div>
+      </div>
 
       {/******* when menu options exist, render the menu options ********/}
       {menuOptions.map((menuOption) => {
