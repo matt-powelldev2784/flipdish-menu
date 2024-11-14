@@ -11,7 +11,7 @@ function App() {
   const menuSections = menuData.MenuSections
 
   return (
-    <main className="relative overflow-hidden bg-white">
+    <main className="relative flex flex-col items-center overflow-hidden bg-white">
       <div className="mt-2 flex flex-col items-center">
         <img
           src={flipDishLogo}

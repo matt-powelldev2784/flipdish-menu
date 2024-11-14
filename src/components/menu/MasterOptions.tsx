@@ -36,7 +36,8 @@ export const MasterOptions = ({ menuItem }: MasterItemProps) => {
                 id={menuOption.MenuItemOptionSetItemId}
                 name={menuOption.Name}
                 price={menuOption.Price}
-                onClick={setCurrentMasterItemId}
+                contextUpdateFunction={setCurrentMasterItemId}
+                menuItemType={menuItemType}
               />
             )
           })

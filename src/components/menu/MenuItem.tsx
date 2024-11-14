@@ -1,15 +1,26 @@
+import { MenuItemType } from './MenuItems'
+
 interface MenuItemProps {
   id: number
+  menuItemType: MenuItemType
   name: string
   price: number
-  onClick: (id: number) => void
+  contextUpdateFunction?: (id: number) => void
+  onClick?: () => void
 }
 
-export const MenuItem = ({ id, name, price, onClick }: MenuItemProps) => {
+export const MenuItem = ({
+  id,
+  name,
+  price,
+  onClick,
+  contextUpdateFunction,
+  menuItemType
+}: MenuItemProps) => {
   return (
     <article
       key={id}
-      className=" flex w-full max-w-96 flex-row items-center justify-between rounded bg-neutral-300 p-2 px-10"
+      className=" flex w-full  flex-row items-center justify-between rounded bg-neutral-300 p-2 px-10 "
     >
       <p>
         {name} - {price}
@@ -17,7 +28,8 @@ export const MenuItem = ({ id, name, price, onClick }: MenuItemProps) => {
       <button
         className="rounded bg-[#015BBB] px-2 py-1 text-white"
         onClick={() => {
-          onClick(id)
+          if (onClick) onClick()
+          if (contextUpdateFunction) contextUpdateFunction(id)
         }}
       >
         Select

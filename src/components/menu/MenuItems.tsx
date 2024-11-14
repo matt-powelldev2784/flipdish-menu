@@ -1,22 +1,28 @@
 import { MenuSectionT } from 'menuData/menuData'
 import { useMenuContext } from 'cartContext/CartContext'
+import { MenuItem } from './MenuItem'
 
 interface MenuSectionProps {
   MenuSection: MenuSectionT
 }
+
+export type MenuItemType = 'master' | 'options' | 'noOptions' | undefined
 
 export const MenuItems = ({ MenuSection }: MenuSectionProps) => {
   const { setCurrentMenuItemId } = useMenuContext()
   const menuItems = MenuSection.MenuItems
 
   return (
-    <section className="mt-3" key={MenuSection.MenuSectionId}>
-      <p className="bg-slate-500 text-red-500">{MenuSection.Name}</p>
+    <section
+      className="mx-4 mt-3 w-full max-w-[700px]"
+      key={MenuSection.MenuSectionId}
+    >
+      <p className="bg-[#015BBB] p-2 text-center text-white">
+        {MenuSection.Name}
+      </p>
 
-      <div>
+      <div className="flex w-full flex-col gap-2">
         {menuItems.map((menuItem) => {
-          const itemPrice = menuItem.Price
-          const menuItemId = menuItem.MenuItemId
           const menuOptions = menuItem.MenuItemOptionSets
 
           const menuItemHasMasterOptions = menuOptions.some(
@@ -27,25 +33,30 @@ export const MenuItems = ({ MenuSection }: MenuSectionProps) => {
           )
           const menuItemHasNoOptions = menuOptions.length === 0
 
-          console.log('menuItemHasMasterOptions', menuItemHasMasterOptions)
-          console.log('menuItemHasOptions', menuItemHasOptions)
-          console.log('menuItemHasNoOptions', menuItemHasNoOptions)
+          const masterMenuItems = menuOptions.filter(
+            (menuOption) => menuOption.IsMasterOptionSet
+          )
+
+          const getMenuItemType = (): MenuItemType => {
+            if (menuItemHasMasterOptions) return 'master'
+            if (menuItemHasOptions) return 'options'
+            if (menuItemHasNoOptions) return 'noOptions'
+          }
+
+          const menuItemType = getMenuItemType()
 
           return (
-            <div className="mt-4 border-2" key={menuItemId}>
-              <div className="flex w-full justify-around">
-                <p className="w-full bg-red-100 text-blue-500">
-                  {menuItem.Name} - {menuItem.Description} - {menuItem.Price}
-                </p>
-                <button
-                  onClick={() => setCurrentMenuItemId(menuItemId)}
-                  className="bg-blue-500 p-2 text-xl"
-                >
-                  Add Item
-                </button>
-                <p className="mr-4 font-bold">{itemPrice}</p>
-              </div>
-            </div>
+            <>
+              {masterMenuItems && (
+                <MenuItem
+                  id={menuItem.MenuItemId}
+                  name={menuItem.Name}
+                  price={menuItem.Price}
+                  contextUpdateFunction={setCurrentMenuItemId}
+                  menuItemType={menuItemType}
+                />
+              )}
+            </>
           )
         })}
       </div>
