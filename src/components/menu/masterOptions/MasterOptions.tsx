@@ -3,7 +3,8 @@ import { findMenuItemById } from 'utils/findMenuItemById'
 import { MasterOption } from './MasterOption'
 
 export const MasterOptions = () => {
-  const { currentMenuItemId, setCurrentMenuItemType } = useMenuContext()
+  const { currentMenuItemId, setCurrentMenuItemType, currentMenuItemType } =
+    useMenuContext()
   if (!currentMenuItemId) return <p>master options error</p>
   const menuItem = findMenuItemById(currentMenuItemId)
   if (menuItem === '') return <p>master options error</p>
@@ -37,7 +38,7 @@ export const MasterOptions = () => {
                 id={menuOption.MenuItemOptionSetItemId}
                 name={menuOption.Name}
                 price={menuOption.Price}
-                menuItemType={'master'}
+                menuItemType={currentMenuItemType}
               />
             )
           })

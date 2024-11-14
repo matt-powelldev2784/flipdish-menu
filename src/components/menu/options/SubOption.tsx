@@ -1,22 +1,22 @@
 import { MenuItemType, useMenuContext } from 'cartContext/CartContext'
 
-interface MenuItemProps {
+interface SubOptionProps {
   id: number
   menuItemType: MenuItemType
   name: string
   price: number
 }
 
-export const MasterOption = ({
+export const SubOption = ({
   id,
   name,
   price,
   menuItemType
-}: MenuItemProps) => {
+}: SubOptionProps) => {
   const { setTempCartItems } = useMenuContext()
 
   const onSelectMenuItem = () => {
-    if (menuItemType === 'master') {
+    if (menuItemType === 'subOptions') {
       setTempCartItems((prev) => [
         ...prev,
         {

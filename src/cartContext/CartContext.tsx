@@ -69,6 +69,7 @@ export const MenuContextProvider = ({ children }: { children: ReactNode }) => {
   console.log('cartItems', cartItems)
   console.log('tempCartItems', tempCartItems)
   console.log('currentMenuItemType', currentMenuItemType)
+  console.log('currentMenuItemType', currentMenuItemType)
 
   return (
     <MenuContext.Provider
