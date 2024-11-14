@@ -6,7 +6,7 @@ import { MasterOptions } from './menu/masterOptions/MasterOptions'
 import { SubOptions } from './menu/options/SubOptions'
 
 function App() {
-  const { currentMenuItemType } = useMenuContext()
+  const { currentMenuLevel } = useMenuContext()
   const menuSections = menuData.MenuSections
 
   return (
@@ -20,7 +20,7 @@ function App() {
         <h1 className="text-xl text-[#015BBB] ">Flip Dish Menu</h1>
       </div>
 
-      {!currentMenuItemType &&
+      {currentMenuLevel === 'main' &&
         // render all menu items if no menu item is selected
         menuSections.map((menuSection) => {
           return (
@@ -33,10 +33,10 @@ function App() {
 
       {
         // render menu item sub options if a menu item is selected
-        currentMenuItemType === 'master' && <MasterOptions />
+        currentMenuLevel === 'master' && <MasterOptions />
       }
 
-      {currentMenuItemType === 'subOptions' && <SubOptions />}
+      {currentMenuLevel === 'subOptions' && <SubOptions />}
     </main>
   )
 }

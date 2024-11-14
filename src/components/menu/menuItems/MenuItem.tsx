@@ -12,7 +12,8 @@ export const MenuItem = ({ id, name, price, menuItemType }: MenuItemProps) => {
     addToCart,
     setCurrentMenuItemId,
     setCurrentMenuItemType,
-    setTempCartItems
+    setTempCartItems,
+    setCurrentMenuLevel
   } = useMenuContext()
 
   const onSelectMenuItem = () => {
@@ -37,10 +38,28 @@ export const MenuItem = ({ id, name, price, menuItemType }: MenuItemProps) => {
           quantity: 1
         }
       ])
+
+      setCurrentMenuItemId(id)
+      setCurrentMenuItemType(menuItemType)
+      setCurrentMenuLevel('master')
     }
 
-    setCurrentMenuItemId(id)
-    setCurrentMenuItemType(menuItemType)
+    if (menuItemType === 'subOptions') {
+      setTempCartItems((prev) => [
+        ...prev,
+        {
+          id: Date.now(),
+          menuItemId: id,
+          name,
+          price,
+          quantity: 1
+        }
+      ])
+
+      setCurrentMenuItemId(id)
+      setCurrentMenuItemType(menuItemType)
+      setCurrentMenuLevel('subOptions')
+    }
   }
 
   return (

@@ -13,7 +13,7 @@ export const MasterOption = ({
   price,
   menuItemType
 }: MenuItemProps) => {
-  const { setTempCartItems } = useMenuContext()
+  const { setTempCartItems, setCurrentMenuLevel } = useMenuContext()
 
   const onSelectMenuItem = () => {
     if (menuItemType === 'master') {
@@ -27,6 +27,7 @@ export const MasterOption = ({
           quantity: 1
         }
       ])
+      setCurrentMenuLevel('subOptions')
     }
   }
 
