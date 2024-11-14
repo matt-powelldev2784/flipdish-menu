@@ -1,5 +1,4 @@
-import { useMenuContext } from 'cartContext/CartContext'
-import { MenuItemType } from './MenuItems'
+import { MenuItemType, useMenuContext } from 'cartContext/CartContext'
 
 interface MenuItemProps {
   id: number

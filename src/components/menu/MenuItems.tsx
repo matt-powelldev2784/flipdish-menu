@@ -1,11 +1,10 @@
 import { MenuSectionT } from 'menuData/menuData'
 import { MenuItem } from './MenuItem'
+import { MenuItemType } from 'cartContext/CartContext'
 
 interface MenuSectionProps {
   MenuSection: MenuSectionT
 }
-
-export type MenuItemType = 'master' | 'options' | 'noOptions' | undefined
 
 export const MenuItems = ({ MenuSection }: MenuSectionProps) => {
   const menuItems = MenuSection.MenuItems
