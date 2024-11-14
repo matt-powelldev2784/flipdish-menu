@@ -7,25 +7,15 @@ interface MenuItemProps {
   price: number
 }
 
-export const MenuItem = ({ id, name, price, menuItemType }: MenuItemProps) => {
-  const {
-    addToCart,
-    setCurrentMenuItemId,
-    setCurrentMenuItemType,
-    setTempCartItems
-  } = useMenuContext()
+export const MasterOption = ({
+  id,
+  name,
+  price,
+  menuItemType
+}: MenuItemProps) => {
+  const { setCurrentMenuItemType, setTempCartItems } = useMenuContext()
 
   const onSelectMenuItem = () => {
-    if (menuItemType === 'noOptions') {
-      return addToCart({
-        id: Date.now(),
-        menuItemId: id,
-        name,
-        price,
-        quantity: 1
-      })
-    }
-
     if (menuItemType === 'master') {
       setTempCartItems((prev) => [
         ...prev,
@@ -39,8 +29,7 @@ export const MenuItem = ({ id, name, price, menuItemType }: MenuItemProps) => {
       ])
     }
 
-    setCurrentMenuItemId(id)
-    setCurrentMenuItemType(menuItemType)
+    setCurrentMenuItemType('options')
   }
 
   return (

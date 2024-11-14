@@ -1,10 +1,9 @@
 import { useMenuContext } from 'cartContext/CartContext'
 import { findMenuItemById } from 'utils/findMenuItemById'
-import { MenuItem } from '../menuItems/MenuItem'
+import { MasterOption } from './MasterOption'
 
 export const MasterOptions = () => {
-  const { currentMenuItemType, currentMenuItemId, setCurrentMenuItemType } =
-    useMenuContext()
+  const { currentMenuItemId, setCurrentMenuItemType } = useMenuContext()
   if (!currentMenuItemId) return <p>master options error</p>
   const menuItem = findMenuItemById(currentMenuItemId)
   if (menuItem === '') return <p>master options error</p>
@@ -33,12 +32,12 @@ export const MasterOptions = () => {
 
           return menuOptions.map((menuOption) => {
             return (
-              <MenuItem
+              <MasterOption
                 key={menuOption.MenuItemOptionSetItemId}
                 id={menuOption.MenuItemOptionSetItemId}
                 name={menuOption.Name}
                 price={menuOption.Price}
-                menuItemType={currentMenuItemType}
+                menuItemType={'master'}
               />
             )
           })
