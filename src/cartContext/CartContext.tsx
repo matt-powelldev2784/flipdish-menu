@@ -27,8 +27,8 @@ interface MenuContextType {
   cartItems: CartItem[]
   currentMenuItemId: number | null
   setCurrentMenuItemId: Dispatch<SetStateAction<number | null>>
-  menuItemType: MenuItemType
-  setMenuItemType: Dispatch<SetStateAction<MenuItemType>>
+  currentMenuItemType: MenuItemType
+  setCurrentMenuItemType: Dispatch<SetStateAction<MenuItemType>>
   addItem: (item: CartItem) => void
   removeItem: (id: number) => void
 }
@@ -48,7 +48,8 @@ export const MenuContextProvider = ({ children }: { children: ReactNode }) => {
   const [currentMenuItemId, setCurrentMenuItemId] = useState<number | null>(
     null
   )
-  const [menuItemType, setMenuItemType] = useState<MenuItemType>(null)
+  const [currentMenuItemType, setCurrentMenuItemType] =
+    useState<MenuItemType>(null)
 
   const addItem = (item: CartItem) => {
     setCartItems((prevItems) => [...prevItems, item])
@@ -66,8 +67,8 @@ export const MenuContextProvider = ({ children }: { children: ReactNode }) => {
         cartItems,
         currentMenuItemId,
         setCurrentMenuItemId,
-        menuItemType,
-        setMenuItemType,
+        currentMenuItemType,
+        setCurrentMenuItemType,
         addItem,
         removeItem
       }}
