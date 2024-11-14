@@ -3,7 +3,7 @@ import { MenuItem } from './MenuItem'
 import { findMenuItemById } from 'utils/findMenuItemById'
 
 export const MasterOptions = () => {
-  const { menuItemType, menuItemId } = useMenuContext()
+  const { menuItemType, menuItemId, setMenuItemType } = useMenuContext()
   if (!menuItemId) return <p>error</p>
   const menuItem = findMenuItemById(menuItemId)
   if (menuItem === '') return <p>error</p>
@@ -15,7 +15,9 @@ export const MasterOptions = () => {
       {/******* render header ********/}
       <button
         className="w-[300px] bg-slate-400 p-2 text-xl "
-        onClick={() => {}}
+        onClick={() => {
+          setMenuItemType(null)
+        }}
       >
         Back to Menu
       </button>

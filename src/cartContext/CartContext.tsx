@@ -7,7 +7,7 @@ import {
   SetStateAction
 } from 'react'
 
-export type MenuItemType = 'master' | 'options' | 'noOptions' | undefined
+export type MenuItemType = 'master' | 'options' | 'noOptions' | null
 export interface SubOption {
   subOptionId: string
   subOptionName: string
@@ -49,7 +49,7 @@ export const MenuContextProvider = ({ children }: { children: ReactNode }) => {
   const [cartItems, setCartItems] = useState<CartItem[]>([])
   const [menuItemId, setMenuItemId] = useState<number | null>(null)
   const [masterItemId, setMasterItemId] = useState<number | null>(null)
-  const [menuItemType, setMenuItemType] = useState<MenuItemType>()
+  const [menuItemType, setMenuItemType] = useState<MenuItemType>(null)
 
   const addItem = (item: CartItem) => {
     setCartItems((prevItems) => [...prevItems, item])
