@@ -25,8 +25,8 @@ export interface CartItem {
 
 interface MenuContextType {
   cartItems: CartItem[]
-  menuItemId: number | null
-  setMenuItemId: Dispatch<SetStateAction<number | null>>
+  currentMenuItemId: number | null
+  setCurrentMenuItemId: Dispatch<SetStateAction<number | null>>
   menuItemType: MenuItemType
   setMenuItemType: Dispatch<SetStateAction<MenuItemType>>
   addItem: (item: CartItem) => void
@@ -45,7 +45,9 @@ export const useMenuContext = () => {
 
 export const MenuContextProvider = ({ children }: { children: ReactNode }) => {
   const [cartItems, setCartItems] = useState<CartItem[]>([])
-  const [menuItemId, setMenuItemId] = useState<number | null>(null)
+  const [currentMenuItemId, setCurrentMenuItemId] = useState<number | null>(
+    null
+  )
   const [menuItemType, setMenuItemType] = useState<MenuItemType>(null)
 
   const addItem = (item: CartItem) => {
@@ -62,8 +64,8 @@ export const MenuContextProvider = ({ children }: { children: ReactNode }) => {
     <MenuContext.Provider
       value={{
         cartItems,
-        menuItemId,
-        setMenuItemId,
+        currentMenuItemId,
+        setCurrentMenuItemId,
         menuItemType,
         setMenuItemType,
         addItem,

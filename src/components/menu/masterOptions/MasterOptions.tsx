@@ -3,9 +3,9 @@ import { findMenuItemById } from 'utils/findMenuItemById'
 import { MenuItem } from '../menuItems/MenuItem'
 
 export const MasterOptions = () => {
-  const { menuItemType, menuItemId, setMenuItemType } = useMenuContext()
-  if (!menuItemId) return <p>error</p>
-  const menuItem = findMenuItemById(menuItemId)
+  const { menuItemType, currentMenuItemId, setMenuItemType } = useMenuContext()
+  if (!currentMenuItemId) return <p>error</p>
+  const menuItem = findMenuItemById(currentMenuItemId)
   if (menuItem === '') return <p>error</p>
   const menuOptions = menuItem.MenuItemOptionSets
 

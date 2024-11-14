@@ -8,7 +8,7 @@ interface MenuItemProps {
 }
 
 export const MenuItem = ({ id, name, price, menuItemType }: MenuItemProps) => {
-  const { addItem, setMenuItemId, setMenuItemType } = useMenuContext()
+  const { addItem, setCurrentMenuItemId, setMenuItemType } = useMenuContext()
 
   const onSelectMenuItem = () => {
     if (menuItemType === 'noOptions') {
@@ -22,7 +22,7 @@ export const MenuItem = ({ id, name, price, menuItemType }: MenuItemProps) => {
     }
 
     if (menuItemType !== 'noOptions') {
-      setMenuItemId(id)
+      setCurrentMenuItemId(id)
       setMenuItemType(menuItemType)
     }
   }
