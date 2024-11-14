@@ -5,9 +5,9 @@ import { MenuItem } from '../menuItems/MenuItem'
 export const Options = () => {
   const { currentMenuItemType, currentMenuItemId, setCurrentMenuItemType } =
     useMenuContext()
-  if (!currentMenuItemId) return <p>error</p>
+  if (!currentMenuItemId) return <p>options error</p>
   const menuItem = findMenuItemById(currentMenuItemId)
-  if (menuItem === '') return <p>error</p>
+  if (menuItem === '') return <p>options error</p>
   const menuOptions = menuItem.MenuItemOptionSets
 
   //render  options

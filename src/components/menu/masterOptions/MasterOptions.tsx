@@ -5,9 +5,9 @@ import { MenuItem } from '../menuItems/MenuItem'
 export const MasterOptions = () => {
   const { currentMenuItemType, currentMenuItemId, setCurrentMenuItemType } =
     useMenuContext()
-  if (!currentMenuItemId) return <p>error</p>
+  if (!currentMenuItemId) return <p>master options error</p>
   const menuItem = findMenuItemById(currentMenuItemId)
-  if (menuItem === '') return <p>error</p>
+  if (menuItem === '') return <p>master options error</p>
   const menuOptions = menuItem.MenuItemOptionSets
 
   //render master options
