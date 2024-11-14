@@ -1,6 +1,6 @@
 import { MenuSectionT } from 'menuData/menuData'
-import { MenuItem } from './MenuItem'
 import { MenuItemType } from 'cartContext/CartContext'
+import { MenuItem } from './MenuItem'
 
 interface MenuSectionProps {
   MenuSection: MenuSectionT

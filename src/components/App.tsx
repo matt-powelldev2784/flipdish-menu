@@ -1,9 +1,9 @@
 import { menuData } from 'menuData/menuData'
-import { MenuItems } from './menu/MenuItems'
-import { MasterOptions } from './menu/MasterOptions'
 import { useMenuContext } from 'cartContext/CartContext'
 import flipDishLogo from 'assets/flipdish-logo.svg'
-import { Options } from './menu/Options'
+import { MenuItems } from './menu/menuItems/MenuItems'
+import { MasterOptions } from './menu/masterOptions/MasterOptions'
+import { Options } from './menu/options/Options'
 
 function App() {
   const { menuItemType } = useMenuContext()

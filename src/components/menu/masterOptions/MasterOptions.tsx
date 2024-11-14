@@ -1,8 +1,8 @@
 import { useMenuContext } from 'cartContext/CartContext'
-import { MenuItem } from './MenuItem'
 import { findMenuItemById } from 'utils/findMenuItemById'
+import { MenuItem } from '../menuItems/MenuItem'
 
-export const Options = () => {
+export const MasterOptions = () => {
   const { menuItemType, menuItemId, setMenuItemType } = useMenuContext()
   if (!menuItemId) return <p>error</p>
   const menuItem = findMenuItemById(menuItemId)
@@ -27,7 +27,7 @@ export const Options = () => {
       <div className="flex w-full flex-col items-center gap-2">
         {menuOptions.map((menuOption) => {
           const isMasterOption = menuOption.IsMasterOptionSet
-          if (isMasterOption) return null
+          if (!isMasterOption) return null
           const menuOptions = menuOption.MenuItemOptionSetItems
 
           return menuOptions.map((menuOption) => {
