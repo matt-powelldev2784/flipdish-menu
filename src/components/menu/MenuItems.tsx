@@ -5,7 +5,7 @@ interface MenuSectionProps {
   MenuSection: MenuSectionT
 }
 
-export const MenuSection = ({ MenuSection }: MenuSectionProps) => {
+export const MenuItems = ({ MenuSection }: MenuSectionProps) => {
   const { setCurrentMenuItemId } = useMenuContext()
   const menuItems = MenuSection.MenuItems
 

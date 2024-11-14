@@ -1,5 +1,5 @@
 import { menuData } from 'menuData/menuData'
-import { MenuSection } from './menu/MenuSection'
+import { MenuItems } from './menu/MenuItems'
 import { MasterOptions } from './menu/MasterOptions'
 import { useMenuContext } from 'cartContext/CartContext'
 import { findMenuItemById } from 'utils/findMenuItemById'
@@ -25,7 +25,7 @@ function App() {
         // render all menu sections if no menu item is selected
         menuSections.map((menuSection) => {
           return (
-            <MenuSection
+            <MenuItems
               key={menuSection.MenuSectionId}
               MenuSection={menuSection}
             />
