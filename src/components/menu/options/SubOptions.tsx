@@ -1,6 +1,6 @@
 import { useMenuContext } from 'cartContext/CartContext'
 import { findMenuItemById } from 'utils/findMenuItemById'
-import { MenuItem } from '../menuItems/MenuItem'
+import { SubOption } from './SubOption'
 
 export const SubOptions = () => {
   const { currentMenuItemId, setCurrentMenuItemType, currentMenuItemType } =
@@ -33,7 +33,7 @@ export const SubOptions = () => {
 
           return menuOptions.map((menuOption) => {
             return (
-              <MenuItem
+              <SubOption
                 key={menuOption.MenuItemOptionSetItemId}
                 id={menuOption.MenuItemOptionSetItemId}
                 name={menuOption.Name}

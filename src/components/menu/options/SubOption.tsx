@@ -13,9 +13,22 @@ export const SubOption = ({
   price,
   menuItemType
 }: SubOptionProps) => {
-  const { setTempCartItems } = useMenuContext()
+  const { setTempCartItems, setCurrentMenuLevel } = useMenuContext()
 
   const onSelectMenuItem = () => {
+    if (menuItemType === 'master') {
+      setTempCartItems((prev) => [
+        ...prev,
+        {
+          id: Date.now(),
+          menuItemId: id,
+          name,
+          price,
+          quantity: 1
+        }
+      ])
+    }
+
     if (menuItemType === 'subOptions') {
       setTempCartItems((prev) => [
         ...prev,
@@ -27,6 +40,7 @@ export const SubOption = ({
           quantity: 1
         }
       ])
+      setCurrentMenuLevel('main')
     }
   }
 
