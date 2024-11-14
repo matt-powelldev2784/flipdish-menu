@@ -29,7 +29,7 @@ export const MasterOption = ({
       ])
     }
 
-    setCurrentMenuItemType('options')
+    setCurrentMenuItemType('subOptions')
   }
 
   return (

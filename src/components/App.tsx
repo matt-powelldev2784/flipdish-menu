@@ -3,7 +3,7 @@ import { useMenuContext } from 'cartContext/CartContext'
 import flipDishLogo from 'assets/flipdish-logo.svg'
 import { MenuItems } from './menu/menuItems/MenuItems'
 import { MasterOptions } from './menu/masterOptions/MasterOptions'
-import { Options } from './menu/options/Options'
+import { SubOptions } from './menu/options/SubOptions'
 
 function App() {
   const { currentMenuItemType } = useMenuContext()
@@ -36,7 +36,7 @@ function App() {
         currentMenuItemType === 'master' && <MasterOptions />
       }
 
-      {currentMenuItemType === 'options' && <Options />}
+      {currentMenuItemType === 'subOptions' && <SubOptions />}
     </main>
   )
 }

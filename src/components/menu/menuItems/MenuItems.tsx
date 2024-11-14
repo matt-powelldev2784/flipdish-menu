@@ -32,7 +32,7 @@ export const MenuItems = ({ MenuSection }: MenuSectionProps) => {
 
           const getMenuItemType = (): MenuItemType => {
             if (menuItemHasMasterOptions) return 'master'
-            if (menuItemHasOptions) return 'options'
+            if (menuItemHasOptions) return 'subOptions'
             if (menuItemHasNoOptions) return 'noOptions'
             return null
           }

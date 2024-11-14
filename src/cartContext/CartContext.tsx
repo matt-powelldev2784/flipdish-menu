@@ -7,7 +7,7 @@ import {
   SetStateAction
 } from 'react'
 
-export type MenuItemType = 'master' | 'options' | 'noOptions' | null
+export type MenuItemType = 'master' | 'subOptions' | 'noOptions' | null
 
 export interface SubOption {
   id: string

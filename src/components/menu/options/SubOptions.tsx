@@ -2,7 +2,7 @@ import { useMenuContext } from 'cartContext/CartContext'
 import { findMenuItemById } from 'utils/findMenuItemById'
 import { MenuItem } from '../menuItems/MenuItem'
 
-export const Options = () => {
+export const SubOptions = () => {
   const { currentMenuItemId, setCurrentMenuItemType } = useMenuContext()
   if (!currentMenuItemId) return <p>options error</p>
   const menuItem = findMenuItemById(currentMenuItemId)
@@ -37,7 +37,7 @@ export const Options = () => {
                 id={menuOption.MenuItemOptionSetItemId}
                 name={menuOption.Name}
                 price={menuOption.Price}
-                menuItemType={'options'}
+                menuItemType={'subOptions'}
               />
             )
           })
