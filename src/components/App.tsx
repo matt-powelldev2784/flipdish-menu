@@ -2,12 +2,11 @@ import { menuData } from 'menuData/menuData'
 import { MenuItems } from './menu/MenuItems'
 import { MasterOptions } from './menu/MasterOptions'
 import { useMenuContext } from 'cartContext/CartContext'
-import { findMenuItemById } from 'utils/findMenuItemById'
 import flipDishLogo from 'assets/flipdish-logo.svg'
+import { Options } from './menu/Options'
 
 function App() {
-  const { menuItemId } = useMenuContext()
-  const currentMenuItem = findMenuItemById(menuItemId)
+  const { menuItemType } = useMenuContext()
   const menuSections = menuData.MenuSections
 
   return (
@@ -21,7 +20,7 @@ function App() {
         <h1 className="text-xl text-[#015BBB] ">Flip Dish Menu</h1>
       </div>
 
-      {!currentMenuItem &&
+      {!menuItemType &&
         // render all menu items if no menu item is selected
         menuSections.map((menuSection) => {
           return (
@@ -34,8 +33,10 @@ function App() {
 
       {
         // render menu item sub options if a menu item is selected
-        currentMenuItem && <MasterOptions menuItem={currentMenuItem} />
+        menuItemType === 'master' && <MasterOptions />
       }
+
+      {menuItemType === 'options' && <Options />}
     </main>
   )
 }

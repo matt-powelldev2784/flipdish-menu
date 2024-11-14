@@ -1,13 +1,12 @@
 import { useMenuContext } from 'cartContext/CartContext'
-import { MenuItemT } from 'menuData/menuData'
 import { MenuItem } from './MenuItem'
+import { findMenuItemById } from 'utils/findMenuItemById'
 
-interface MasterItemProps {
-  menuItem: MenuItemT
-}
-
-export const MasterOptions = ({ menuItem }: MasterItemProps) => {
-  const { setCurrentMenuItemId, setCurrentMasterItemId } = useMenuContext()
+export const MasterOptions = () => {
+  const { menuItemType, menuItemId } = useMenuContext()
+  if (!menuItemId) return <p>error</p>
+  const menuItem = findMenuItemById(menuItemId)
+  if (menuItem === '') return <p>error</p>
   const menuOptions = menuItem.MenuItemOptionSets
 
   //render master options
@@ -15,8 +14,8 @@ export const MasterOptions = ({ menuItem }: MasterItemProps) => {
     <div className="mt-2 flex flex-col items-center">
       {/******* render header ********/}
       <button
-        onClick={() => setCurrentMenuItemId(null)}
-        className="w-[300px] bg-slate-400 p-2 text-xl"
+        className="w-[300px] bg-slate-400 p-2 text-xl "
+        onClick={() => {}}
       >
         Back to Menu
       </button>
@@ -36,7 +35,6 @@ export const MasterOptions = ({ menuItem }: MasterItemProps) => {
                 id={menuOption.MenuItemOptionSetItemId}
                 name={menuOption.Name}
                 price={menuOption.Price}
-                contextUpdateFunction={setCurrentMasterItemId}
                 menuItemType={menuItemType}
               />
             )
