@@ -25,8 +25,6 @@ export interface CartItem {
 
 interface MenuContextType {
   cartItems: CartItem[]
-  masterItemId: number | null
-  setMasterItemId: Dispatch<SetStateAction<number | null>>
   menuItemId: number | null
   setMenuItemId: Dispatch<SetStateAction<number | null>>
   menuItemType: MenuItemType
@@ -48,7 +46,6 @@ export const useMenuContext = () => {
 export const MenuContextProvider = ({ children }: { children: ReactNode }) => {
   const [cartItems, setCartItems] = useState<CartItem[]>([])
   const [menuItemId, setMenuItemId] = useState<number | null>(null)
-  const [masterItemId, setMasterItemId] = useState<number | null>(null)
   const [menuItemType, setMenuItemType] = useState<MenuItemType>(null)
 
   const addItem = (item: CartItem) => {
@@ -67,8 +64,6 @@ export const MenuContextProvider = ({ children }: { children: ReactNode }) => {
         cartItems,
         menuItemId,
         setMenuItemId,
-        masterItemId,
-        setMasterItemId,
         menuItemType,
         setMenuItemType,
         addItem,
