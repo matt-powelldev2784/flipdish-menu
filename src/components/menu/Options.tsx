@@ -7,7 +7,7 @@ interface MasterItemProps {
 }
 
 export const MenuSubOptions = ({ menuItem }: MasterItemProps) => {
-  const { setCurrentMenuItemId, currentMasterItemId } = useMenuContext()
+  const { setMenuItemId, masterItemId } = useMenuContext()
   const { masterItemSelected, selectedOptions, onSelectOption } =
     useSelectedOption()
   const menuOptions = menuItem.MenuItemOptionSets
@@ -16,7 +16,7 @@ export const MenuSubOptions = ({ menuItem }: MasterItemProps) => {
     <div className="mt-2 flex flex-col items-center">
       {/******* render header ********/}
       <button
-        onClick={() => setCurrentMenuItemId(null)}
+        onClick={() => setMenuItemId(null)}
         className="w-[300px] bg-slate-400 p-2 text-xl"
       >
         Back to Menu
@@ -55,7 +55,7 @@ export const MenuSubOptions = ({ menuItem }: MasterItemProps) => {
             (option) => {
               if (!masterItemSelected) return true
               if (!isMasterOption) return true
-              return option.MenuItemOptionSetItemId === currentMasterItemId
+              return option.MenuItemOptionSetItemId === masterItemId
             }
           )
 

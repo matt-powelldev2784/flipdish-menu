@@ -16,14 +16,14 @@ interface onSelectOptionProps {
 export const useSelectedOption = () => {
   const [masterItemSelected, setMasterItemSelected] = useState(false)
   const [selectedOptions, setSelectedOptions] = useState<SelectedOption[]>([])
-  const { setCurrentMasterItemId } = useMenuContext()
+  const { setMasterItemId } = useMenuContext()
 
   const onSelectOption = ({
     isMasterOption,
     menuOption
   }: onSelectOptionProps) => {
     if (isMasterOption) {
-      setCurrentMasterItemId(menuOption.MenuItemOptionSetItemId)
+      setMasterItemId(menuOption.MenuItemOptionSetItemId)
     }
 
     setMasterItemSelected(true)

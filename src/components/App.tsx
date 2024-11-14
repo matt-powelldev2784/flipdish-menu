@@ -6,8 +6,8 @@ import { findMenuItemById } from 'utils/findMenuItemById'
 import flipDishLogo from 'assets/flipdish-logo.svg'
 
 function App() {
-  const { currentMenuItemId } = useMenuContext()
-  const currentMenuItem = findMenuItemById(currentMenuItemId)
+  const { menuItemId } = useMenuContext()
+  const currentMenuItem = findMenuItemById(menuItemId)
   const menuSections = menuData.MenuSections
 
   return (
