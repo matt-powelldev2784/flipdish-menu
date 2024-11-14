@@ -1,5 +1,6 @@
 import { useMenuContext } from 'cartContext/CartContext'
 import { MenuItemT } from 'menuData/menuData'
+import { MenuItem } from './MenuItem'
 
 interface MasterItemProps {
   menuItem: MenuItemT
@@ -30,22 +31,13 @@ export const MasterOptions = ({ menuItem }: MasterItemProps) => {
 
           return menuOptions.map((menuOption) => {
             return (
-              <div
+              <MenuItem
                 key={menuOption.MenuItemOptionSetItemId}
-                className=" flex w-full max-w-96 flex-row items-center justify-between rounded bg-neutral-300 p-2 px-10"
-              >
-                <p>
-                  {menuOption.Name}- {menuOption.Price}
-                </p>
-                <button
-                  className="rounded bg-[#015BBB] px-2 py-1 text-white"
-                  onClick={() => {
-                    setCurrentMasterItemId(menuOption.MenuItemOptionSetItemId)
-                  }}
-                >
-                  Select
-                </button>
-              </div>
+                id={menuOption.MenuItemOptionSetItemId}
+                name={menuOption.Name}
+                price={menuOption.Price}
+                onClick={setCurrentMasterItemId}
+              />
             )
           })
         })}
