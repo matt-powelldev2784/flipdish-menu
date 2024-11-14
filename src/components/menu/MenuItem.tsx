@@ -1,3 +1,4 @@
+import { useMenuContext } from 'cartContext/CartContext'
 import { MenuItemType } from './MenuItems'
 
 interface MenuItemProps {
@@ -5,18 +6,31 @@ interface MenuItemProps {
   menuItemType: MenuItemType
   name: string
   price: number
-  contextUpdateFunction?: (id: number) => void
-  onClick?: () => void
 }
 
-export const MenuItem = ({
-  id,
-  name,
-  price,
-  onClick,
-  contextUpdateFunction,
-  menuItemType
-}: MenuItemProps) => {
+export const MenuItem = ({ id, name, price, menuItemType }: MenuItemProps) => {
+  const { addItem, setCurrentMenuItemId } = useMenuContext()
+
+  const onSelectMenuItem = () => {
+    if (menuItemType === 'noOptions') {
+      addItem({
+        id: Date.now(),
+        menuItemId: id,
+        name,
+        price,
+        quantity: 1
+      })
+    }
+
+    if (menuItemType === 'options') {
+      setCurrentMenuItemId(id)
+    }
+
+    if (menuItemType === 'options') {
+      setCurrentMenuItemId(id)
+    }
+  }
+
   return (
     <article
       key={id}
@@ -27,10 +41,7 @@ export const MenuItem = ({
       </p>
       <button
         className="rounded bg-[#015BBB] px-2 py-1 text-white"
-        onClick={() => {
-          if (onClick) onClick()
-          if (contextUpdateFunction) contextUpdateFunction(id)
-        }}
+        onClick={onSelectMenuItem}
       >
         Select
       </button>

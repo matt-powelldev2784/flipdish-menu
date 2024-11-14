@@ -16,11 +16,10 @@ export interface SubOption {
 
 export interface CartItem {
   id: number
-  masterItemId: number
-  masterOptionName: string
-  subOptions: SubOption[]
+  name: string
+  menuItemId: number
   quantity: number
-  totalPrice: number
+  price: number
 }
 
 interface MenuContextType {
@@ -59,6 +58,8 @@ export const MenuContextProvider = ({ children }: { children: ReactNode }) => {
   const removeItem = (id: number) => {
     setCartItems((prevItems) => prevItems.filter((item) => item.id !== id))
   }
+
+  console.log('cartItems', cartItems)
 
   return (
     <MenuContext.Provider

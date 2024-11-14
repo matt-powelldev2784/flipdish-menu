@@ -1,5 +1,4 @@
 import { MenuSectionT } from 'menuData/menuData'
-import { useMenuContext } from 'cartContext/CartContext'
 import { MenuItem } from './MenuItem'
 
 interface MenuSectionProps {
@@ -9,7 +8,6 @@ interface MenuSectionProps {
 export type MenuItemType = 'master' | 'options' | 'noOptions' | undefined
 
 export const MenuItems = ({ MenuSection }: MenuSectionProps) => {
-  const { setCurrentMenuItemId } = useMenuContext()
   const menuItems = MenuSection.MenuItems
 
   return (
@@ -33,10 +31,6 @@ export const MenuItems = ({ MenuSection }: MenuSectionProps) => {
           )
           const menuItemHasNoOptions = menuOptions.length === 0
 
-          const masterMenuItems = menuOptions.filter(
-            (menuOption) => menuOption.IsMasterOptionSet
-          )
-
           const getMenuItemType = (): MenuItemType => {
             if (menuItemHasMasterOptions) return 'master'
             if (menuItemHasOptions) return 'options'
@@ -46,17 +40,13 @@ export const MenuItems = ({ MenuSection }: MenuSectionProps) => {
           const menuItemType = getMenuItemType()
 
           return (
-            <>
-              {masterMenuItems && (
-                <MenuItem
-                  id={menuItem.MenuItemId}
-                  name={menuItem.Name}
-                  price={menuItem.Price}
-                  contextUpdateFunction={setCurrentMenuItemId}
-                  menuItemType={menuItemType}
-                />
-              )}
-            </>
+            <MenuItem
+              key={menuItem.MenuItemId}
+              id={menuItem.MenuItemId}
+              name={menuItem.Name}
+              price={menuItem.Price}
+              menuItemType={menuItemType}
+            />
           )
         })}
       </div>
