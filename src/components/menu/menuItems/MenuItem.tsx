@@ -8,12 +8,12 @@ interface MenuItemProps {
 }
 
 export const MenuItem = ({ id, name, price, menuItemType }: MenuItemProps) => {
-  const { addItem, setCurrentMenuItemId, setCurrentMenuItemType } =
+  const { addToCart, setCurrentMenuItemId, setCurrentMenuItemType } =
     useMenuContext()
 
   const onSelectMenuItem = () => {
     if (menuItemType === 'noOptions') {
-      addItem({
+      addToCart({
         id: Date.now(),
         menuItemId: id,
         name,
