@@ -9,7 +9,6 @@ import {
 
 export type MenuItemType = 'master' | 'options' | 'noOptions' | null
 
-export type MenuLevel = 'mainMenu' | 'masterOptions' | 'subOptions'
 export interface SubOption {
   id: string
   subOptionId: number
@@ -33,8 +32,6 @@ interface MenuContextType {
   setCurrentMenuItemId: Dispatch<SetStateAction<number | null>>
   currentMenuItemType: MenuItemType
   setCurrentMenuItemType: Dispatch<SetStateAction<MenuItemType>>
-  currentMenuLevel: MenuLevel
-  setCurrentMenuLevel: Dispatch<SetStateAction<MenuLevel>>
   tempCartItems: CartItem[]
   setTempCartItems: Dispatch<SetStateAction<CartItem[]>>
   addToCart: (item: CartItem) => void
@@ -58,8 +55,6 @@ export const MenuContextProvider = ({ children }: { children: ReactNode }) => {
   )
   const [currentMenuItemType, setCurrentMenuItemType] =
     useState<MenuItemType>(null)
-  const [currentMenuLevel, setCurrentMenuLevel] =
-    useState<MenuLevel>('mainMenu')
   const [tempCartItems, setTempCartItems] = useState<CartItem[]>([])
 
   const addToCart = (item: CartItem) => {
@@ -73,7 +68,6 @@ export const MenuContextProvider = ({ children }: { children: ReactNode }) => {
   console.log('---------------------------------')
   console.log('cartItems', cartItems)
   console.log('tempCartItems', tempCartItems)
-  console.log('currentMenuLevel', currentMenuLevel)
   console.log('currentMenuItemType', currentMenuItemType)
 
   return (
@@ -84,8 +78,6 @@ export const MenuContextProvider = ({ children }: { children: ReactNode }) => {
         setCurrentMenuItemId,
         currentMenuItemType,
         setCurrentMenuItemType,
-        currentMenuLevel,
-        setCurrentMenuLevel,
         tempCartItems,
         setTempCartItems,
         addToCart,
