@@ -22,7 +22,7 @@ function App() {
       </div>
 
       {!currentMenuItem &&
-        // render all menu sections if no menu item is selected
+        // render all menu items if no menu item is selected
         menuSections.map((menuSection) => {
           return (
             <MenuItems
