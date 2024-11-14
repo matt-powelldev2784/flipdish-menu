@@ -21,7 +21,6 @@ function App() {
       </div>
 
       {currentMenuLevel === 'main' &&
-        // render all menu items if no menu item is selected
         menuSections.map((menuSection) => {
           return (
             <MenuItems
@@ -31,10 +30,7 @@ function App() {
           )
         })}
 
-      {
-        // render menu item sub options if a menu item is selected
-        currentMenuLevel === 'master' && <MasterOptions />
-      }
+      {currentMenuLevel === 'master' && <MasterOptions />}
 
       {currentMenuLevel === 'subOptions' && <SubOptions />}
     </main>
