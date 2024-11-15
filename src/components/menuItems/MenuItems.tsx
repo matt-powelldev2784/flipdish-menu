@@ -18,7 +18,7 @@ export const MenuItems = ({ MenuSection }: MenuSectionProps) => {
         {MenuSection.Name}
       </p>
 
-      <div className="flex w-full flex-col gap-2">
+      <div className="flex w-full flex-col">
         {menuItems.map((menuItem) => {
           const menuOptions = menuItem.MenuItemOptionSets
 
@@ -36,8 +36,10 @@ export const MenuItems = ({ MenuSection }: MenuSectionProps) => {
             if (menuItemHasNoOptions) return 'noOptions'
             return null
           }
-
           const menuItemType = getMenuItemType()
+
+          const defaultImageUrl =
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/600px-No_image_available.svg.png'
 
           return (
             <MenuItem
@@ -46,6 +48,8 @@ export const MenuItems = ({ MenuSection }: MenuSectionProps) => {
               name={menuItem.Name}
               price={menuItem.Price}
               menuItemType={menuItemType}
+              description={menuItem.Description || ''}
+              imageUrl={menuItem.ImageUrl || defaultImageUrl}
             />
           )
         })}
