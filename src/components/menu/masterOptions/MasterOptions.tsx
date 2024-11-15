@@ -3,7 +3,7 @@ import { findMenuItemById } from 'utils/findMenuItemById'
 import { MasterOption } from './MasterOption'
 
 export const MasterOptions = () => {
-  const { currentMenuItemId, setCurrentMenuItemType, currentMenuItemType } =
+  const { currentMenuItemId, resetMenuItemsState, currentMenuItemType } =
     useMenuContext()
   if (!currentMenuItemId) return <p>master options error</p>
   const menuItem = findMenuItemById(currentMenuItemId)
@@ -15,10 +15,8 @@ export const MasterOptions = () => {
     <div className="mt-2 flex flex-col items-center">
       {/******* render header ********/}
       <button
+        onClick={resetMenuItemsState}
         className="w-[300px] bg-slate-400 p-2 text-xl "
-        onClick={() => {
-          setCurrentMenuItemType(null)
-        }}
       >
         Back to Menu
       </button>

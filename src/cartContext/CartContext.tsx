@@ -40,6 +40,7 @@ interface MenuContextType {
   setTempCartItems: Dispatch<SetStateAction<CartItem[]>>
   addToCart: (item: CartItem) => void
   removeFromCart: (id: number) => void
+  resetMenuItemsState: () => void
 }
 
 const MenuContext = createContext<MenuContextType | undefined>(undefined)
@@ -70,6 +71,13 @@ export const MenuContextProvider = ({ children }: { children: ReactNode }) => {
     setCartItems((prevItems) => prevItems.filter((item) => item.id !== id))
   }
 
+  const resetMenuItemsState = () => {
+    setCurrentMenuItemId(null)
+    setCurrentMenuItemType(null)
+    setTempCartItems([])
+    setCurrentMenuLevel('main')
+  }
+
   console.log('---------------------------------')
   console.log('cartItems', cartItems)
   console.log('tempCartItems', tempCartItems)
@@ -89,7 +97,8 @@ export const MenuContextProvider = ({ children }: { children: ReactNode }) => {
         tempCartItems,
         setTempCartItems,
         addToCart,
-        removeFromCart
+        removeFromCart,
+        resetMenuItemsState
       }}
     >
       {children}

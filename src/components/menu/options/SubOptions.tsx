@@ -3,7 +3,7 @@ import { findMenuItemById } from 'utils/findMenuItemById'
 import { SubOption } from './SubOption'
 
 export const SubOptions = () => {
-  const { currentMenuItemId, setCurrentMenuItemType, currentMenuItemType } =
+  const { currentMenuItemId, setCurrentMenuLevel, currentMenuItemType } =
     useMenuContext()
   if (!currentMenuItemId) return <p>options error</p>
   const menuItem = findMenuItemById(currentMenuItemId)
@@ -17,7 +17,7 @@ export const SubOptions = () => {
       <button
         className="w-[300px] bg-slate-400 p-2 text-xl "
         onClick={() => {
-          setCurrentMenuItemType(null)
+          setCurrentMenuLevel('main')
         }}
       >
         Back to Menu
