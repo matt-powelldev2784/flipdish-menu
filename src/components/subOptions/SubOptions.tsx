@@ -1,11 +1,11 @@
 import { useMenuContext } from 'cartContext/CartContext'
 import { findMenuItemById } from 'utils/findMenuItemById'
 import { SubOption } from './SubOption'
+import backIcon from '../../assets/back.svg'
 
 export const SubOptions = () => {
   const {
     currentMenuItemId,
-    setCurrentMenuLevel,
     currentMenuItemType,
     tempCartItem,
     addToCart,
@@ -21,14 +21,12 @@ export const SubOptions = () => {
     <div className="mt-2 flex w-full max-w-[700px] flex-col items-center">
       {/******* render header ********/}
       <button
-        className="w-[300px] bg-slate-400 p-2 text-xl "
-        onClick={() => {
-          setCurrentMenuLevel('main')
-        }}
+        onClick={resetMenuItemsState}
+        className=" absolute left-2 top-2 m-2 p-1 text-white"
       >
-        Back to Menu
+        <img src={backIcon} alt="back icon" />
       </button>
-      <p className="font-bold">{menuItem.Name}</p>
+      <p className="m-2 text-2xl font-bold">{menuItem.Name}</p>
 
       {/******* render options ********/}
       <div className="flex w-full flex-col items-center gap-2">
@@ -49,6 +47,7 @@ export const SubOptions = () => {
           })
         })}
 
+        {/******* conditionally render add to cart button ********/}
         {currentMenuItemType === 'master' && (
           <button
             className="m-4 w-[300px] rounded bg-[#015BBB] p-2 text-xl text-white"

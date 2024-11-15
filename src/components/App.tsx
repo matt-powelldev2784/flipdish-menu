@@ -10,14 +10,14 @@ function App() {
   const menuSections = menuData.MenuSections
 
   return (
-    <main className="relative flex flex-col items-center overflow-hidden bg-white">
+    <main className="relative flex flex-col items-center overflow-hidden bg-white pb-24">
       <div className="mt-2 flex flex-col items-center">
         <img
           src={flipDishLogo}
           alt="Flip Dish Logo"
           className="h-[57px] w-[190px] "
         />
-        <h1 className="text-xl text-[#015BBB] ">Flip Dish Menu</h1>
+        <h1 className="text-bold text-3xl text-[#015BBB]">Menu</h1>
       </div>
 
       {currentMenuLevel === 'main' &&

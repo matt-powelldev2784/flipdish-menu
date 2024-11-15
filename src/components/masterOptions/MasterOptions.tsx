@@ -1,6 +1,7 @@
 import { useMenuContext } from 'cartContext/CartContext'
 import { findMenuItemById } from 'utils/findMenuItemById'
 import { MasterOption } from './MasterOption'
+import backIcon from '../../assets/back.svg'
 
 export const MasterOptions = () => {
   const { currentMenuItemId, resetMenuItemsState } = useMenuContext()
@@ -15,11 +16,12 @@ export const MasterOptions = () => {
       {/******* render header ********/}
       <button
         onClick={resetMenuItemsState}
-        className="w-[300px] bg-slate-400 p-2 text-xl "
+        className=" absolute left-2 top-2 m-2 p-1 text-white"
       >
-        Back to Menu
+        <img src={backIcon} alt="back icon" />
       </button>
-      <p className="font-bold">{menuItem.Name}</p>
+
+      <p className="m-2 text-2xl font-bold">{menuItem.Name}</p>
 
       {/******* render master options ********/}
       <div className="flex w-full flex-col gap-2">
