@@ -3,8 +3,7 @@ import { findMenuItemById } from 'utils/findMenuItemById'
 import { SubOption } from './SubOption'
 
 export const SubOptions = () => {
-  const { currentMenuItemId, setCurrentMenuLevel, currentMenuItemType } =
-    useMenuContext()
+  const { currentMenuItemId, setCurrentMenuLevel } = useMenuContext()
   if (!currentMenuItemId) return <p>options error</p>
   const menuItem = findMenuItemById(currentMenuItemId)
   if (menuItem === '') return <p>options error</p>
@@ -38,7 +37,6 @@ export const SubOptions = () => {
                 id={menuOption.MenuItemOptionSetItemId}
                 name={menuOption.Name}
                 price={menuOption.Price}
-                menuItemType={currentMenuItemType}
               />
             )
           })

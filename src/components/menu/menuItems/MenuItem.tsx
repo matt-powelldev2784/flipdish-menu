@@ -11,6 +11,7 @@ export const MenuItem = ({ id, name, price, menuItemType }: MenuItemProps) => {
   const {
     addToCart,
     setCurrentMenuItemId,
+    currentMenuItemType,
     setCurrentMenuItemType,
     setTempCartItems,
     setCurrentMenuLevel
@@ -20,6 +21,7 @@ export const MenuItem = ({ id, name, price, menuItemType }: MenuItemProps) => {
     if (menuItemType === 'noOptions') {
       return addToCart({
         id: Date.now(),
+        menuItemType: currentMenuItemType,
         menuItemId: id,
         name,
         price,
@@ -32,6 +34,7 @@ export const MenuItem = ({ id, name, price, menuItemType }: MenuItemProps) => {
         ...prev,
         {
           id: Date.now(),
+          menuItemType: currentMenuItemType,
           menuItemId: id,
           name,
           price,
@@ -49,6 +52,7 @@ export const MenuItem = ({ id, name, price, menuItemType }: MenuItemProps) => {
         ...prev,
         {
           id: Date.now(),
+          menuItemType: currentMenuItemType,
           menuItemId: id,
           name,
           price,

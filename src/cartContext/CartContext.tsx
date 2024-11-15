@@ -13,6 +13,7 @@ export type MenuLevel = 'main' | 'master' | 'subOptions'
 
 export interface SubOption {
   id: string
+  menuItemType: MenuItemType
   subOptionId: number
   name: string
   quantity: number
@@ -21,6 +22,7 @@ export interface SubOption {
 
 export interface CartItem {
   id: number
+  menuItemType: MenuItemType
   name: string
   menuItemId: number
   quantity: number
