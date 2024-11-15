@@ -7,36 +7,28 @@ interface SubOptionProps {
 }
 
 export const SubOption = ({ id, name, price }: SubOptionProps) => {
-  const { setTempCartItems, currentMenuItemType, setCurrentMenuLevel } =
+  const { currentMenuItemType, setCurrentMenuLevel, addTempCartSubOption } =
     useMenuContext()
 
   const onSelectMenuItem = () => {
     if (currentMenuItemType === 'master') {
-      setTempCartItems((prev) => [
-        ...prev,
-        {
-          id: Date.now(),
-          menuItemType: currentMenuItemType,
-          menuItemId: id,
-          name,
-          price,
-          quantity: 1
-        }
-      ])
+      addTempCartSubOption({
+        id: Date.now(),
+        subOptionId: id,
+        name,
+        price,
+        quantity: 1
+      })
     }
 
     if (currentMenuItemType === 'subOptions') {
-      setTempCartItems((prev) => [
-        ...prev,
-        {
-          id: Date.now(),
-          menuItemType: currentMenuItemType,
-          menuItemId: id,
-          name,
-          price,
-          quantity: 1
-        }
-      ])
+      addTempCartSubOption({
+        id: Date.now(),
+        subOptionId: id,
+        name,
+        price,
+        quantity: 1
+      })
       setCurrentMenuLevel('main')
     }
   }

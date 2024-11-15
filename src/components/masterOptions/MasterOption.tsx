@@ -7,21 +7,16 @@ interface MenuItemProps {
 }
 
 export const MasterOption = ({ id, name, price }: MenuItemProps) => {
-  const { setTempCartItems, currentMenuItemType, setCurrentMenuLevel } =
-    useMenuContext()
+  const { addTempCartSubOption, setCurrentMenuLevel } = useMenuContext()
 
   const onSelectMenuItem = () => {
-    setTempCartItems((prev) => [
-      ...prev,
-      {
-        menuItemType: currentMenuItemType,
-        id: Date.now(),
-        menuItemId: id,
-        name,
-        price,
-        quantity: 1
-      }
-    ])
+    addTempCartSubOption({
+      id: Date.now(),
+      subOptionId: id,
+      name,
+      price,
+      quantity: 1
+    })
     setCurrentMenuLevel('subOptions')
   }
 

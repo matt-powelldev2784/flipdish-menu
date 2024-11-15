@@ -11,9 +11,8 @@ export const MenuItem = ({ id, name, price, menuItemType }: MenuItemProps) => {
   const {
     addToCart,
     setCurrentMenuItemId,
-    currentMenuItemType,
     setCurrentMenuItemType,
-    setTempCartItems,
+    setTempCartItem,
     setCurrentMenuLevel
   } = useMenuContext()
 
@@ -30,17 +29,14 @@ export const MenuItem = ({ id, name, price, menuItemType }: MenuItemProps) => {
     }
 
     if (menuItemType === 'master') {
-      setTempCartItems((prev) => [
-        ...prev,
-        {
-          id: Date.now(),
-          menuItemType: currentMenuItemType,
-          menuItemId: id,
-          name,
-          price,
-          quantity: 1
-        }
-      ])
+      setTempCartItem({
+        id: Date.now(),
+        menuItemType: 'master',
+        menuItemId: id,
+        name,
+        price,
+        quantity: 1
+      })
 
       setCurrentMenuItemId(id)
       setCurrentMenuItemType(menuItemType)
@@ -48,17 +44,14 @@ export const MenuItem = ({ id, name, price, menuItemType }: MenuItemProps) => {
     }
 
     if (menuItemType === 'subOptions') {
-      setTempCartItems((prev) => [
-        ...prev,
-        {
-          id: Date.now(),
-          menuItemType: currentMenuItemType,
-          menuItemId: id,
-          name,
-          price,
-          quantity: 1
-        }
-      ])
+      setTempCartItem({
+        id: Date.now(),
+        menuItemType: 'subOptions',
+        menuItemId: id,
+        name,
+        price,
+        quantity: 1
+      })
 
       setCurrentMenuItemId(id)
       setCurrentMenuItemType(menuItemType)

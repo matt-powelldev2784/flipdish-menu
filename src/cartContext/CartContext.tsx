@@ -11,9 +11,10 @@ export type MenuItemType = 'master' | 'subOptions' | 'noOptions' | null
 
 export type MenuLevel = 'main' | 'master' | 'subOptions'
 
+export type TempCartItem = CartItem | null
+
 export interface SubOption {
-  id: string
-  menuItemType: MenuItemType
+  id: number
   subOptionId: number
   name: string
   quantity: number
@@ -38,10 +39,11 @@ interface MenuContextType {
   setCurrentMenuItemType: Dispatch<SetStateAction<MenuItemType>>
   currentMenuLevel: MenuLevel
   setCurrentMenuLevel: Dispatch<SetStateAction<MenuLevel>>
-  tempCartItems: CartItem[]
-  setTempCartItems: Dispatch<SetStateAction<CartItem[]>>
+  tempCartItem: TempCartItem
+  setTempCartItem: Dispatch<SetStateAction<TempCartItem>>
   addToCart: (item: CartItem) => void
   removeFromCart: (id: number) => void
+  addTempCartSubOption: (subOption: SubOption) => void
   resetMenuItemsState: () => void
 }
 
@@ -63,7 +65,7 @@ export const MenuContextProvider = ({ children }: { children: ReactNode }) => {
   const [currentMenuItemType, setCurrentMenuItemType] =
     useState<MenuItemType>(null)
   const [currentMenuLevel, setCurrentMenuLevel] = useState<MenuLevel>('main')
-  const [tempCartItems, setTempCartItems] = useState<CartItem[]>([])
+  const [tempCartItem, setTempCartItem] = useState<TempCartItem>(null)
 
   const addToCart = (item: CartItem) => {
     setCartItems((prevItems) => [...prevItems, item])
@@ -73,16 +75,33 @@ export const MenuContextProvider = ({ children }: { children: ReactNode }) => {
     setCartItems((prevItems) => prevItems.filter((item) => item.id !== id))
   }
 
+  const addTempCartSubOption = (subOption: SubOption) => {
+    setTempCartItem((prev) => {
+      if (prev === null) return null
+
+      if (!prev.subOptions) {
+        return {
+          ...prev,
+          subOptions: [subOption]
+        }
+      }
+      return {
+        ...prev,
+        subOptions: [...prev.subOptions, subOption]
+      }
+    })
+  }
+
   const resetMenuItemsState = () => {
     setCurrentMenuItemId(null)
     setCurrentMenuItemType(null)
-    setTempCartItems([])
+    setTempCartItem(null)
     setCurrentMenuLevel('main')
   }
 
   console.log('---------------------------------')
   console.log('cartItems', cartItems)
-  console.log('tempCartItems', tempCartItems)
+  console.log('tempCartItem', tempCartItem)
   console.log('currentMenuLevel', currentMenuLevel)
   console.log('currentMenuItemType', currentMenuItemType)
 
@@ -96,10 +115,11 @@ export const MenuContextProvider = ({ children }: { children: ReactNode }) => {
         setCurrentMenuItemType,
         currentMenuLevel,
         setCurrentMenuLevel,
-        tempCartItems,
-        setTempCartItems,
+        tempCartItem,
+        setTempCartItem,
         addToCart,
         removeFromCart,
+        addTempCartSubOption,
         resetMenuItemsState
       }}
     >
