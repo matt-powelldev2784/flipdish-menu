@@ -5,9 +5,9 @@ import backIcon from '../../assets/back.svg'
 
 export const MasterOptions = () => {
   const { currentMenuItemId, resetMenuItemsState } = useMenuContext()
-  if (!currentMenuItemId) return <p>master options error</p>
+  if (!currentMenuItemId) return <p>Server error</p>
   const menuItem = findMenuItemById(currentMenuItemId)
-  if (menuItem === '') return <p>master options error</p>
+  if (menuItem === '') return <p>Server error</p>
   const menuOptions = menuItem.MenuItemOptionSets
 
   //render master options

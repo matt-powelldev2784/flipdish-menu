@@ -11,9 +11,9 @@ export const SubOptions = () => {
     addToCart,
     resetMenuItemsState
   } = useMenuContext()
-  if (!currentMenuItemId) return <p>options error</p>
+  if (!currentMenuItemId) return <p>Server error</p>
   const menuItem = findMenuItemById(currentMenuItemId)
-  if (menuItem === '') return <p>options error</p>
+  if (menuItem === '') return <p>Server error</p>
   const menuOptions = menuItem.MenuItemOptionSets
 
   //render  options
