@@ -121,7 +121,7 @@ export const MenuContextProvider = ({ children }: { children: ReactNode }) => {
     setCurrentMenuLevel('main')
   }
 
-  console.log('---------------------------------')
+  console.log('--------------------------state update ----------')
   console.log('cartItems', cartItems)
   console.log('tempCartItem', tempCartItem)
   console.log('currentMenuLevel', currentMenuLevel)

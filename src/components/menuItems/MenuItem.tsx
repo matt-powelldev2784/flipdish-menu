@@ -84,7 +84,11 @@ export const MenuItem = ({
       <div className="flex w-[400px] max-w-[400px] flex-col items-start justify-center py-2">
         <p className="font-bold">{name}</p>
         <p className="text-sm">{description}</p>
-        <p>£{price.toFixed(2)}</p>
+        {menuItemType === 'master' ? (
+          <p className="text-sm text-red-500"> Select item for price options</p>
+        ) : (
+          <p>£{price.toFixed(2)}</p>
+        )}
       </div>
 
       <button
