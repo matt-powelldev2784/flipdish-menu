@@ -21,7 +21,7 @@ export const MenuItem = ({ id, name, price, menuItemType }: MenuItemProps) => {
     if (menuItemType === 'noOptions') {
       return addToCart({
         id: Date.now(),
-        menuItemType: currentMenuItemType,
+        menuItemType: 'noOptions',
         menuItemId: id,
         name,
         price,
