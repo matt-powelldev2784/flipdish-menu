@@ -11,7 +11,7 @@ export const MasterOptions = () => {
 
   //render master options
   return (
-    <div className="mt-2 flex flex-col items-center">
+    <div className="mt-2 flex w-full max-w-[700px] flex-col items-center">
       {/******* render header ********/}
       <button
         onClick={resetMenuItemsState}
@@ -22,7 +22,7 @@ export const MasterOptions = () => {
       <p className="font-bold">{menuItem.Name}</p>
 
       {/******* render master options ********/}
-      <div className="flex w-full flex-col items-center gap-2">
+      <div className="flex w-full flex-col gap-2">
         {menuOptions.map((menuOption) => {
           const isMasterOption = menuOption.IsMasterOptionSet
           if (!isMasterOption) return null

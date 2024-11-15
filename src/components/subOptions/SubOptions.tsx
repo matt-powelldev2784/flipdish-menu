@@ -11,7 +11,7 @@ export const SubOptions = () => {
 
   //render  options
   return (
-    <div className="mt-2 flex flex-col items-center">
+    <div className="mt-2 flex w-full max-w-[700px] flex-col items-center">
       {/******* render header ********/}
       <button
         className="w-[300px] bg-slate-400 p-2 text-xl "
