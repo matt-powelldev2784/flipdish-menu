@@ -3,7 +3,14 @@ import { findMenuItemById } from 'utils/findMenuItemById'
 import { SubOption } from './SubOption'
 
 export const SubOptions = () => {
-  const { currentMenuItemId, setCurrentMenuLevel } = useMenuContext()
+  const {
+    currentMenuItemId,
+    setCurrentMenuLevel,
+    currentMenuItemType,
+    tempCartItem,
+    addToCart,
+    resetMenuItemsState
+  } = useMenuContext()
   if (!currentMenuItemId) return <p>options error</p>
   const menuItem = findMenuItemById(currentMenuItemId)
   if (menuItem === '') return <p>options error</p>
@@ -41,6 +48,19 @@ export const SubOptions = () => {
             )
           })
         })}
+
+        {currentMenuItemType === 'master' && (
+          <button
+            className="m-4 w-[300px] rounded bg-[#015BBB] p-2 text-xl text-white"
+            onClick={() => {
+              if (!tempCartItem) return
+              addToCart(tempCartItem)
+              resetMenuItemsState()
+            }}
+          >
+            Add to Cart
+          </button>
+        )}
       </div>
     </div>
   )

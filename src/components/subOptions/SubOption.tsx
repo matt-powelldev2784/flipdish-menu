@@ -7,8 +7,14 @@ interface SubOptionProps {
 }
 
 export const SubOption = ({ id, name, price }: SubOptionProps) => {
-  const { currentMenuItemType, setCurrentMenuLevel, addTempCartSubOption } =
-    useMenuContext()
+  const {
+    currentMenuItemType,
+    setCurrentMenuLevel,
+    addTempCartSubOption,
+    tempCartItem,
+    addToCart,
+    resetMenuItemsState
+  } = useMenuContext()
 
   const onSelectMenuItem = () => {
     if (currentMenuItemType === 'master') {
@@ -29,7 +35,11 @@ export const SubOption = ({ id, name, price }: SubOptionProps) => {
         price,
         quantity: 1
       })
-      setCurrentMenuLevel('main')
+      if (tempCartItem !== null) {
+        addToCart(tempCartItem)
+        resetMenuItemsState()
+        setCurrentMenuLevel('main')
+      }
     }
   }
 
