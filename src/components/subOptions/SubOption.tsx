@@ -1,4 +1,5 @@
 import { useMenuContext } from 'cartContext/CartContext'
+import { useState } from 'react'
 
 interface SubOptionProps {
   id: number
@@ -7,6 +8,7 @@ interface SubOptionProps {
 }
 
 export const SubOption = ({ id, name, price }: SubOptionProps) => {
+  const [itemSelected, setItemSelected] = useState(false)
   const {
     currentMenuItemType,
     setCurrentMenuLevel,
@@ -18,6 +20,7 @@ export const SubOption = ({ id, name, price }: SubOptionProps) => {
 
   const onSelectMenuItem = () => {
     if (currentMenuItemType === 'master') {
+      setItemSelected(true)
       addTempCartSubOption({
         id: Date.now(),
         subOptionId: id,
@@ -51,12 +54,22 @@ export const SubOption = ({ id, name, price }: SubOptionProps) => {
       <p>
         {name} - {price}
       </p>
-      <button
-        className="rounded bg-[#015BBB] px-2 py-1 text-white"
-        onClick={onSelectMenuItem}
-      >
-        Select
-      </button>
+
+      {itemSelected ? (
+        <button
+          className="w-20 rounded bg-red-500 px-2 py-1 text-white"
+          onClick={onSelectMenuItem}
+        >
+          Remove
+        </button>
+      ) : (
+        <button
+          className="w-20 rounded bg-[#015BBB] px-2 py-1 text-white"
+          onClick={onSelectMenuItem}
+        >
+          Select
+        </button>
+      )}
     </article>
   )
 }

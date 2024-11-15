@@ -29,7 +29,7 @@ export const MasterOption = ({ id, name, price }: MenuItemProps) => {
         {name} - {price}
       </p>
       <button
-        className="rounded bg-[#015BBB] px-2 py-1 text-white"
+        className="w-20 rounded bg-[#015BBB] px-2 py-1 text-white"
         onClick={onSelectMenuItem}
       >
         Select
