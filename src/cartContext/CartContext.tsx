@@ -85,6 +85,13 @@ export const MenuContextProvider = ({ children }: { children: ReactNode }) => {
           subOptions: [subOption]
         }
       }
+
+      // only allow each subOption to be added once
+      const subOptionExists = prev.subOptions?.some(
+        (option) => option.subOptionId === subOption.subOptionId
+      )
+      if (subOptionExists) return prev
+
       return {
         ...prev,
         subOptions: [...prev.subOptions, subOption]
