@@ -17,7 +17,7 @@ function App() {
           alt="Flip Dish Logo"
           className="h-[57px] w-[190px] "
         />
-        <h1 className="text-bold text-3xl text-[#015BBB]">Menu</h1>
+        <h1 className="text-3xl font-bold text-[#015BBB]">Menu</h1>
       </div>
 
       {currentMenuLevel === 'main' &&

@@ -15,7 +15,8 @@ export const SubOption = ({ id, name, price }: SubOptionProps) => {
     addTempCartSubOption,
     tempCartItem,
     addToCart,
-    resetMenuItemsState
+    resetMenuItemsState,
+    removeTempCartSubOption
   } = useMenuContext()
 
   const onSelectMenuItem = () => {
@@ -46,6 +47,11 @@ export const SubOption = ({ id, name, price }: SubOptionProps) => {
     }
   }
 
+  const onRemoveMenuItem = () => {
+    removeTempCartSubOption(id)
+    setItemSelected(false)
+  }
+
   return (
     <article
       key={id}
@@ -58,7 +64,7 @@ export const SubOption = ({ id, name, price }: SubOptionProps) => {
       {itemSelected ? (
         <button
           className="w-20 rounded bg-red-500 px-2 py-1 text-white"
-          onClick={onSelectMenuItem}
+          onClick={onRemoveMenuItem}
         >
           Remove
         </button>

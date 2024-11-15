@@ -44,6 +44,7 @@ interface MenuContextType {
   addToCart: (item: CartItem) => void
   removeFromCart: (id: number) => void
   addTempCartSubOption: (subOption: SubOption) => void
+  removeTempCartSubOption: (subOptionId: number) => void
   resetMenuItemsState: () => void
 }
 
@@ -99,6 +100,20 @@ export const MenuContextProvider = ({ children }: { children: ReactNode }) => {
     })
   }
 
+  const removeTempCartSubOption = (subOptionId: number) => {
+    setTempCartItem((prev) => {
+      if (prev) {
+        return {
+          ...prev,
+          subOptions: prev.subOptions?.filter(
+            (option) => option.subOptionId !== subOptionId
+          )
+        }
+      }
+      return prev
+    })
+  }
+
   const resetMenuItemsState = () => {
     setCurrentMenuItemId(null)
     setCurrentMenuItemType(null)
@@ -127,6 +142,7 @@ export const MenuContextProvider = ({ children }: { children: ReactNode }) => {
         addToCart,
         removeFromCart,
         addTempCartSubOption,
+        removeTempCartSubOption,
         resetMenuItemsState
       }}
     >
