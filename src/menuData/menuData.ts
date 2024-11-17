@@ -1,4 +1,118 @@
-export const menuData = {
+export interface MenuItemOptionSetItemT {
+  MenuItemOptionSetItemId: number
+  Name: string
+  Price: number
+  TaxRateId: number | null
+  TaxRate: number | null
+  TaxValue: number
+  IsAvailable: boolean
+  DisplayOrder: number
+  IsDeleted: boolean
+  Tags: string[]
+  NextMenuItemOptionSetId: number | null
+  PublicId: string
+  ImageName: string | null
+  ImageUrl: string | null
+  CellAspectRatio: number
+  CellLayoutType: number
+  OptionSetItemMetadata: []
+  MaxSelectCount?: number
+}
+
+export interface MenuItemOptionSetT {
+  CellAspectRatio: number
+  CellLayoutType: number
+  DisplayOrder: number | null
+  ImageName: string | null
+  ImageUrl: string | null
+  IsDeleted: boolean
+  IsMasterOptionSet: boolean
+  MaxSelectCount?: number
+  MenuItemId: number
+  MenuItemOptionSetId: number
+  MenuItemOptionSetItems: MenuItemOptionSetItemT[]
+  MenuItemOptionSetMetadata: []
+  MinPrice: number
+  MinSelectCount: number
+  Name: string | null
+  PublicId: string
+}
+
+export interface MenuItemT {
+  MenuItemId: number
+  Name: string
+  Description: string | null
+  SpicinessRating: number | null
+  Price: number
+  DisplayOrder: number
+  IsDeleted: boolean
+  Alcohol: boolean
+  Tags: string[]
+  PublicId: string
+  IsAvailable: boolean
+  MenuItemOptionSets: MenuItemOptionSetT[] | []
+  TaxRate: number | null
+  TaxRateId: number | null
+  TaxValue: number | null
+  MenuSectionId: number
+  ImageName: string | null
+  ImageUrl: string | null
+  CellAspectRatio: number
+  CellLayoutType: number
+  ActualPrice: number
+  DisableVouchers: boolean
+  ExcludeFromVoucherDiscounting: boolean
+  DailySpecialHours: []
+  DailySpecialPrice?: number
+  PriceCanIncrease: boolean
+  MenuItemMetadata: []
+}
+
+export interface AvailableTimesT {
+  BusinessHoursPeriodId: number
+  DayOfWeek: number
+  StartTime: string
+  Period: string
+  StartTimeEarly: string
+  PeriodEarly: string
+}
+
+export interface MenuSectionAvailabilityT {
+  MenuSectionId: number
+  AvailableTimes: null | AvailableTimesT[]
+  AvailabilityMode: number
+}
+
+export interface MenuSectionT {
+  MenuSectionId: number
+  Name: string
+  Description: string | null
+  DisplayOrder: number
+  MenuItems: MenuItemT[] | []
+  PublicId?: string
+  IsDeleted: boolean
+  IsAvailable: boolean
+  IsHiddenFromUsers: boolean
+  ImageName: string | null
+  ImageUrl: string | null
+  CellAspectRatio: number
+  CellLayoutType: number
+  MenuSectionAvailability: MenuSectionAvailabilityT
+  ConcessionStoreId?: number | null
+  MenuSectionMetadata: []
+}
+
+export interface MenuDataT {
+  MenuId: number
+  MenuVersionNumber: number
+  VersionGuid: string
+  MenuSections: MenuSectionT[]
+  MenuSectionBehaviour: number
+  DisplaySectionLinks: boolean
+  ConcessionStores: []
+}
+
+export const menuData: MenuDataT = {
   MenuId: 16798,
   MenuVersionNumber: 354,
   VersionGuid: 'e6220da2-c34a-4ea2-bb51-a3e190fc5f08',
