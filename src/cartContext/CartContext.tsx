@@ -121,11 +121,9 @@ export const MenuContextProvider = ({ children }: { children: ReactNode }) => {
     setCurrentMenuLevel('main')
   }
 
+  // logs left in so cart items can be viewed in console
   console.log('--------------------------state update ----------')
   console.log('cartItems', cartItems)
-  console.log('tempCartItem', tempCartItem)
-  console.log('currentMenuLevel', currentMenuLevel)
-  console.log('currentMenuItemType', currentMenuItemType)
 
   return (
     <MenuContext.Provider
