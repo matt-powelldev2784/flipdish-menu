@@ -53,7 +53,7 @@ const MenuContext = createContext<MenuContextType | undefined>(undefined)
 export const useMenuContext = () => {
   const context = useContext(MenuContext)
   if (!context) {
-    throw new Error('useCart must be used within a CartProvider')
+    throw new Error('useMenuContext must be used within a MenuContextProvider')
   }
   return context
 }
