@@ -5,7 +5,7 @@ import backIcon from '../../assets/back.svg'
 import { useState } from 'react'
 
 export const MenuOptions = () => {
-  const [menuOptionIndex, setMenuOptionIndex] = useState<number>(0)
+  const [menuOptionIndex, setMenuOptionIndex] = useState(0)
   const { currentMenuItemId, resetMenuItemsState } = useMenuContext()
   if (!currentMenuItemId) return <p>Server error</p>
   const menuItem = findMenuItemById(currentMenuItemId)
@@ -27,7 +27,7 @@ export const MenuOptions = () => {
       <p className="m-2 text-2xl font-bold">{menuItem.Name}</p>
 
       {/******* render master options ********/}
-      <div className="flex w-full flex-col gap-2">
+      <div className="flex w-full flex-col items-center gap-2">
         {menuOptions.map((menuOption, index) => {
           if (index !== menuOptionIndex) return null
           const isMasterOption = menuOption.IsMasterOptionSet
@@ -56,6 +56,13 @@ export const MenuOptions = () => {
             )
           })
         })}
+
+        <button
+          className="m-4 w-[300px] rounded bg-[#015BBB] p-2 text-xl text-white"
+          onClick={() => {}}
+        >
+          Confirm Selection
+        </button>
       </div>
     </div>
   )

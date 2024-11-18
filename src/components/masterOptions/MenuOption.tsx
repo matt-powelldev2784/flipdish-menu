@@ -1,6 +1,6 @@
 import { useMenuContext } from 'cartContext/CartContext'
 import { MenuItemOptionSetItemT } from 'menuData/menuData'
-import { Dispatch, SetStateAction } from 'react'
+import { Dispatch, SetStateAction, useState } from 'react'
 
 interface menuOptionType extends MenuItemOptionSetItemT {
   minSelectAmount: number
@@ -21,12 +21,15 @@ export const MenuOption = ({
   setMenuOptionIndex,
   menuOptionsLength
 }: MenuOptionProps) => {
-  const { addTempCartSubOption } = useMenuContext()
+  const [optionSelected, setOptionSelected] = useState(false)
+  const [optionSelectCount, setOptionSelectCount] = useState(0)
+  const { addTempCartSubOption, removeTempCartSubOption } = useMenuContext()
   const id = menuOption.MenuItemOptionSetItemId
   const name = menuOption.Name
   const price = menuOption.Price
+  const optionCanBeSelected = optionSelectCount < menuOption.maxSelectAmount
 
-  const onSelectMenuItem = () => {
+  const onSelectOption = () => {
     addTempCartSubOption({
       id: Date.now(),
       subOptionId: id,
@@ -39,7 +42,14 @@ export const MenuOption = ({
       return
     }
 
-    setMenuOptionIndex((prev) => prev + 1)
+    setOptionSelected(true)
+    setOptionSelectCount((prev) => prev + 1)
+  }
+
+  const onDeselectOption = () => {
+    removeTempCartSubOption(id)
+    setOptionSelected(false)
+    setOptionSelectCount((prev) => prev - 1)
   }
 
   return (
@@ -50,12 +60,23 @@ export const MenuOption = ({
       <p>
         {name} - {price}
       </p>
-      <button
-        className="w-20 rounded bg-[#015BBB] px-2 py-1 text-white"
-        onClick={onSelectMenuItem}
-      >
-        Select
-      </button>
+      {optionCanBeSelected && (
+        <button
+          className="w-20 rounded bg-[#015BBB] px-2 py-1 text-white"
+          onClick={onSelectOption}
+        >
+          Select
+        </button>
+      )}
+
+      {optionSelected && (
+        <button
+          className="w-20 rounded bg-red-500 px-2 py-1 text-white"
+          onClick={onDeselectOption}
+        >
+          Remove
+        </button>
+      )}
     </article>
   )
 }
