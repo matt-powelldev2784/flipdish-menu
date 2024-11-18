@@ -30,7 +30,7 @@ export const MenuOption = ({ menuOption }: MenuOptionProps) => {
   const onSelectOption = () => {
     addTempCartSubOption({
       id: Date.now(),
-      subOptionId: id,
+      menuOptionId: id,
       name,
       price,
       quantity: 1

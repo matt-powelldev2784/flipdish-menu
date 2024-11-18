@@ -8,10 +8,10 @@ export const ConfirmMenuOptions = () => {
   return (
     <div>
       <p>{tempCartItem.name}</p>
-      {tempCartItem.subOptions?.map((subOption) => {
+      {tempCartItem.menuOptions?.map((menuOption) => {
         return (
-          <p key={subOption.id}>
-            {subOption.name} - {subOption.price}
+          <p key={menuOption.id}>
+            {menuOption.name} - {menuOption.price}
           </p>
         )
       })}

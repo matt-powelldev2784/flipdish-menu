@@ -11,7 +11,7 @@ export type MenuLevel = 'main' | 'options' | 'confirmOptions'
 
 export type TempCartItem = CartItem | null
 
-export interface MenuOption {
+export interface SubOption {
   id: number
   menuOptionId: number
   name: string
@@ -25,7 +25,7 @@ export interface CartItem {
   menuItemId: number
   quantity: number
   price: number
-  menuOptions?: MenuOption[]
+  subOptions?: SubOption[]
 }
 
 interface MenuContextType {
@@ -42,7 +42,7 @@ interface MenuContextType {
   setTempCartItem: Dispatch<SetStateAction<TempCartItem>>
   addToCart: (item: CartItem) => void
   removeFromCart: (id: number) => void
-  addTempCartSubOption: (option: MenuOption) => void
+  addTempCartSubOption: (subOption: SubOption) => void
   removeTempCartSubOption: (subOptionId: number) => void
   resetMenuOptionsState: () => void
   resetMenuItemsState: () => void
@@ -76,26 +76,26 @@ export const MenuContextProvider = ({ children }: { children: ReactNode }) => {
     setCartItems((prevItems) => prevItems.filter((item) => item.id !== id))
   }
 
-  const addTempCartSubOption = (menuOption: MenuOption) => {
+  const addTempCartSubOption = (subOption: SubOption) => {
     setTempCartItem((prev) => {
       if (prev === null) return null
 
-      if (!prev.menuOptions) {
+      if (!prev.subOptions) {
         return {
           ...prev,
-          menuOptions: [menuOption]
+          subOptions: [subOption]
         }
       }
 
       // only allow each subOption to be added once
-      const subOptionExists = prev.menuOptions?.some(
-        (option) => option.menuOptionId === menuOption.menuOptionId
+      const subOptionExists = prev.subOptions?.some(
+        (option) => option.menuOptionId === subOption.menuOptionId
       )
       if (subOptionExists) return prev
 
       return {
         ...prev,
-        menuOptions: [...prev.menuOptions, menuOption]
+        subOptions: [...prev.subOptions, subOption]
       }
     })
   }
@@ -105,7 +105,7 @@ export const MenuContextProvider = ({ children }: { children: ReactNode }) => {
       if (prev) {
         return {
           ...prev,
-          subOptions: prev.menuOptions?.filter(
+          subOptions: prev.subOptions?.filter(
             (option) => option.menuOptionId !== menuOptionId
           )
         }
