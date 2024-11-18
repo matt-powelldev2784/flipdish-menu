@@ -18,12 +18,10 @@ export const MenuOptions = () => {
   if (menuItem === '') return <p>Server error</p>
   const menuOptions = menuItem.MenuItemOptionSets
   const menuOptionsLength = menuOptions.length
-  console.log('optionsCanBeSelected', optionsCanBeSelected)
 
-  //render master options
   return (
     <div className="mt-2 flex w-full max-w-[700px] flex-col items-center">
-      {/******* render header ********/}
+      {/************** header ***************/}
       <button
         onClick={resetMenuItemsState}
         className=" absolute left-2 top-2 m-2 p-1 text-white"
@@ -33,7 +31,7 @@ export const MenuOptions = () => {
 
       <p className="m-2 text-2xl font-bold">{menuItem.Name}</p>
 
-      {/******* render master options ********/}
+      {/************** menu options ***************/}
       <div className="flex w-full flex-col items-center gap-2">
         {menuOptions.map((menuOption, index) => {
           if (index !== menuOptionIndex) return null
@@ -61,6 +59,7 @@ export const MenuOptions = () => {
           })
         })}
 
+        {/************** confirm selection button ***************/}
         <button
           className={`m-2 h-10 w-64 rounded bg-[#015BBB] px-2 py-1 text-lg text-white ${
             optionsCanBeSelected ? 'opacity-100' : 'opacity-30'

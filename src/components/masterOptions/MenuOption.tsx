@@ -27,12 +27,6 @@ export const MenuOption = ({ menuOption }: MenuOptionProps) => {
   const optionCanBeSelected =
     numberOfOptionsSelected < menuOption.maxSelectAmount
 
-  console.log('***************')
-  console.log('numberOfOptionsSelected', numberOfOptionsSelected)
-  console.log('optionCanBeSelected', optionCanBeSelected)
-  console.log('menuOption.minSelectAmount', menuOption.minSelectAmount)
-  console.log('menuOption.maxSelectAmount', menuOption.maxSelectAmount)
-
   const onSelectOption = () => {
     addTempCartSubOption({
       id: Date.now(),
