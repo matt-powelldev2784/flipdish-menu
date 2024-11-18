@@ -1,35 +1,33 @@
-import { MenuItemType, useMenuContext } from 'cartContext/CartContext'
+import { useMenuContext } from 'cartContext/CartContext'
+import { MenuItemT } from 'menuData/menuData'
 
 interface MenuItemProps {
-  id: number
-  menuItemType: MenuItemType
-  name: string
-  price: number
-  description: string
-  imageUrl: string
+  menuItem: MenuItemT
 }
 
-export const MenuItem = ({
-  id,
-  name,
-  price,
-  menuItemType,
-  description,
-  imageUrl
-}: MenuItemProps) => {
+export const MenuItem = ({ menuItem }: MenuItemProps) => {
   const {
     addToCart,
     setCurrentMenuItemId,
-    setCurrentMenuItemType,
     setTempCartItem,
     setCurrentMenuLevel
   } = useMenuContext()
+  const menuItemHasOptions = menuItem.MenuItemOptionSets.length > 0
+  const id = menuItem.MenuItemId
+  const name = menuItem.Name
+  const description = menuItem.Description
+  const price = menuItem.Price
+  const noImageUrl =
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/600px-No_image_available.svg.png'
+  const imageUrl = menuItem.ImageUrl || noImageUrl
+  const itemIsPricedByMasterOption = menuItem.MenuItemOptionSets.some(
+    (optionSet) => optionSet.IsMasterOptionSet
+  )
 
   const onSelectMenuItem = () => {
-    if (menuItemType === 'noOptions') {
+    if (menuItemHasOptions === false) {
       return addToCart({
         id: Date.now(),
-        menuItemType: 'noOptions',
         menuItemId: id,
         name,
         price,
@@ -37,10 +35,9 @@ export const MenuItem = ({
       })
     }
 
-    if (menuItemType === 'master') {
+    if (menuItemHasOptions === true) {
       setTempCartItem({
         id: Date.now(),
-        menuItemType: 'master',
         menuItemId: id,
         name,
         price,
@@ -48,23 +45,7 @@ export const MenuItem = ({
       })
 
       setCurrentMenuItemId(id)
-      setCurrentMenuItemType(menuItemType)
       setCurrentMenuLevel('master')
-    }
-
-    if (menuItemType === 'subOptions') {
-      setTempCartItem({
-        id: Date.now(),
-        menuItemType: 'subOptions',
-        menuItemId: id,
-        name,
-        price,
-        quantity: 1
-      })
-
-      setCurrentMenuItemId(id)
-      setCurrentMenuItemType(menuItemType)
-      setCurrentMenuLevel('subOptions')
     }
   }
 
@@ -84,7 +65,7 @@ export const MenuItem = ({
       <div className="flex w-[400px] max-w-[400px] flex-col items-start justify-center py-2">
         <p className="font-bold">{name}</p>
         <p className="text-sm">{description}</p>
-        {menuItemType === 'master' ? (
+        {itemIsPricedByMasterOption ? (
           <p className="text-sm text-red-500"> Select item for price options</p>
         ) : (
           <p>£{price.toFixed(2)}</p>

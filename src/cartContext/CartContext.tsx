@@ -7,8 +7,6 @@ import {
   SetStateAction
 } from 'react'
 
-export type MenuItemType = 'master' | 'subOptions' | 'noOptions' | null
-
 export type MenuLevel = 'main' | 'master' | 'subOptions'
 
 export type TempCartItem = CartItem | null
@@ -23,7 +21,6 @@ export interface SubOption {
 
 export interface CartItem {
   id: number
-  menuItemType: MenuItemType
   name: string
   menuItemId: number
   quantity: number
@@ -35,8 +32,6 @@ interface MenuContextType {
   cartItems: CartItem[]
   currentMenuItemId: number | null
   setCurrentMenuItemId: Dispatch<SetStateAction<number | null>>
-  currentMenuItemType: MenuItemType
-  setCurrentMenuItemType: Dispatch<SetStateAction<MenuItemType>>
   currentMenuLevel: MenuLevel
   setCurrentMenuLevel: Dispatch<SetStateAction<MenuLevel>>
   tempCartItem: TempCartItem
@@ -63,8 +58,6 @@ export const MenuContextProvider = ({ children }: { children: ReactNode }) => {
   const [currentMenuItemId, setCurrentMenuItemId] = useState<number | null>(
     null
   )
-  const [currentMenuItemType, setCurrentMenuItemType] =
-    useState<MenuItemType>(null)
   const [currentMenuLevel, setCurrentMenuLevel] = useState<MenuLevel>('main')
   const [tempCartItem, setTempCartItem] = useState<TempCartItem>(null)
 
@@ -116,7 +109,6 @@ export const MenuContextProvider = ({ children }: { children: ReactNode }) => {
 
   const resetMenuItemsState = () => {
     setCurrentMenuItemId(null)
-    setCurrentMenuItemType(null)
     setTempCartItem(null)
     setCurrentMenuLevel('main')
   }
@@ -131,8 +123,6 @@ export const MenuContextProvider = ({ children }: { children: ReactNode }) => {
         cartItems,
         currentMenuItemId,
         setCurrentMenuItemId,
-        currentMenuItemType,
-        setCurrentMenuItemType,
         currentMenuLevel,
         setCurrentMenuLevel,
         tempCartItem,
