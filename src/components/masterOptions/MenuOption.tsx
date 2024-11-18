@@ -1,4 +1,4 @@
-import { useMenuContext } from 'cartContext/CartContext'
+import { useMenuContext } from 'cartContext/MenuContext'
 import { MenuItemOptionSetItemT } from 'menuData/menuData'
 import { Dispatch, SetStateAction, useState } from 'react'
 

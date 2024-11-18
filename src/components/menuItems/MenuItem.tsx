@@ -1,4 +1,4 @@
-import { useMenuContext } from 'cartContext/CartContext'
+import { useMenuContext } from 'cartContext/MenuContext'
 import { MenuItemT } from 'menuData/menuData'
 
 interface MenuItemProps {
