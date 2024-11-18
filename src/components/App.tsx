@@ -3,6 +3,7 @@ import { useMenuContext } from 'cartContext/MenuContext'
 import flipDishLogo from 'assets/flipdish-logo.svg'
 import { MenuItems } from './menuItems/MenuItems'
 import { MenuOptions } from './masterOptions/MenuOptions'
+import { ConfirmMenuOptions } from './masterOptions/ConfirmMenuOptions'
 
 function App() {
   const { currentMenuLevel } = useMenuContext()
@@ -30,6 +31,8 @@ function App() {
         })}
 
       {currentMenuLevel === 'options' && <MenuOptions />}
+
+      {currentMenuLevel === 'confirmOptions' && <ConfirmMenuOptions />}
     </main>
   )
 }

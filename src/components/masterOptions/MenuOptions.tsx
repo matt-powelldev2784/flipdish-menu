@@ -6,8 +6,12 @@ import { useState } from 'react'
 
 export const MenuOptions = () => {
   const [menuOptionIndex, setMenuOptionIndex] = useState(0)
-  const { currentMenuItemId, resetMenuItemsState, resetMenuOptionsState } =
-    useMenuContext()
+  const {
+    currentMenuItemId,
+    resetMenuItemsState,
+    resetMenuOptionsState,
+    setCurrentMenuLevel
+  } = useMenuContext()
   if (!currentMenuItemId) return <p>Server error</p>
   const menuItem = findMenuItemById(currentMenuItemId)
   if (menuItem === '') return <p>Server error</p>
@@ -59,7 +63,7 @@ export const MenuOptions = () => {
           className="m-4 w-[300px] rounded bg-[#015BBB] p-2 text-xl text-white"
           onClick={() => {
             if (menuOptionIndex === menuOptionsLength - 1) {
-              return
+              setCurrentMenuLevel('confirmOptions')
             }
             resetMenuOptionsState()
             setMenuOptionIndex((prev) => prev + 1)

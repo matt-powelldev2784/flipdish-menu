@@ -7,7 +7,7 @@ import {
   SetStateAction
 } from 'react'
 
-export type MenuLevel = 'main' | 'options'
+export type MenuLevel = 'main' | 'options' | 'confirmOptions'
 
 export type TempCartItem = CartItem | null
 
