@@ -1,4 +1,4 @@
-import { useMenuContext } from 'cartContext/MenuContext'
+import { useMenuContext } from 'menuContext/MenuContext'
 
 export const ConfirmMenuOptions = () => {
   const { tempCartItem } = useMenuContext()

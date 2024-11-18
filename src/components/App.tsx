@@ -1,5 +1,5 @@
 import { menuData } from 'menuData/menuData'
-import { useMenuContext } from 'cartContext/MenuContext'
+import { useMenuContext } from 'menuContext/MenuContext'
 import flipDishLogo from 'assets/flipdish-logo.svg'
 import { MenuItems } from './menuItems/MenuItems'
 import { MenuOptions } from './masterOptions/MenuOptions'

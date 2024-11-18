@@ -1,4 +1,4 @@
-import { useMenuContext } from 'cartContext/MenuContext'
+import { useMenuContext } from 'menuContext/MenuContext'
 import { findMenuItemById } from 'utils/findMenuItemById'
 import { MenuOption } from './MenuOption'
 import backIcon from '../../assets/back.svg'
