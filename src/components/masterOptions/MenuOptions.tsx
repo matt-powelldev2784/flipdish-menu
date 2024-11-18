@@ -2,13 +2,16 @@ import { useMenuContext } from 'cartContext/CartContext'
 import { findMenuItemById } from 'utils/findMenuItemById'
 import { MenuOption } from './MenuOption'
 import backIcon from '../../assets/back.svg'
+import { useState } from 'react'
 
 export const MenuOptions = () => {
+  const [menuOptionIndex, setMenuOptionIndex] = useState<number>(0)
   const { currentMenuItemId, resetMenuItemsState } = useMenuContext()
   if (!currentMenuItemId) return <p>Server error</p>
   const menuItem = findMenuItemById(currentMenuItemId)
   if (menuItem === '') return <p>Server error</p>
   const menuOptions = menuItem.MenuItemOptionSets
+  const menuOptionsLength = menuOptions.length
 
   //render master options
   return (
@@ -25,7 +28,8 @@ export const MenuOptions = () => {
 
       {/******* render master options ********/}
       <div className="flex w-full flex-col gap-2">
-        {menuOptions.map((menuOption) => {
+        {menuOptions.map((menuOption, index) => {
+          if (index !== menuOptionIndex) return null
           const isMasterOption = menuOption.IsMasterOptionSet
           const minSelectAmount = menuOption.MinSelectCount || 1
           const maxSelectAmount = menuOption.MaxSelectCount || 1
@@ -45,6 +49,9 @@ export const MenuOptions = () => {
               <MenuOption
                 key={menuOption.MenuItemOptionSetItemId}
                 menuOption={menuOption}
+                menuOptionIndex={menuOptionIndex}
+                setMenuOptionIndex={setMenuOptionIndex}
+                menuOptionsLength={menuOptionsLength}
               />
             )
           })

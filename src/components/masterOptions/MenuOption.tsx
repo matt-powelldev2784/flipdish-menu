@@ -1,5 +1,6 @@
 import { useMenuContext } from 'cartContext/CartContext'
 import { MenuItemOptionSetItemT } from 'menuData/menuData'
+import { Dispatch, SetStateAction } from 'react'
 
 interface menuOptionType extends MenuItemOptionSetItemT {
   minSelectAmount: number
@@ -9,9 +10,17 @@ interface menuOptionType extends MenuItemOptionSetItemT {
 
 interface MenuOptionProps {
   menuOption: menuOptionType
+  menuOptionIndex: number
+  setMenuOptionIndex: Dispatch<SetStateAction<number>>
+  menuOptionsLength: number
 }
 
-export const MenuOption = ({ menuOption }: MenuOptionProps) => {
+export const MenuOption = ({
+  menuOption,
+  menuOptionIndex,
+  setMenuOptionIndex,
+  menuOptionsLength
+}: MenuOptionProps) => {
   const { addTempCartSubOption } = useMenuContext()
   const id = menuOption.MenuItemOptionSetItemId
   const name = menuOption.Name
@@ -25,6 +34,12 @@ export const MenuOption = ({ menuOption }: MenuOptionProps) => {
       price,
       quantity: 1
     })
+
+    if (menuOptionIndex === menuOptionsLength - 1) {
+      return
+    }
+
+    setMenuOptionIndex((prev) => prev + 1)
   }
 
   return (
