@@ -1,9 +1,9 @@
 import { useMenuContext } from 'cartContext/CartContext'
 import { findMenuItemById } from 'utils/findMenuItemById'
-import { MasterOption } from './MasterOption'
+import { MenuOption } from './MenuOption'
 import backIcon from '../../assets/back.svg'
 
-export const MasterOptions = () => {
+export const MenuOptions = () => {
   const { currentMenuItemId, resetMenuItemsState } = useMenuContext()
   if (!currentMenuItemId) return <p>Server error</p>
   const menuItem = findMenuItemById(currentMenuItemId)
@@ -27,16 +27,24 @@ export const MasterOptions = () => {
       <div className="flex w-full flex-col gap-2">
         {menuOptions.map((menuOption) => {
           const isMasterOption = menuOption.IsMasterOptionSet
-          if (!isMasterOption) return null
-          const menuOptions = menuOption.MenuItemOptionSetItems
+          const minSelectAmount = menuOption.MinSelectCount || 1
+          const maxSelectAmount = menuOption.MaxSelectCount || 1
+          const menuOptions = menuOption.MenuItemOptionSetItems.map(
+            (menuOption) => {
+              return {
+                ...menuOption,
+                isMasterOption,
+                minSelectAmount,
+                maxSelectAmount
+              }
+            }
+          )
 
           return menuOptions.map((menuOption) => {
             return (
-              <MasterOption
+              <MenuOption
                 key={menuOption.MenuItemOptionSetItemId}
-                id={menuOption.MenuItemOptionSetItemId}
-                name={menuOption.Name}
-                price={menuOption.Price}
+                menuOption={menuOption}
               />
             )
           })

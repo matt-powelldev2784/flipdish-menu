@@ -7,7 +7,7 @@ import {
   SetStateAction
 } from 'react'
 
-export type MenuLevel = 'main' | 'master' | 'subOptions'
+export type MenuLevel = 'main' | 'options'
 
 export type TempCartItem = CartItem | null
 
@@ -116,6 +116,7 @@ export const MenuContextProvider = ({ children }: { children: ReactNode }) => {
   // logs left in so cart items can be viewed in console
   console.log('--------------------------state update ----------')
   console.log('cartItems', cartItems)
+  console.log('tempCartItem', tempCartItem)
 
   return (
     <MenuContext.Provider

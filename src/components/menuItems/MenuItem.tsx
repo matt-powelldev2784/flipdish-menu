@@ -45,7 +45,7 @@ export const MenuItem = ({ menuItem }: MenuItemProps) => {
       })
 
       setCurrentMenuItemId(id)
-      setCurrentMenuLevel('master')
+      setCurrentMenuLevel('options')
     }
   }
 

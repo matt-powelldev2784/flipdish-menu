@@ -1,13 +1,21 @@
 import { useMenuContext } from 'cartContext/CartContext'
+import { MenuItemOptionSetItemT } from 'menuData/menuData'
 
-interface MenuItemProps {
-  id: number
-  name: string
-  price: number
+interface menuOptionType extends MenuItemOptionSetItemT {
+  minSelectAmount: number
+  maxSelectAmount: number
+  isMasterOption: boolean
 }
 
-export const MasterOption = ({ id, name, price }: MenuItemProps) => {
-  const { addTempCartSubOption, setCurrentMenuLevel } = useMenuContext()
+interface MenuOptionProps {
+  menuOption: menuOptionType
+}
+
+export const MenuOption = ({ menuOption }: MenuOptionProps) => {
+  const { addTempCartSubOption } = useMenuContext()
+  const id = menuOption.MenuItemOptionSetItemId
+  const name = menuOption.Name
+  const price = menuOption.Price
 
   const onSelectMenuItem = () => {
     addTempCartSubOption({
@@ -17,7 +25,6 @@ export const MasterOption = ({ id, name, price }: MenuItemProps) => {
       price,
       quantity: 1
     })
-    setCurrentMenuLevel('subOptions')
   }
 
   return (
