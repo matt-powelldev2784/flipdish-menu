@@ -17,17 +17,17 @@ export const MenuOption = ({ menuOption }: MenuOptionProps) => {
   const {
     addTempCartSubOption,
     removeTempCartSubOption,
-    menuOptionSelectedCount,
-    setMenuOptionSelectedCount
+    numberOfOptionsSelected,
+    setNumberOfOptionsSelected
   } = useMenuContext()
   const id = menuOption.MenuItemOptionSetItemId
   const name = menuOption.Name
   const price = menuOption.Price
   const optionCanBeSelected =
-    menuOptionSelectedCount < menuOption.maxSelectAmount
+    numberOfOptionsSelected < menuOption.maxSelectAmount
 
   console.log('***************')
-  console.log('menuOptionSelectCount', menuOptionSelectedCount)
+  console.log('numberOfOptionsSelected', numberOfOptionsSelected)
   console.log('optionCanBeSelected', optionCanBeSelected)
   console.log('menuOption.maxSelectAmount', menuOption.maxSelectAmount)
 
@@ -41,13 +41,13 @@ export const MenuOption = ({ menuOption }: MenuOptionProps) => {
     })
 
     setOptionSelected(true)
-    setMenuOptionSelectedCount((prev) => prev + 1)
+    setNumberOfOptionsSelected((prev) => prev + 1)
   }
 
   const onDeselectOption = () => {
     removeTempCartSubOption(id)
     setOptionSelected(false)
-    setMenuOptionSelectedCount((prev) => prev - 1)
+    setNumberOfOptionsSelected((prev) => prev - 1)
   }
 
   return (
