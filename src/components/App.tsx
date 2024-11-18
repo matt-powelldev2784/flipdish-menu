@@ -2,8 +2,8 @@ import { menuData } from 'menuData/menuData'
 import { useMenuContext } from 'menuContext/MenuContext'
 import flipDishLogo from 'assets/flipdish-logo.svg'
 import { MenuItems } from './menuItems/MenuItems'
-import { MenuOptions } from './masterOptions/MenuOptions'
-import { ConfirmMenuOptions } from './masterOptions/ConfirmMenuOptions'
+import { MenuOptions } from './menuOptions/MenuOptions'
+import { ConfirmMenuOptions } from './menuOptions/ConfirmMenuOptions'
 
 function App() {
   const { currentMenuLevel } = useMenuContext()
