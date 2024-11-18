@@ -18,7 +18,8 @@ export const MenuOption = ({ menuOption }: MenuOptionProps) => {
     addTempCartSubOption,
     removeTempCartSubOption,
     numberOfOptionsSelected,
-    setNumberOfOptionsSelected
+    setNumberOfOptionsSelected,
+    setOptionsCanBeSelected
   } = useMenuContext()
   const id = menuOption.MenuItemOptionSetItemId
   const name = menuOption.Name
@@ -29,6 +30,7 @@ export const MenuOption = ({ menuOption }: MenuOptionProps) => {
   console.log('***************')
   console.log('numberOfOptionsSelected', numberOfOptionsSelected)
   console.log('optionCanBeSelected', optionCanBeSelected)
+  console.log('menuOption.minSelectAmount', menuOption.minSelectAmount)
   console.log('menuOption.maxSelectAmount', menuOption.maxSelectAmount)
 
   const onSelectOption = () => {
@@ -42,18 +44,28 @@ export const MenuOption = ({ menuOption }: MenuOptionProps) => {
 
     setOptionSelected(true)
     setNumberOfOptionsSelected((prev) => prev + 1)
+
+    // add 1 to the number of options selected to include the current selection
+    if (numberOfOptionsSelected + 1 >= menuOption.minSelectAmount) {
+      setOptionsCanBeSelected(true)
+    }
   }
 
   const onDeselectOption = () => {
     removeTempCartSubOption(id)
     setOptionSelected(false)
     setNumberOfOptionsSelected((prev) => prev - 1)
+
+    // subtract 1 from the number of options selected to include the current deselection
+    if (numberOfOptionsSelected - 1 < menuOption.minSelectAmount) {
+      setOptionsCanBeSelected(false)
+    }
   }
 
   return (
     <article
       key={id}
-      className=" flex w-full  flex-row items-center justify-between rounded bg-neutral-300 p-2 px-10 "
+      className=" flex h-12 w-full flex-row items-center justify-between rounded bg-neutral-300 p-2 px-10"
     >
       <p>
         {name} - {price}

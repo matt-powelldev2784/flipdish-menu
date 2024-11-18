@@ -36,6 +36,8 @@ interface MenuContextType {
   setCurrentMenuLevel: Dispatch<SetStateAction<MenuLevel>>
   numberOfOptionsSelected: number
   setNumberOfOptionsSelected: Dispatch<SetStateAction<number>>
+  optionsCanBeSelected: boolean
+  setOptionsCanBeSelected: Dispatch<SetStateAction<boolean>>
   tempCartItem: TempCartItem
   setTempCartItem: Dispatch<SetStateAction<TempCartItem>>
   addToCart: (item: CartItem) => void
@@ -63,6 +65,7 @@ export const MenuContextProvider = ({ children }: { children: ReactNode }) => {
   )
   const [currentMenuLevel, setCurrentMenuLevel] = useState<MenuLevel>('main')
   const [numberOfOptionsSelected, setNumberOfOptionsSelected] = useState(0)
+  const [optionsCanBeSelected, setOptionsCanBeSelected] = useState(false)
   const [tempCartItem, setTempCartItem] = useState<TempCartItem>(null)
 
   const addToCart = (item: CartItem) => {
@@ -120,6 +123,7 @@ export const MenuContextProvider = ({ children }: { children: ReactNode }) => {
 
   const resetMenuOptionsState = () => {
     setNumberOfOptionsSelected(0)
+    setOptionsCanBeSelected(false)
   }
 
   // logs left in so cart items can be viewed in console
@@ -137,6 +141,8 @@ export const MenuContextProvider = ({ children }: { children: ReactNode }) => {
         setCurrentMenuLevel,
         numberOfOptionsSelected,
         setNumberOfOptionsSelected,
+        optionsCanBeSelected,
+        setOptionsCanBeSelected,
         tempCartItem,
         setTempCartItem,
         addToCart,

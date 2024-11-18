@@ -10,13 +10,15 @@ export const MenuOptions = () => {
     currentMenuItemId,
     resetMenuItemsState,
     resetMenuOptionsState,
-    setCurrentMenuLevel
+    setCurrentMenuLevel,
+    optionsCanBeSelected
   } = useMenuContext()
   if (!currentMenuItemId) return <p>Server error</p>
   const menuItem = findMenuItemById(currentMenuItemId)
   if (menuItem === '') return <p>Server error</p>
   const menuOptions = menuItem.MenuItemOptionSets
   const menuOptionsLength = menuOptions.length
+  console.log('optionsCanBeSelected', optionsCanBeSelected)
 
   //render master options
   return (
@@ -60,8 +62,12 @@ export const MenuOptions = () => {
         })}
 
         <button
-          className="m-4 w-[300px] rounded bg-[#015BBB] p-2 text-xl text-white"
+          className={`m-2 h-10 w-64 rounded bg-[#015BBB] px-2 py-1 text-lg text-white ${
+            optionsCanBeSelected ? 'opacity-100' : 'opacity-30'
+          }`}
           onClick={() => {
+            console.log('optionsCanBeSelected---', optionsCanBeSelected)
+            if (!optionsCanBeSelected) return
             if (menuOptionIndex === menuOptionsLength - 1) {
               setCurrentMenuLevel('confirmOptions')
             }
