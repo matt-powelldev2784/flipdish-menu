@@ -1,6 +1,6 @@
 import { useMenuContext } from 'cartContext/MenuContext'
 import { MenuItemOptionSetItemT } from 'menuData/menuData'
-import { Dispatch, SetStateAction, useState } from 'react'
+import { useState } from 'react'
 
 interface menuOptionType extends MenuItemOptionSetItemT {
   minSelectAmount: number
@@ -10,24 +10,26 @@ interface menuOptionType extends MenuItemOptionSetItemT {
 
 interface MenuOptionProps {
   menuOption: menuOptionType
-  menuOptionIndex: number
-  setMenuOptionIndex: Dispatch<SetStateAction<number>>
-  menuOptionsLength: number
 }
 
-export const MenuOption = ({
-  menuOption,
-  menuOptionIndex,
-  setMenuOptionIndex,
-  menuOptionsLength
-}: MenuOptionProps) => {
+export const MenuOption = ({ menuOption }: MenuOptionProps) => {
   const [optionSelected, setOptionSelected] = useState(false)
-  const [optionSelectCount, setOptionSelectCount] = useState(0)
-  const { addTempCartSubOption, removeTempCartSubOption } = useMenuContext()
+  const {
+    addTempCartSubOption,
+    removeTempCartSubOption,
+    menuOptionSelectedCount,
+    setMenuOptionSelectedCount
+  } = useMenuContext()
   const id = menuOption.MenuItemOptionSetItemId
   const name = menuOption.Name
   const price = menuOption.Price
-  const optionCanBeSelected = optionSelectCount < menuOption.maxSelectAmount
+  const optionCanBeSelected =
+    menuOptionSelectedCount < menuOption.maxSelectAmount
+
+  console.log('***************')
+  console.log('menuOptionSelectCount', menuOptionSelectedCount)
+  console.log('optionCanBeSelected', optionCanBeSelected)
+  console.log('menuOption.maxSelectAmount', menuOption.maxSelectAmount)
 
   const onSelectOption = () => {
     addTempCartSubOption({
@@ -38,18 +40,14 @@ export const MenuOption = ({
       quantity: 1
     })
 
-    if (menuOptionIndex === menuOptionsLength - 1) {
-      return
-    }
-
     setOptionSelected(true)
-    setOptionSelectCount((prev) => prev + 1)
+    setMenuOptionSelectedCount((prev) => prev + 1)
   }
 
   const onDeselectOption = () => {
     removeTempCartSubOption(id)
     setOptionSelected(false)
-    setOptionSelectCount((prev) => prev - 1)
+    setMenuOptionSelectedCount((prev) => prev - 1)
   }
 
   return (
@@ -60,7 +58,7 @@ export const MenuOption = ({
       <p>
         {name} - {price}
       </p>
-      {optionCanBeSelected && (
+      {optionCanBeSelected && !optionSelected && (
         <button
           className="w-20 rounded bg-[#015BBB] px-2 py-1 text-white"
           onClick={onSelectOption}

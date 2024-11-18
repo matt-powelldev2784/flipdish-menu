@@ -6,7 +6,8 @@ import { useState } from 'react'
 
 export const MenuOptions = () => {
   const [menuOptionIndex, setMenuOptionIndex] = useState(0)
-  const { currentMenuItemId, resetMenuItemsState } = useMenuContext()
+  const { currentMenuItemId, resetMenuItemsState, resetMenuOptionsState } =
+    useMenuContext()
   if (!currentMenuItemId) return <p>Server error</p>
   const menuItem = findMenuItemById(currentMenuItemId)
   if (menuItem === '') return <p>Server error</p>
@@ -49,9 +50,6 @@ export const MenuOptions = () => {
               <MenuOption
                 key={menuOption.MenuItemOptionSetItemId}
                 menuOption={menuOption}
-                menuOptionIndex={menuOptionIndex}
-                setMenuOptionIndex={setMenuOptionIndex}
-                menuOptionsLength={menuOptionsLength}
               />
             )
           })
@@ -59,7 +57,13 @@ export const MenuOptions = () => {
 
         <button
           className="m-4 w-[300px] rounded bg-[#015BBB] p-2 text-xl text-white"
-          onClick={() => {}}
+          onClick={() => {
+            if (menuOptionIndex === menuOptionsLength - 1) {
+              return
+            }
+            resetMenuOptionsState()
+            setMenuOptionIndex((prev) => prev + 1)
+          }}
         >
           Confirm Selection
         </button>
