@@ -69,15 +69,21 @@ export const MenuOptions = () => {
             optionsCanBeSelected ? 'opacity-100' : 'opacity-30'
           }`}
           onClick={() => {
+            // don't allow option selection if the menu options are not validated
             if (!optionsCanBeSelected) return
-            // if the last option is selected, move to the confirm options screen
+            // if the last option set being viewed, move to the confirm options screen
             if (menuOptionIndex === menuOptionsLength - 1) {
               setCurrentMenuLevel('confirmOptions')
             }
+            //update relevant states on successful selection
             resetMenuOptionsState()
             setMenuOptionIndex((prev) => prev + 1)
           }}
         >
+          {/* Sometimes the user is not required to select any options.
+              The button text is conditionally rendered to allow for:
+              no selection if the min required options is zero
+              or a confirmed selection if min required options is more than zero */}
           {allowZeroMinSelection && numberOfOptionsSelected === 0
             ? 'No Selection Required'
             : 'Confirm Selection'}
