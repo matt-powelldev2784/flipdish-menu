@@ -65,12 +65,14 @@ export const MenuOption = ({ menuOption }: MenuOptionProps) => {
       key={id}
       className=" flex h-12 w-full flex-row items-center justify-between rounded bg-neutral-300 p-2 px-10"
     >
-      <p>
-        {name} - {price}
-      </p>
+      <div className="mr-4 flex w-full justify-between">
+        <p className="">{name}</p>
+        {optionCanBeSelected && <p className="">£{price.toFixed(2)}</p>}
+      </div>
+
       {optionCanBeSelected && !optionSelected && (
         <button
-          className="w-20 rounded bg-[#015BBB] px-2 py-1 text-white"
+          className="w-24 rounded bg-[#015BBB] px-2 py-1 text-white"
           onClick={onSelectOption}
         >
           Select
@@ -79,7 +81,7 @@ export const MenuOption = ({ menuOption }: MenuOptionProps) => {
 
       {optionSelected && (
         <button
-          className="w-20 rounded bg-red-500 px-2 py-1 text-white"
+          className="w-24 rounded bg-red-500 px-2 py-1 text-white"
           onClick={onDeselectOption}
         >
           Remove
