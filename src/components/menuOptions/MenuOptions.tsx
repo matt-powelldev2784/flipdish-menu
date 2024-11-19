@@ -76,7 +76,7 @@ export const MenuOptions = () => {
           }}
         >
           {allowZeroMinSelection && numberOfOptionsSelected === 0
-            ? 'Proceed Without Selection'
+            ? 'No Selection Required'
             : 'Confirm Selection'}
         </button>
       </div>
