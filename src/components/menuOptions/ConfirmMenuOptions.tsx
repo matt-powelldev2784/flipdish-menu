@@ -3,18 +3,30 @@ import { useMenuContext } from 'menuContext/MenuContext'
 export const ConfirmMenuOptions = () => {
   const { tempCartItem } = useMenuContext()
   if (!tempCartItem) return <p>Server error</p>
-  console.log('tempCartItem', tempCartItem)
 
   return (
-    <div>
-      <p>{tempCartItem.name}</p>
+    <div className="m-4 flex w-full max-w-[700px] flex-col items-center rounded-lg bg-neutral-300 p-4">
+      <p className="text-lg font-bold">{tempCartItem.name}</p>
       {tempCartItem.menuOptions?.map((menuOption) => {
         return (
-          <p key={menuOption.id}>
-            {menuOption.name} - {menuOption.price}
-          </p>
+          <div
+            className="flex w-full items-center justify-between"
+            key={menuOption.id}
+          >
+            <p className="">{menuOption.name}</p>
+            <p className="">£{menuOption.price.toFixed(2)}</p>
+          </div>
         )
       })}
+
+      <button
+        className={`m-2 h-10 w-64 rounded bg-[#015BBB] px-2 py-1 text-lg text-white ${
+          tempCartItem ? 'opacity-100' : 'opacity-30'
+        }`}
+        onClick={() => {}}
+      >
+        Confirm Selection
+      </button>
     </div>
   )
 }
