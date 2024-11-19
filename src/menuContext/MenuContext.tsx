@@ -30,6 +30,7 @@ export interface CartItem {
 
 interface MenuContextType {
   cartItems: CartItem[]
+  cartTotalPrice: number
   currentMenuItemId: number | null
   setCurrentMenuItemId: Dispatch<SetStateAction<number | null>>
   currentMenuLevel: MenuLevel
@@ -117,6 +118,14 @@ export const MenuContextProvider = ({ children }: { children: ReactNode }) => {
     })
   }
 
+  const cartTotalPrice = cartItems.reduce((acc, item) => {
+    const subTotal = item.menuOptions?.reduce(
+      (acc, option) => acc + option.price * option.quantity,
+      0
+    )
+    return acc + item.price * item.quantity + (subTotal || 0)
+  }, 0)
+
   const resetMenuItemsState = () => {
     setCurrentMenuItemId(null)
     setTempCartItem(null)
@@ -136,11 +145,13 @@ export const MenuContextProvider = ({ children }: { children: ReactNode }) => {
   console.log('--------------------------state update ----------')
   console.log('cartItems', cartItems)
   console.log('tempCartItem', tempCartItem)
+  console.log('cartTotalPrice', cartTotalPrice)
 
   return (
     <MenuContext.Provider
       value={{
         cartItems,
+        cartTotalPrice,
         currentMenuItemId,
         setCurrentMenuItemId,
         currentMenuLevel,

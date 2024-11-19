@@ -6,6 +6,7 @@ import { MenuOptions } from './menuOptions/MenuOptions'
 import { ConfirmMenuOptions } from './menuOptions/ConfirmMenuOptions'
 import cartIcon from 'assets/cart.svg'
 import backIcon from 'assets/back.svg'
+import { Cart } from './cart/Cart'
 
 function App() {
   const {
@@ -43,6 +44,8 @@ function App() {
       {currentMenuLevel === 'options' && <MenuOptions />}
 
       {currentMenuLevel === 'confirmOptions' && <ConfirmMenuOptions />}
+
+      {currentMenuLevel === 'cart' && <Cart />}
 
       {/*********************************** Cart Icon ***********************************/}
       <button
