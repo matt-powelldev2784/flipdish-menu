@@ -110,7 +110,7 @@ export const MenuContextProvider = ({ children }: { children: ReactNode }) => {
       if (prev) {
         return {
           ...prev,
-          subOptions: prev.menuOptions?.filter(
+          menuOptions: prev.menuOptions?.filter(
             (option) => option.menuOptionId !== menuOptionId
           )
         }
