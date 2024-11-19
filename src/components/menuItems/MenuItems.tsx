@@ -1,11 +1,11 @@
 import { MenuSectionT } from 'menuData/menuData'
 import { MenuItem } from './MenuItem'
 
-interface MenuSectionProps {
+interface MenuItemsProps {
   MenuSection: MenuSectionT
 }
 
-export const MenuItems = ({ MenuSection }: MenuSectionProps) => {
+export const MenuItems = ({ MenuSection }: MenuItemsProps) => {
   const menuItems = MenuSection.MenuItems
 
   return (
