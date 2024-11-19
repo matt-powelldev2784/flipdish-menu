@@ -4,9 +4,11 @@ import flipDishLogo from 'assets/flipdish-logo.svg'
 import { MenuItems } from './menuItems/MenuItems'
 import { MenuOptions } from './menuOptions/MenuOptions'
 import { ConfirmMenuOptions } from './menuOptions/ConfirmMenuOptions'
+import cartIcon from 'assets/cart.svg'
 
 function App() {
-  const { currentMenuLevel } = useMenuContext()
+  const { currentMenuLevel, cartItems } = useMenuContext()
+  const numOfCartItems = cartItems.length
   const menuSections = menuData.MenuSections
 
   return (
@@ -33,6 +35,13 @@ function App() {
       {currentMenuLevel === 'options' && <MenuOptions />}
 
       {currentMenuLevel === 'confirmOptions' && <ConfirmMenuOptions />}
+
+      <div className="absolute right-10 top-4 flex size-16 w-20 items-center justify-center">
+        <p className="w-20 text-xl font-bold text-[#015BBB]">
+          {numOfCartItems}
+        </p>
+        <img src={cartIcon} alt="cart icon" className="size-12" />
+      </div>
     </main>
   )
 }
