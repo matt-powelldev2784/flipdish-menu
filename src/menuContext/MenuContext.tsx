@@ -43,6 +43,7 @@ interface MenuContextType {
   setAllowZeroMinSelection: Dispatch<SetStateAction<boolean>>
   tempCartItem: TempCartItem
   setTempCartItem: Dispatch<SetStateAction<TempCartItem>>
+  tempCartTotalPrice: number | undefined
   addToCart: (item: CartItem) => void
   removeFromCart: (id: number) => void
   addOptionToTempCart: (option: MenuOption) => void
@@ -126,6 +127,13 @@ export const MenuContextProvider = ({ children }: { children: ReactNode }) => {
     return acc + item.price * item.quantity + (subTotal || 0)
   }, 0)
 
+  const tempCartTotalPrice = tempCartItem?.menuOptions?.reduce(
+    (acc, option) => {
+      return acc + option.price * option.quantity
+    },
+    tempCartItem?.price || 0
+  )
+
   const resetMenuItemsState = () => {
     setCurrentMenuItemId(null)
     setTempCartItem(null)
@@ -146,6 +154,7 @@ export const MenuContextProvider = ({ children }: { children: ReactNode }) => {
   console.log('cartItems', cartItems)
   console.log('tempCartItem', tempCartItem)
   console.log('cartTotalPrice', cartTotalPrice)
+  console.log('tempCartTotalPrice', tempCartTotalPrice)
 
   return (
     <MenuContext.Provider
@@ -164,6 +173,7 @@ export const MenuContextProvider = ({ children }: { children: ReactNode }) => {
         setAllowZeroMinSelection,
         tempCartItem,
         setTempCartItem,
+        tempCartTotalPrice,
         addToCart,
         removeFromCart,
         addOptionToTempCart,

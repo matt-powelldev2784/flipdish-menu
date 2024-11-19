@@ -1,10 +1,10 @@
 import { useMenuContext } from 'menuContext/MenuContext'
 
 export const Cart = () => {
-  const { cartItems, cartTotalPrice } = useMenuContext()
+  const { cartItems, cartTotalPrice, currentMenuItemId } = useMenuContext()
+  if (!currentMenuItemId) return <p>Server error</p>
 
   if (cartItems.length === 0) {
-    console.log('aa')
     return <p className="m-4 text-xl">No Cart Items</p>
   }
 
