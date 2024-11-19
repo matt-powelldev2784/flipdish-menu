@@ -36,8 +36,8 @@ interface MenuContextType {
   setCurrentMenuLevel: Dispatch<SetStateAction<MenuLevel>>
   numberOfOptionsSelected: number
   setNumberOfOptionsSelected: Dispatch<SetStateAction<number>>
-  optionsCanBeSelected: boolean
-  setOptionsCanBeSelected: Dispatch<SetStateAction<boolean>>
+  optionsCanBeConfirmed: boolean
+  setOptionsCanBeConfirmed: Dispatch<SetStateAction<boolean>>
   allowZeroMinSelection: boolean
   setAllowZeroMinSelection: Dispatch<SetStateAction<boolean>>
   tempCartItem: TempCartItem
@@ -67,7 +67,7 @@ export const MenuContextProvider = ({ children }: { children: ReactNode }) => {
   )
   const [currentMenuLevel, setCurrentMenuLevel] = useState<MenuLevel>('main')
   const [numberOfOptionsSelected, setNumberOfOptionsSelected] = useState(0)
-  const [optionsCanBeSelected, setOptionsCanBeSelected] = useState(false)
+  const [optionsCanBeConfirmed, setOptionsCanBeConfirmed] = useState(false)
   const [allowZeroMinSelection, setAllowZeroMinSelection] = useState(false)
   const [tempCartItem, setTempCartItem] = useState<TempCartItem>(null)
 
@@ -121,13 +121,14 @@ export const MenuContextProvider = ({ children }: { children: ReactNode }) => {
     setCurrentMenuItemId(null)
     setTempCartItem(null)
     setNumberOfOptionsSelected(0)
+    setOptionsCanBeConfirmed(false)
     setAllowZeroMinSelection(false)
     setCurrentMenuLevel('main')
   }
 
   const resetMenuOptionsState = () => {
     setNumberOfOptionsSelected(0)
-    setOptionsCanBeSelected(false)
+    setOptionsCanBeConfirmed(false)
     setAllowZeroMinSelection(false)
   }
 
@@ -146,8 +147,8 @@ export const MenuContextProvider = ({ children }: { children: ReactNode }) => {
         setCurrentMenuLevel,
         numberOfOptionsSelected,
         setNumberOfOptionsSelected,
-        optionsCanBeSelected,
-        setOptionsCanBeSelected,
+        optionsCanBeConfirmed,
+        setOptionsCanBeConfirmed,
         allowZeroMinSelection,
         setAllowZeroMinSelection,
         tempCartItem,

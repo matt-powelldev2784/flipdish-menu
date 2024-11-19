@@ -11,7 +11,7 @@ export const MenuOptions = () => {
     resetMenuItemsState,
     resetMenuOptionsState,
     setCurrentMenuLevel,
-    optionsCanBeSelected,
+    optionsCanBeConfirmed,
     allowZeroMinSelection,
     numberOfOptionsSelected
   } = useMenuContext()
@@ -66,11 +66,11 @@ export const MenuOptions = () => {
         {/************** confirm selection button ***************/}
         <button
           className={`m-2 h-10 w-64 rounded bg-[#015BBB] px-2 py-1 text-lg text-white ${
-            optionsCanBeSelected ? 'opacity-100' : 'opacity-30'
+            optionsCanBeConfirmed ? 'opacity-100' : 'opacity-30'
           }`}
           onClick={() => {
             // don't allow option selection if the menu options are not validated
-            if (!optionsCanBeSelected) return
+            if (!optionsCanBeConfirmed) return
             // if the last option set being viewed, move to the confirm options screen
             if (menuOptionIndex === menuOptionsLength - 1) {
               setCurrentMenuLevel('confirmOptions')
