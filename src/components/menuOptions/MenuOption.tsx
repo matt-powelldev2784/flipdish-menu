@@ -14,7 +14,7 @@ interface MenuOptionProps {
 }
 
 export const MenuOption = ({ menuOption }: MenuOptionProps) => {
-  const [optionSelected, setOptionSelected] = useState(false)
+  const [optionIsSelected, setOptionIsSelected] = useState(false)
   const {
     addOptionToTempCart,
     removeOptionFromTempCart,
@@ -38,7 +38,7 @@ export const MenuOption = ({ menuOption }: MenuOptionProps) => {
       quantity: 1
     })
 
-    setOptionSelected(true)
+    setOptionIsSelected(true)
     setNumberOfOptionsSelected((prev) => prev + 1)
 
     // set state to show the options can be confirmed if the min selection criteria is met
@@ -50,7 +50,7 @@ export const MenuOption = ({ menuOption }: MenuOptionProps) => {
 
   const onDeselectOption = () => {
     removeOptionFromTempCart(id)
-    setOptionSelected(false)
+    setOptionIsSelected(false)
     setNumberOfOptionsSelected((prev) => prev - 1)
 
     // set state to show the options cannot be confirmed if the min selection criteria is not met
@@ -70,7 +70,7 @@ export const MenuOption = ({ menuOption }: MenuOptionProps) => {
         {optionCanBeSelected && <p className="">£{price.toFixed(2)}</p>}
       </div>
 
-      {optionCanBeSelected && !optionSelected && (
+      {optionCanBeSelected && !optionIsSelected && (
         <button
           className="w-24 rounded bg-[#015BBB] px-2 py-1 text-white"
           onClick={onSelectOption}
@@ -79,7 +79,7 @@ export const MenuOption = ({ menuOption }: MenuOptionProps) => {
         </button>
       )}
 
-      {optionSelected && (
+      {optionIsSelected && (
         <button
           className="w-24 rounded bg-red-500 px-2 py-1 text-white"
           onClick={onDeselectOption}
