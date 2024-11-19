@@ -1,6 +1,7 @@
 import { useMenuContext } from 'menuContext/MenuContext'
 import { MenuItemOptionSetItemT } from 'menuData/menuData'
 import { useState } from 'react'
+import { useAllowZeroAsMinSelection } from './hooks/useAllowZeroAsMinSelection'
 
 interface menuOptionType extends MenuItemOptionSetItemT {
   minSelectAmount: number
@@ -26,6 +27,7 @@ export const MenuOption = ({ menuOption }: MenuOptionProps) => {
   const price = menuOption.Price
   const optionCanBeSelected =
     numberOfOptionsSelected < menuOption.maxSelectAmount
+  useAllowZeroAsMinSelection(menuOption.minSelectAmount)
 
   const onSelectOption = () => {
     addTempCartSubOption({

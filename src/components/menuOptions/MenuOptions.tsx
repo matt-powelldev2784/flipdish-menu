@@ -11,7 +11,9 @@ export const MenuOptions = () => {
     resetMenuItemsState,
     resetMenuOptionsState,
     setCurrentMenuLevel,
-    optionsCanBeSelected
+    optionsCanBeSelected,
+    allowZeroMinSelection,
+    numberOfOptionsSelected
   } = useMenuContext()
   if (!currentMenuItemId) return <p>Server error</p>
   const menuItem = findMenuItemById(currentMenuItemId)
@@ -36,7 +38,7 @@ export const MenuOptions = () => {
         {menuOptions.map((menuOption, index) => {
           if (index !== menuOptionIndex) return null
           const isMasterOption = menuOption.IsMasterOptionSet
-          const minSelectAmount = menuOption.MinSelectCount || 1
+          const minSelectAmount = menuOption.MinSelectCount || 0
           const maxSelectAmount = menuOption.MaxSelectCount || 1
           const menuOptions = menuOption.MenuItemOptionSetItems.map(
             (menuOption) => {
@@ -65,7 +67,6 @@ export const MenuOptions = () => {
             optionsCanBeSelected ? 'opacity-100' : 'opacity-30'
           }`}
           onClick={() => {
-            console.log('optionsCanBeSelected---', optionsCanBeSelected)
             if (!optionsCanBeSelected) return
             if (menuOptionIndex === menuOptionsLength - 1) {
               setCurrentMenuLevel('confirmOptions')
@@ -74,7 +75,9 @@ export const MenuOptions = () => {
             setMenuOptionIndex((prev) => prev + 1)
           }}
         >
-          Confirm Selection
+          {allowZeroMinSelection && numberOfOptionsSelected === 0
+            ? 'Proceed Without Selection'
+            : 'Confirm Selection'}
         </button>
       </div>
     </div>

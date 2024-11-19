@@ -38,6 +38,8 @@ interface MenuContextType {
   setNumberOfOptionsSelected: Dispatch<SetStateAction<number>>
   optionsCanBeSelected: boolean
   setOptionsCanBeSelected: Dispatch<SetStateAction<boolean>>
+  allowZeroMinSelection: boolean
+  setAllowZeroMinSelection: Dispatch<SetStateAction<boolean>>
   tempCartItem: TempCartItem
   setTempCartItem: Dispatch<SetStateAction<TempCartItem>>
   addToCart: (item: CartItem) => void
@@ -66,6 +68,7 @@ export const MenuContextProvider = ({ children }: { children: ReactNode }) => {
   const [currentMenuLevel, setCurrentMenuLevel] = useState<MenuLevel>('main')
   const [numberOfOptionsSelected, setNumberOfOptionsSelected] = useState(0)
   const [optionsCanBeSelected, setOptionsCanBeSelected] = useState(false)
+  const [allowZeroMinSelection, setAllowZeroMinSelection] = useState(false)
   const [tempCartItem, setTempCartItem] = useState<TempCartItem>(null)
 
   const addToCart = (item: CartItem) => {
@@ -118,12 +121,14 @@ export const MenuContextProvider = ({ children }: { children: ReactNode }) => {
     setCurrentMenuItemId(null)
     setTempCartItem(null)
     setNumberOfOptionsSelected(0)
+    setAllowZeroMinSelection(false)
     setCurrentMenuLevel('main')
   }
 
   const resetMenuOptionsState = () => {
     setNumberOfOptionsSelected(0)
     setOptionsCanBeSelected(false)
+    setAllowZeroMinSelection(false)
   }
 
   // logs left in so cart items can be viewed in console
@@ -143,6 +148,8 @@ export const MenuContextProvider = ({ children }: { children: ReactNode }) => {
         setNumberOfOptionsSelected,
         optionsCanBeSelected,
         setOptionsCanBeSelected,
+        allowZeroMinSelection,
+        setAllowZeroMinSelection,
         tempCartItem,
         setTempCartItem,
         addToCart,
