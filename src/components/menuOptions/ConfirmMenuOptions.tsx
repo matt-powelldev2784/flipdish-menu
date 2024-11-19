@@ -1,7 +1,8 @@
 import { useMenuContext } from 'menuContext/MenuContext'
 
 export const ConfirmMenuOptions = () => {
-  const { tempCartItem } = useMenuContext()
+  const { tempCartItem, addToCart, setCurrentMenuLevel, resetMenuItemsState } =
+    useMenuContext()
   if (!tempCartItem) return <p>Server error</p>
 
   return (
@@ -20,12 +21,14 @@ export const ConfirmMenuOptions = () => {
       })}
 
       <button
-        className={`m-2 h-10 w-64 rounded bg-[#015BBB] px-2 py-1 text-lg text-white ${
-          tempCartItem ? 'opacity-100' : 'opacity-30'
-        }`}
-        onClick={() => {}}
+        className="m-2 h-10 w-64 rounded bg-[#015BBB] px-2 py-1 text-lg text-white"
+        onClick={() => {
+          addToCart(tempCartItem)
+          setCurrentMenuLevel('main')
+          resetMenuItemsState()
+        }}
       >
-        Confirm Selection
+        Add Item To Cart
       </button>
     </div>
   )
