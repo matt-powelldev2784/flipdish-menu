@@ -8,7 +8,12 @@ import cartIcon from 'assets/cart.svg'
 import backIcon from 'assets/back.svg'
 
 function App() {
-  const { currentMenuLevel, cartItems, resetMenuItemsState } = useMenuContext()
+  const {
+    currentMenuLevel,
+    setCurrentMenuLevel,
+    cartItems,
+    resetMenuItemsState
+  } = useMenuContext()
   const numOfCartItems = cartItems.length
   const menuSections = menuData.MenuSections
 
@@ -40,12 +45,15 @@ function App() {
       {currentMenuLevel === 'confirmOptions' && <ConfirmMenuOptions />}
 
       {/*********************************** Cart Icon ***********************************/}
-      <div className="absolute right-10 top-4 flex size-16 w-20 items-center justify-center">
+      <button
+        className="absolute right-10 top-4 flex size-16 w-20 items-center justify-center"
+        onClick={() => setCurrentMenuLevel('cart')}
+      >
         <p className="w-20 text-2xl font-bold text-[#015BBB]">
           {numOfCartItems}
         </p>
         <img src={cartIcon} alt="cart icon" className="size-12" />
-      </div>
+      </button>
 
       {/************* Only display back button on menu options screens *************/}
       {currentMenuLevel !== 'main' && (
