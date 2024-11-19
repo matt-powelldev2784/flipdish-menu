@@ -1,6 +1,6 @@
 import { menuData, MenuItemT } from 'menuData/menuData'
 
-type FindMenuItemById = (menuItemId: number) => MenuItemT | ''
+type FindMenuItemById = (menuItemId: number) => MenuItemT | undefined
 
 export const findMenuItemById: FindMenuItemById = (menuItemId) => {
   for (const section of menuData.MenuSections) {
@@ -12,5 +12,4 @@ export const findMenuItemById: FindMenuItemById = (menuItemId) => {
       return menuItem
     }
   }
-  return ''
 }

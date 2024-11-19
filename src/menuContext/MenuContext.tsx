@@ -7,15 +7,13 @@ import {
   SetStateAction
 } from 'react'
 
-export type MenuItemType = 'master' | 'subOptions' | 'noOptions' | null
-
-export type MenuLevel = 'main' | 'master' | 'subOptions'
+export type MenuLevel = 'main' | 'options' | 'confirmOptions'
 
 export type TempCartItem = CartItem | null
 
-export interface SubOption {
+export interface MenuOption {
   id: number
-  subOptionId: number
+  menuOptionId: number
   name: string
   quantity: number
   price: number
@@ -23,28 +21,32 @@ export interface SubOption {
 
 export interface CartItem {
   id: number
-  menuItemType: MenuItemType
   name: string
   menuItemId: number
   quantity: number
   price: number
-  subOptions?: SubOption[]
+  menuOptions?: MenuOption[]
 }
 
 interface MenuContextType {
   cartItems: CartItem[]
   currentMenuItemId: number | null
   setCurrentMenuItemId: Dispatch<SetStateAction<number | null>>
-  currentMenuItemType: MenuItemType
-  setCurrentMenuItemType: Dispatch<SetStateAction<MenuItemType>>
   currentMenuLevel: MenuLevel
   setCurrentMenuLevel: Dispatch<SetStateAction<MenuLevel>>
+  numberOfOptionsSelected: number
+  setNumberOfOptionsSelected: Dispatch<SetStateAction<number>>
+  optionsCanBeConfirmed: boolean
+  setOptionsCanBeConfirmed: Dispatch<SetStateAction<boolean>>
+  allowZeroMinSelection: boolean
+  setAllowZeroMinSelection: Dispatch<SetStateAction<boolean>>
   tempCartItem: TempCartItem
   setTempCartItem: Dispatch<SetStateAction<TempCartItem>>
   addToCart: (item: CartItem) => void
   removeFromCart: (id: number) => void
-  addTempCartSubOption: (subOption: SubOption) => void
-  removeTempCartSubOption: (subOptionId: number) => void
+  addOptionToTempCart: (option: MenuOption) => void
+  removeOptionFromTempCart: (subOptionId: number) => void
+  resetMenuOptionsState: () => void
   resetMenuItemsState: () => void
 }
 
@@ -53,7 +55,7 @@ const MenuContext = createContext<MenuContextType | undefined>(undefined)
 export const useMenuContext = () => {
   const context = useContext(MenuContext)
   if (!context) {
-    throw new Error('useCart must be used within a CartProvider')
+    throw new Error('useMenuContext must be used within a MenuContextProvider')
   }
   return context
 }
@@ -63,9 +65,10 @@ export const MenuContextProvider = ({ children }: { children: ReactNode }) => {
   const [currentMenuItemId, setCurrentMenuItemId] = useState<number | null>(
     null
   )
-  const [currentMenuItemType, setCurrentMenuItemType] =
-    useState<MenuItemType>(null)
   const [currentMenuLevel, setCurrentMenuLevel] = useState<MenuLevel>('main')
+  const [numberOfOptionsSelected, setNumberOfOptionsSelected] = useState(0)
+  const [optionsCanBeConfirmed, setOptionsCanBeConfirmed] = useState(false)
+  const [allowZeroMinSelection, setAllowZeroMinSelection] = useState(false)
   const [tempCartItem, setTempCartItem] = useState<TempCartItem>(null)
 
   const addToCart = (item: CartItem) => {
@@ -76,37 +79,37 @@ export const MenuContextProvider = ({ children }: { children: ReactNode }) => {
     setCartItems((prevItems) => prevItems.filter((item) => item.id !== id))
   }
 
-  const addTempCartSubOption = (subOption: SubOption) => {
+  const addOptionToTempCart = (menuOption: MenuOption) => {
     setTempCartItem((prev) => {
       if (prev === null) return null
 
-      if (!prev.subOptions) {
+      if (!prev.menuOptions) {
         return {
           ...prev,
-          subOptions: [subOption]
+          menuOptions: [menuOption]
         }
       }
 
-      // only allow each subOption to be added once
-      const subOptionExists = prev.subOptions?.some(
-        (option) => option.subOptionId === subOption.subOptionId
+      // only allow each menu option to be added once
+      const subOptionExists = prev.menuOptions?.some(
+        (option) => option.menuOptionId === menuOption.menuOptionId
       )
       if (subOptionExists) return prev
 
       return {
         ...prev,
-        subOptions: [...prev.subOptions, subOption]
+        menuOptions: [...prev.menuOptions, menuOption]
       }
     })
   }
 
-  const removeTempCartSubOption = (subOptionId: number) => {
+  const removeOptionFromTempCart = (menuOptionId: number) => {
     setTempCartItem((prev) => {
       if (prev) {
         return {
           ...prev,
-          subOptions: prev.subOptions?.filter(
-            (option) => option.subOptionId !== subOptionId
+          subOptions: prev.menuOptions?.filter(
+            (option) => option.menuOptionId !== menuOptionId
           )
         }
       }
@@ -116,14 +119,23 @@ export const MenuContextProvider = ({ children }: { children: ReactNode }) => {
 
   const resetMenuItemsState = () => {
     setCurrentMenuItemId(null)
-    setCurrentMenuItemType(null)
     setTempCartItem(null)
+    setNumberOfOptionsSelected(0)
+    setOptionsCanBeConfirmed(false)
+    setAllowZeroMinSelection(false)
     setCurrentMenuLevel('main')
+  }
+
+  const resetMenuOptionsState = () => {
+    setNumberOfOptionsSelected(0)
+    setOptionsCanBeConfirmed(false)
+    setAllowZeroMinSelection(false)
   }
 
   // logs left in so cart items can be viewed in console
   console.log('--------------------------state update ----------')
   console.log('cartItems', cartItems)
+  console.log('tempCartItem', tempCartItem)
 
   return (
     <MenuContext.Provider
@@ -131,16 +143,21 @@ export const MenuContextProvider = ({ children }: { children: ReactNode }) => {
         cartItems,
         currentMenuItemId,
         setCurrentMenuItemId,
-        currentMenuItemType,
-        setCurrentMenuItemType,
         currentMenuLevel,
         setCurrentMenuLevel,
+        numberOfOptionsSelected,
+        setNumberOfOptionsSelected,
+        optionsCanBeConfirmed,
+        setOptionsCanBeConfirmed,
+        allowZeroMinSelection,
+        setAllowZeroMinSelection,
         tempCartItem,
         setTempCartItem,
         addToCart,
         removeFromCart,
-        addTempCartSubOption,
-        removeTempCartSubOption,
+        addOptionToTempCart,
+        removeOptionFromTempCart,
+        resetMenuOptionsState,
         resetMenuItemsState
       }}
     >
