@@ -1,14 +1,12 @@
 import { useMenuContext } from 'menuContext/MenuContext'
 import { findMenuItemById } from 'utils/findMenuItemById'
 import { MenuOption } from './MenuOption'
-import backIcon from '../../assets/back.svg'
 import { useState } from 'react'
 
 export const MenuOptions = () => {
   const [menuOptionIndex, setMenuOptionIndex] = useState(0)
   const {
     currentMenuItemId,
-    resetMenuItemsState,
     resetMenuOptionsState,
     setCurrentMenuLevel,
     optionsCanBeConfirmed,
@@ -25,14 +23,7 @@ export const MenuOptions = () => {
 
   return (
     <div className="mt-2 flex w-full max-w-[700px] flex-col items-center">
-      {/************** header ***************/}
-      <button
-        onClick={resetMenuItemsState}
-        className=" absolute left-2 top-2 m-2 p-1 text-white"
-      >
-        <img src={backIcon} alt="back icon" />
-      </button>
-
+      {/************** Menu Item Name ***************/}
       <p className="m-2 text-2xl font-bold">{menuItem.Name}</p>
 
       {/************** menu options ***************/}
