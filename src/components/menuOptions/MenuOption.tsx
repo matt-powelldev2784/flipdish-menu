@@ -41,6 +41,7 @@ export const MenuOption = ({ menuOption }: MenuOptionProps) => {
     setOptionSelected(true)
     setNumberOfOptionsSelected((prev) => prev + 1)
 
+    // set state to show the options can be confirmed if the min selection criteria is met
     // add 1 to the number of options selected to include the current selection
     if (numberOfOptionsSelected + 1 >= menuOption.minSelectAmount) {
       setOptionsCanBeSelected(true)
@@ -52,6 +53,7 @@ export const MenuOption = ({ menuOption }: MenuOptionProps) => {
     setOptionSelected(false)
     setNumberOfOptionsSelected((prev) => prev - 1)
 
+    // set state to show the options cannot be confirmed if the min selection criteria is not met
     // subtract 1 from the number of options selected to include the current deselection
     if (numberOfOptionsSelected - 1 < menuOption.minSelectAmount) {
       setOptionsCanBeSelected(false)
