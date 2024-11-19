@@ -16,8 +16,8 @@ interface MenuOptionProps {
 export const MenuOption = ({ menuOption }: MenuOptionProps) => {
   const [optionSelected, setOptionSelected] = useState(false)
   const {
-    addTempCartSubOption,
-    removeTempCartSubOption,
+    addTempCartOption,
+    removeTempCartOption,
     numberOfOptionsSelected,
     setNumberOfOptionsSelected,
     setOptionsCanBeSelected
@@ -30,7 +30,7 @@ export const MenuOption = ({ menuOption }: MenuOptionProps) => {
   useAllowZeroAsMinSelection(menuOption.minSelectAmount)
 
   const onSelectOption = () => {
-    addTempCartSubOption({
+    addTempCartOption({
       id: Date.now(),
       menuOptionId: id,
       name,
@@ -48,7 +48,7 @@ export const MenuOption = ({ menuOption }: MenuOptionProps) => {
   }
 
   const onDeselectOption = () => {
-    removeTempCartSubOption(id)
+    removeTempCartOption(id)
     setOptionSelected(false)
     setNumberOfOptionsSelected((prev) => prev - 1)
 

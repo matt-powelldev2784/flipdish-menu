@@ -44,8 +44,8 @@ interface MenuContextType {
   setTempCartItem: Dispatch<SetStateAction<TempCartItem>>
   addToCart: (item: CartItem) => void
   removeFromCart: (id: number) => void
-  addTempCartSubOption: (option: MenuOption) => void
-  removeTempCartSubOption: (subOptionId: number) => void
+  addTempCartOption: (option: MenuOption) => void
+  removeTempCartOption: (subOptionId: number) => void
   resetMenuOptionsState: () => void
   resetMenuItemsState: () => void
 }
@@ -79,7 +79,7 @@ export const MenuContextProvider = ({ children }: { children: ReactNode }) => {
     setCartItems((prevItems) => prevItems.filter((item) => item.id !== id))
   }
 
-  const addTempCartSubOption = (menuOption: MenuOption) => {
+  const addTempCartOption = (menuOption: MenuOption) => {
     setTempCartItem((prev) => {
       if (prev === null) return null
 
@@ -103,7 +103,7 @@ export const MenuContextProvider = ({ children }: { children: ReactNode }) => {
     })
   }
 
-  const removeTempCartSubOption = (menuOptionId: number) => {
+  const removeTempCartOption = (menuOptionId: number) => {
     setTempCartItem((prev) => {
       if (prev) {
         return {
@@ -154,8 +154,8 @@ export const MenuContextProvider = ({ children }: { children: ReactNode }) => {
         setTempCartItem,
         addToCart,
         removeFromCart,
-        addTempCartSubOption,
-        removeTempCartSubOption,
+        addTempCartOption,
+        removeTempCartOption,
         resetMenuOptionsState,
         resetMenuItemsState
       }}
