@@ -68,6 +68,7 @@ export const MenuOptions = () => {
           }`}
           onClick={() => {
             if (!optionsCanBeSelected) return
+            // if the last option is selected, move to the confirm options screen
             if (menuOptionIndex === menuOptionsLength - 1) {
               setCurrentMenuLevel('confirmOptions')
             }
