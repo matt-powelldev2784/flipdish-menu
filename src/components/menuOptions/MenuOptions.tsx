@@ -21,6 +21,18 @@ export const MenuOptions = () => {
   const menuOptions = menuItem.MenuItemOptionSets
   const menuOptionsLength = menuOptions.length
 
+  const onConfirmOptions = () => {
+    // don't allow option selection if the menu options are not validated
+    if (!optionsCanBeConfirmed) return
+    // if the last option set being viewed, move to the confirm options screen
+    if (menuOptionIndex === menuOptionsLength - 1) {
+      setCurrentMenuLevel('confirmOptions')
+    }
+    //update relevant states on successful selection
+    resetMenuOptionsState()
+    setMenuOptionIndex((prev) => prev + 1)
+  }
+
   return (
     <div className="mt-2 flex w-full max-w-[700px] flex-col items-center">
       {/************** Menu Item Name ***************/}
@@ -55,26 +67,16 @@ export const MenuOptions = () => {
         })}
 
         {/************** confirm selection button ***************/}
+        {/* Sometimes the user is not required to select any options.
+            The button text is conditionally rendered to allow for:
+            'No Selection Required' if the min required options are zero
+            or 'Confirm Selection' if min required options is more than zero */}
         <button
+          onClick={onConfirmOptions}
           className={`m-2 h-10 w-64 rounded bg-[#015BBB] px-2 py-1 text-lg text-white ${
             optionsCanBeConfirmed ? 'opacity-100' : 'opacity-30'
           }`}
-          onClick={() => {
-            // don't allow option selection if the menu options are not validated
-            if (!optionsCanBeConfirmed) return
-            // if the last option set being viewed, move to the confirm options screen
-            if (menuOptionIndex === menuOptionsLength - 1) {
-              setCurrentMenuLevel('confirmOptions')
-            }
-            //update relevant states on successful selection
-            resetMenuOptionsState()
-            setMenuOptionIndex((prev) => prev + 1)
-          }}
         >
-          {/* Sometimes the user is not required to select any options.
-              The button text is conditionally rendered to allow for:
-              no selection if the min required options is zero
-              or a confirmed selection if min required options is more than zero */}
           {allowZeroMinSelection && numberOfOptionsSelected === 0
             ? 'No Selection Required'
             : 'Confirm Selection'}
