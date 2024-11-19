@@ -37,7 +37,7 @@ function App() {
       {currentMenuLevel === 'confirmOptions' && <ConfirmMenuOptions />}
 
       <div className="absolute right-10 top-4 flex size-16 w-20 items-center justify-center">
-        <p className="w-20 text-xl font-bold text-[#015BBB]">
+        <p className="w-20 text-2xl font-bold text-[#015BBB]">
           {numOfCartItems}
         </p>
         <img src={cartIcon} alt="cart icon" className="size-12" />
