@@ -16,8 +16,10 @@ export const MenuOptions = () => {
     numberOfOptionsSelected
   } = useMenuContext()
   if (!currentMenuItemId) return <p>Server error</p>
+
   const menuItem = findMenuItemById(currentMenuItemId)
-  if (menuItem === '') return <p>Server error</p>
+  if (menuItem === undefined) return <p>Server error</p>
+
   const menuOptions = menuItem.MenuItemOptionSets
   const menuOptionsLength = menuOptions.length
 
