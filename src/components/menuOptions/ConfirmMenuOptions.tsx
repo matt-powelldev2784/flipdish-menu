@@ -10,9 +10,6 @@ export const ConfirmMenuOptions = () => {
     tempCartTotalPrice,
     currentMenuItemId
   } = useMenuContext()
-  console.log('currentMenuItemId', currentMenuItemId)
-  console.log('tempCartItem', tempCartItem)
-  console.log('tempCartTotalPrice', tempCartTotalPrice)
   if (!currentMenuItemId) return <p>Server error</p>
   if (!tempCartItem) return <p>Server error</p>
   if (!tempCartTotalPrice) return <p>Server error</p>
@@ -28,8 +25,6 @@ export const ConfirmMenuOptions = () => {
       </div>
 
       {tempCartItem.menuOptions?.map((menuOption) => {
-        console.log('menuOption', menuOption)
-
         return (
           <div
             className="flex w-full items-center justify-between"
