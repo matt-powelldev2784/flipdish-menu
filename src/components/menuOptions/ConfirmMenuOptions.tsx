@@ -7,12 +7,10 @@ export const ConfirmMenuOptions = () => {
     addToCart,
     setCurrentMenuLevel,
     resetMenuItemsState,
-    tempCartTotalPrice,
     currentMenuItemId
   } = useMenuContext()
   if (!currentMenuItemId) return <p>Server error</p>
   if (!tempCartItem) return <p>Server error</p>
-  if (!tempCartTotalPrice) return <p>Server error</p>
 
   const menuItem = findMenuItemById(currentMenuItemId)
   if (!menuItem) return <p>Server error</p>
