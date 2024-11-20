@@ -149,13 +149,6 @@ export const MenuContextProvider = ({ children }: { children: ReactNode }) => {
     setAllowZeroMinSelection(false)
   }
 
-  // logs left in so cart items can be viewed in console
-  console.log('--------------------------state update ----------')
-  console.log('cartItems', cartItems)
-  console.log('tempCartItem', tempCartItem)
-  console.log('cartTotalPrice', cartTotalPrice)
-  console.log('tempCartTotalPrice', tempCartTotalPrice)
-
   return (
     <MenuContext.Provider
       value={{
