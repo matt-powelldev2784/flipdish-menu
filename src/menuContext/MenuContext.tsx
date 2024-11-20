@@ -127,12 +127,13 @@ export const MenuContextProvider = ({ children }: { children: ReactNode }) => {
     return acc + item.price * item.quantity + (subTotal || 0)
   }, 0)
 
-  const tempCartTotalPrice = tempCartItem?.menuOptions?.reduce(
-    (acc, option) => {
-      return acc + option.price * option.quantity
-    },
-    tempCartItem?.price || 0
-  )
+  const tempCartTotalPrice =
+    tempCartItem?.menuOptions?.reduce(
+      (acc, option) => {
+        return acc + option.price * option.quantity
+      },
+      tempCartItem?.price || 0
+    ) || tempCartItem?.price
 
   const resetMenuItemsState = () => {
     setCurrentMenuItemId(null)

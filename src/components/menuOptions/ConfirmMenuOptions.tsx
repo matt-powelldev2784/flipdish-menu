@@ -17,13 +17,13 @@ export const ConfirmMenuOptions = () => {
   const menuItem = findMenuItemById(currentMenuItemId)
   if (!menuItem) return <p>Server error</p>
 
-  const itemIsPricedByMasterOption = menuItem.MenuItemOptionSets.some(
-    (optionSet) => optionSet.IsMasterOptionSet
-  )
-
   return (
     <div className="m-4 flex w-full max-w-[700px] flex-col items-center rounded-lg bg-neutral-300 p-4">
-      <p className="text-lg font-bold">{tempCartItem.name}</p>
+      <div className="flex w-full items-center justify-between">
+        <p className="text-lg font-bold">{tempCartItem.name}</p>
+        <p className="text-lg font-bold">£{tempCartItem.price.toFixed(2)}</p>
+      </div>
+
       {tempCartItem.menuOptions?.map((menuOption) => {
         return (
           <div
@@ -32,11 +32,7 @@ export const ConfirmMenuOptions = () => {
           >
             <p className="">{menuOption.name}</p>
 
-            {itemIsPricedByMasterOption ? (
-              <p className="">£{menuOption.price.toFixed(2)}</p>
-            ) : (
-              <p className="">£{tempCartTotalPrice.toFixed(2)}</p>
-            )}
+            <p className="">£{menuOption.price.toFixed(2)}</p>
           </div>
         )
       })}

@@ -1,8 +1,8 @@
-import { MenuSectionT } from 'menuData/menuData'
+import { MenuSection } from 'menuData/menuData'
 import { MenuItem } from './MenuItem'
 
 interface MenuItemsProps {
-  MenuSection: MenuSectionT
+  MenuSection: MenuSection
 }
 
 export const MenuItems = ({ MenuSection }: MenuItemsProps) => {
