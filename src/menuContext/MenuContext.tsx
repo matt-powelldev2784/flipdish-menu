@@ -7,7 +7,7 @@ import {
   SetStateAction
 } from 'react'
 
-export type MenuLevel = 'main' | 'options' | 'confirmOptions'
+export type MenuLevel = 'main' | 'options' | 'confirmOptions' | 'cart'
 
 export type TempCartItem = CartItem | null
 
@@ -30,6 +30,7 @@ export interface CartItem {
 
 interface MenuContextType {
   cartItems: CartItem[]
+  cartTotalPrice: number
   currentMenuItemId: number | null
   setCurrentMenuItemId: Dispatch<SetStateAction<number | null>>
   currentMenuLevel: MenuLevel
@@ -42,6 +43,7 @@ interface MenuContextType {
   setAllowZeroMinSelection: Dispatch<SetStateAction<boolean>>
   tempCartItem: TempCartItem
   setTempCartItem: Dispatch<SetStateAction<TempCartItem>>
+  tempCartTotalPrice: number | undefined
   addToCart: (item: CartItem) => void
   removeFromCart: (id: number) => void
   addOptionToTempCart: (option: MenuOption) => void
@@ -108,7 +110,7 @@ export const MenuContextProvider = ({ children }: { children: ReactNode }) => {
       if (prev) {
         return {
           ...prev,
-          subOptions: prev.menuOptions?.filter(
+          menuOptions: prev.menuOptions?.filter(
             (option) => option.menuOptionId !== menuOptionId
           )
         }
@@ -116,6 +118,21 @@ export const MenuContextProvider = ({ children }: { children: ReactNode }) => {
       return prev
     })
   }
+
+  const cartTotalPrice = cartItems.reduce((acc, item) => {
+    const subTotal = item.menuOptions?.reduce(
+      (acc, option) => acc + option.price * option.quantity,
+      0
+    )
+    return acc + item.price * item.quantity + (subTotal || 0)
+  }, 0)
+
+  const tempCartTotalPrice = tempCartItem?.menuOptions?.reduce(
+    (acc, option) => {
+      return acc + option.price * option.quantity
+    },
+    tempCartItem?.price || 0
+  )
 
   const resetMenuItemsState = () => {
     setCurrentMenuItemId(null)
@@ -132,15 +149,11 @@ export const MenuContextProvider = ({ children }: { children: ReactNode }) => {
     setAllowZeroMinSelection(false)
   }
 
-  // logs left in so cart items can be viewed in console
-  console.log('--------------------------state update ----------')
-  console.log('cartItems', cartItems)
-  console.log('tempCartItem', tempCartItem)
-
   return (
     <MenuContext.Provider
       value={{
         cartItems,
+        cartTotalPrice,
         currentMenuItemId,
         setCurrentMenuItemId,
         currentMenuLevel,
@@ -153,6 +166,7 @@ export const MenuContextProvider = ({ children }: { children: ReactNode }) => {
         setAllowZeroMinSelection,
         tempCartItem,
         setTempCartItem,
+        tempCartTotalPrice,
         addToCart,
         removeFromCart,
         addOptionToTempCart,

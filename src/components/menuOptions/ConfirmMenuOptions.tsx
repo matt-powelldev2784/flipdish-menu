@@ -1,9 +1,25 @@
 import { useMenuContext } from 'menuContext/MenuContext'
+import { findMenuItemById } from 'utils/findMenuItemById'
 
 export const ConfirmMenuOptions = () => {
-  const { tempCartItem, addToCart, setCurrentMenuLevel, resetMenuItemsState } =
-    useMenuContext()
+  const {
+    tempCartItem,
+    addToCart,
+    setCurrentMenuLevel,
+    resetMenuItemsState,
+    tempCartTotalPrice,
+    currentMenuItemId
+  } = useMenuContext()
+  if (!currentMenuItemId) return <p>Server error</p>
   if (!tempCartItem) return <p>Server error</p>
+  if (!tempCartTotalPrice) return <p>Server error</p>
+
+  const menuItem = findMenuItemById(currentMenuItemId)
+  if (!menuItem) return <p>Server error</p>
+
+  const itemIsPricedByMasterOption = menuItem.MenuItemOptionSets.some(
+    (optionSet) => optionSet.IsMasterOptionSet
+  )
 
   return (
     <div className="m-4 flex w-full max-w-[700px] flex-col items-center rounded-lg bg-neutral-300 p-4">
@@ -15,7 +31,12 @@ export const ConfirmMenuOptions = () => {
             key={menuOption.id}
           >
             <p className="">{menuOption.name}</p>
-            <p className="">£{menuOption.price.toFixed(2)}</p>
+
+            {itemIsPricedByMasterOption ? (
+              <p className="">£{menuOption.price.toFixed(2)}</p>
+            ) : (
+              <p className="">£{tempCartTotalPrice.toFixed(2)}</p>
+            )}
           </div>
         )
       })}
