@@ -1,6 +1,6 @@
-import { menuData, MenuItemT } from 'menuData/menuData'
+import { menuData, MenuItem } from 'menuData/menuData'
 
-type FindMenuItemById = (menuItemId: number) => MenuItemT | undefined
+type FindMenuItemById = (menuItemId: number) => MenuItem | undefined
 
 export const findMenuItemById: FindMenuItemById = (menuItemId) => {
   for (const section of menuData.MenuSections) {

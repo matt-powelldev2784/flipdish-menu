@@ -1,4 +1,4 @@
-export interface MenuItemOptionSetItemT {
+export interface MenuItemOptionSetItem {
   MenuItemOptionSetItemId: number
   Name: string
   Price: number
@@ -19,7 +19,7 @@ export interface MenuItemOptionSetItemT {
   MaxSelectCount?: number
 }
 
-export interface MenuItemOptionSetT {
+export interface MenuItemOptionSet {
   CellAspectRatio: number
   CellLayoutType: number
   DisplayOrder: number | null
@@ -30,7 +30,7 @@ export interface MenuItemOptionSetT {
   MaxSelectCount?: number
   MenuItemId: number
   MenuItemOptionSetId: number
-  MenuItemOptionSetItems: MenuItemOptionSetItemT[]
+  MenuItemOptionSetItems: MenuItemOptionSetItem[]
   MenuItemOptionSetMetadata: []
   MinPrice: number
   MinSelectCount: number
@@ -38,7 +38,7 @@ export interface MenuItemOptionSetT {
   PublicId: string
 }
 
-export interface MenuItemT {
+export interface MenuItem {
   MenuItemId: number
   Name: string
   Description: string | null
@@ -50,7 +50,7 @@ export interface MenuItemT {
   Tags: string[]
   PublicId: string
   IsAvailable: boolean
-  MenuItemOptionSets: MenuItemOptionSetT[] | []
+  MenuItemOptionSets: MenuItemOptionSet[] | []
   TaxRate: number | null
   TaxRateId: number | null
   TaxValue: number | null
@@ -68,7 +68,7 @@ export interface MenuItemT {
   MenuItemMetadata: []
 }
 
-export interface AvailableTimesT {
+export interface AvailableTimes {
   BusinessHoursPeriodId: number
   DayOfWeek: number
   StartTime: string
@@ -77,18 +77,18 @@ export interface AvailableTimesT {
   PeriodEarly: string
 }
 
-export interface MenuSectionAvailabilityT {
+export interface MenuSectionAvailability {
   MenuSectionId: number
-  AvailableTimes: null | AvailableTimesT[]
+  AvailableTimes: null | AvailableTimes[]
   AvailabilityMode: number
 }
 
-export interface MenuSectionT {
+export interface MenuSection {
   MenuSectionId: number
   Name: string
   Description: string | null
   DisplayOrder: number
-  MenuItems: MenuItemT[] | []
+  MenuItems: MenuItem[] | []
   PublicId?: string
   IsDeleted: boolean
   IsAvailable: boolean
@@ -97,22 +97,22 @@ export interface MenuSectionT {
   ImageUrl: string | null
   CellAspectRatio: number
   CellLayoutType: number
-  MenuSectionAvailability: MenuSectionAvailabilityT
+  MenuSectionAvailability: MenuSectionAvailability
   ConcessionStoreId?: number | null
   MenuSectionMetadata: []
 }
 
-export interface MenuDataT {
+export interface MenuData {
   MenuId: number
   MenuVersionNumber: number
   VersionGuid: string
-  MenuSections: MenuSectionT[]
+  MenuSections: MenuSection[]
   MenuSectionBehaviour: number
   DisplaySectionLinks: boolean
   ConcessionStores: []
 }
 
-export const menuData: MenuDataT = {
+export const menuData: MenuData = {
   MenuId: 16798,
   MenuVersionNumber: 354,
   VersionGuid: 'e6220da2-c34a-4ea2-bb51-a3e190fc5f08',

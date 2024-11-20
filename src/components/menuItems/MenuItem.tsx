@@ -1,5 +1,5 @@
 import { useMenuContext } from 'menuContext/MenuContext'
-import { MenuItemT } from 'menuData/menuData'
+import { MenuItem as MenuItemT } from 'menuData/menuData'
 
 interface MenuItemProps {
   menuItem: MenuItemT

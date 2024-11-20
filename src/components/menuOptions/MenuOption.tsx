@@ -1,9 +1,9 @@
 import { useMenuContext } from 'menuContext/MenuContext'
-import { MenuItemOptionSetItemT } from 'menuData/menuData'
+import { MenuItemOptionSetItem } from 'menuData/menuData'
 import { useState } from 'react'
 import { useAllowZeroAsMinSelection } from './hooks/useAllowZeroAsMinSelection'
 
-interface menuOptionType extends MenuItemOptionSetItemT {
+interface menuOptionType extends MenuItemOptionSetItem {
   minSelectAmount: number
   maxSelectAmount: number
   isMasterOption: boolean
