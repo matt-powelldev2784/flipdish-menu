@@ -1,4 +1,5 @@
 import { test } from '@playwright/test'
+import pretty from 'pretty'
 
 test('user can add a menu item with master options to the basket', async ({
   page
@@ -23,6 +24,7 @@ test('user can add a menu item with master options to the basket', async ({
 
   await selectButton.click()
   const pageContent = await page.content()
+  const formattedContent = pretty(pageContent)
 
-  console.log(pageContent)
+  console.log(formattedContent)
 })
