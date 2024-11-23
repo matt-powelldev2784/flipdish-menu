@@ -54,5 +54,5 @@ test('user can add a menu item which is NOT a master option but has sub options 
 
   // check the user returns to the menu page
   const cartIcon = page.getByRole('img', { name: 'cart' })
-  expect(cartIcon).toBeVisible()
+  await expect(cartIcon).toBeVisible()
 })

@@ -22,5 +22,5 @@ test('user can add a menu item with master option and no further options to the 
 
   // check the user returns to the menu page
   const noOfCartItems = page.locator('p', { hasText: /^1$/ })
-  expect(noOfCartItems).toBeVisible()
+  await expect(noOfCartItems).toBeVisible()
 })

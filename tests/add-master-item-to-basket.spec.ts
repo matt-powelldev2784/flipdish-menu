@@ -52,5 +52,5 @@ test('user can add a menu item which has a master option to the basket', async (
 
   // check the user returns to the menu page
   const cartIcon = page.getByRole('img', { name: 'cart' })
-  expect(cartIcon).toBeVisible()
+  await expect(cartIcon).toBeVisible()
 })
