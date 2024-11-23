@@ -53,6 +53,9 @@ export const MenuItem = ({ menuItem }: MenuItemProps) => {
     <article
       key={id}
       className=" my-2 flex h-28 w-full flex-row items-center justify-between rounded bg-neutral-300 p-2 px-10"
+      data-test-id={
+        menuItemHasOptions ? 'menuItemWithOptions' : 'menuItemWithoutOptions'
+      }
     >
       <div className="relative size-20 overflow-hidden">
         <img
