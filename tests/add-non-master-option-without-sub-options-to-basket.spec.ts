@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test'
-test('user can add a menu item with master option and no further options to the basket', async ({
+test('user can add a menu item which is a master option but has no further sub options to the basket', async ({
   page
 }) => {
   // navigate to home page
