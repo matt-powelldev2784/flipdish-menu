@@ -1,11 +1,11 @@
-import { render, screen } from '@testing-library/react'
-
-import App from './App'
+import { screen } from '@testing-library/react'
+import { renderWithContext } from '../../tests/utils/renderWithContext'
+import { App } from './App'
 
 describe('<App />', () => {
   it('should render the App', () => {
-    render(<App />)
+    renderWithContext({ children: <App /> })
 
-    expect(screen.getByText('Home')).toBeInTheDocument()
+    expect(screen.getByText('Menu')).toBeInTheDocument()
   })
 })
