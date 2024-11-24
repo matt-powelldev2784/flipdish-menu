@@ -1,7 +1,7 @@
 import { screen } from '@testing-library/react'
 import { renderWithContext } from '../../../tests/utils/renderWithContext'
 import { Cart } from './Cart'
-import { cartItemsMock } from '../../../tests/utils/cartItemsMock'
+import { cartItemsMock } from '../../../tests/mocks/cartItemsMock'
 import { CartItem } from 'menuContext/MenuContext'
 
 const calculateCartTotalPrice = (cartItems: CartItem[]) => {

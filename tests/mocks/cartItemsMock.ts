@@ -1,4 +1,4 @@
-import { CartItem } from './../../src/menuContext/MenuContext'
+import { CartItem } from '../../src/menuContext/MenuContext'
 
 export const cartItemsMock: CartItem[] = [
   {
