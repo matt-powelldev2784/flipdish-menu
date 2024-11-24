@@ -28,7 +28,7 @@ export interface CartItem {
   menuOptions?: MenuOption[]
 }
 
-interface MenuContextType {
+export interface MenuContextType {
   cartItems: CartItem[]
   cartTotalPrice: number
   currentMenuItemId: number | null
@@ -52,7 +52,7 @@ interface MenuContextType {
   resetMenuItemsState: () => void
 }
 
-const MenuContext = createContext<MenuContextType | undefined>(undefined)
+export const MenuContext = createContext<MenuContextType | undefined>(undefined)
 
 export const useMenuContext = () => {
   const context = useContext(MenuContext)

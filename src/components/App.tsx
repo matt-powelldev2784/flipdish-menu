@@ -8,7 +8,7 @@ import cartIcon from 'assets/cart.svg'
 import backIcon from 'assets/back.svg'
 import { Cart } from './cart/Cart'
 
-function App() {
+export const App = () => {
   const {
     currentMenuLevel,
     setCurrentMenuLevel,
