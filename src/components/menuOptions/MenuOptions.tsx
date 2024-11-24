@@ -28,7 +28,7 @@ export const MenuOptions = () => {
     if (menuOptionIndex === menuOptionsLength - 1) {
       setCurrentMenuLevel('confirmOptions')
     }
-    //update relevant states on successful selection
+    //update relevant states on successful confirmation
     resetMenuOptionsState()
     setMenuOptionIndex((prev) => prev + 1)
   }
