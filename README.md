@@ -11,7 +11,7 @@
 https://flipdish-menu.netlify.app
 
 ## To run tests
-* End to end test implemented with playwright. Run npx playwright test from the command line.
+* End to end tests implemented with playwright. Run npx playwright test from the command line.
 * Unit tests implemented with Vitest and React Testing Library. Run npm run test from the command line.
 
 ## My approach
