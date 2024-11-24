@@ -48,7 +48,7 @@ test('user can add a menu item which is NOT a master option but has sub options 
 
   // click add item to cart button
   const addToCartButton = page.getByRole('button', {
-    name: 'Add Item to cart'
+    name: /.*Add to cart for.*/i
   })
   await addToCartButton.click()
 

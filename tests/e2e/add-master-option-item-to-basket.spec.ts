@@ -46,7 +46,7 @@ test('user can add a menu item which has a master option to the basket', async (
 
   // click add item to cart button
   const addToCartButton = page.getByRole('button', {
-    name: 'Add Item to cart'
+    name: /.*Add to cart for.*/i
   })
   await addToCartButton.click()
 
