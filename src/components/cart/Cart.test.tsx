@@ -25,6 +25,6 @@ test('should check cart items total price is correctly calculated', () => {
     }
   })
 
-  const totalPrice = screen.getByText('Total Price: £18.20')
+  const totalPrice = screen.getByText('Pay £18.20 now')
   expect(totalPrice).toBeInTheDocument()
 })

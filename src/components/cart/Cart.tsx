@@ -14,7 +14,15 @@ export const Cart = () => {
       {cartItems?.map((cartItem) => {
         return <CartItem key={cartItem.id} cartItem={cartItem} />
       })}
-      <p>Total Price: £{cartTotalPrice.toFixed(2)}</p>
+
+      <button
+        className="m-2 h-10 w-64 rounded bg-[#015BBB] px-2 py-1 text-lg text-white"
+        onClick={() => {
+          console.log('Payment logic goes here')
+        }}
+      >
+        Pay £{cartTotalPrice.toFixed(2)} now
+      </button>
     </div>
   )
 }
