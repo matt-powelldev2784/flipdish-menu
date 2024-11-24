@@ -10,6 +10,10 @@
 * Deployed app can be accessed using the following link:
 https://flipdish-menu.netlify.app
 
+## To run tests
+* End to end test implemented with playwright. Run npx playwright test from the command line.
+* Unit tests implemented with Vitest and React Testing Library. Run npm run test from the command line.
+
 ## My approach
 Build app with Vite, React, TypeScript, TailwindCSS using template form Vite Community.
 Implement unit testing with Vitest and React Testing Library.
