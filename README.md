@@ -16,13 +16,13 @@ https://flipdish-menu.netlify.app
 
 ## My approach
 Build app with Vite, React, TypeScript, TailwindCSS using template form Vite Community.
-Implement unit testing with Vitest and React Testing Library.
 
 * Define TypeScript types for the data structure
 * The main structure is will be main menu, menu items, menu options and cart
 * Handle null or missing values in the data
 * Add the menu data to a cart so the correct price can be calculated
-* Add tests to ensure the data is rendered correctly
+* Implement unit testing with Vitest and React Testing Library
+* Implement end to end testing using Playwright
 
 ## Task Details
 
