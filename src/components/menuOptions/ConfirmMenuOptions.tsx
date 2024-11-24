@@ -1,5 +1,4 @@
 import { useMenuContext } from 'menuContext/MenuContext'
-import { findMenuItemById } from 'utils/findMenuItemById'
 
 export const ConfirmMenuOptions = () => {
   const {
@@ -7,13 +6,10 @@ export const ConfirmMenuOptions = () => {
     addToCart,
     setCurrentMenuLevel,
     resetMenuItemsState,
-    currentMenuItemId
+    tempCartTotalPrice
   } = useMenuContext()
-  if (!currentMenuItemId) return <p>Server error</p>
   if (!tempCartItem) return <p>Server error</p>
-
-  const menuItem = findMenuItemById(currentMenuItemId)
-  if (!menuItem) return <p>Server error</p>
+  if (!tempCartTotalPrice) return <p>Server error</p>
 
   return (
     <div className="m-4 flex w-full max-w-[700px] flex-col items-center rounded-lg bg-neutral-300 p-4">
@@ -43,7 +39,7 @@ export const ConfirmMenuOptions = () => {
           resetMenuItemsState()
         }}
       >
-        Add Item To Cart
+        Add To Cart For £{tempCartTotalPrice.toFixed(2)}
       </button>
     </div>
   )
